@@ -14,7 +14,7 @@ description: An unofficial World of Warships assistant App.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.6.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -26,7 +26,7 @@ dependencies:
 
   connectivity: ^0.4.6+2
   dio: ^3.0.8
-  get_it: ^3.1.0
+  fluro: ^1.5.1
   intl: ^0.16.1
   provider: ^4.0.1
   shared_preferences: ^0.5.6
@@ -49,9 +49,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #  - images/a_dot_burr.jpeg
-  #  - images/a_dot_ham.jpeg
+  assets:
+   - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
