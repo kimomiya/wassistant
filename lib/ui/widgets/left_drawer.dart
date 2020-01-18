@@ -11,6 +11,7 @@ class LeftDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final HomeViewModel _homeViewModel = Provider.of(context);
 
     final List<Widget> _listItems = <Widget>[
@@ -19,7 +20,7 @@ class LeftDrawer extends StatelessWidget {
         decoration: BoxDecoration(
           border: Border(
             bottom: BorderSide(
-              color: Theme.of(context).accentColor,
+              color: theme.accentColor,
               width: 0.2,
             ),
           ),
@@ -27,7 +28,7 @@ class LeftDrawer extends StatelessWidget {
         child: ListTile(
           title: Text(
             Constant.appName,
-            style: Theme.of(context).textTheme.title,
+            style: theme.textTheme.title,
           ),
           subtitle: const Text('Admiral, are you free now?'),
           leading: Image.asset(
@@ -40,7 +41,7 @@ class LeftDrawer extends StatelessWidget {
       ),
       ListTile(
         leading: IconTheme(
-          data: IconThemeData(color: Theme.of(context).accentColor),
+          data: IconThemeData(color: theme.accentColor),
           child: const Icon(Icons.home),
         ),
         title: const Text('Home'),
@@ -54,7 +55,7 @@ class LeftDrawer extends StatelessWidget {
       ),
       ListTile(
         leading: IconTheme(
-          data: IconThemeData(color: Theme.of(context).accentColor),
+          data: IconThemeData(color: theme.accentColor),
           child: const Icon(Icons.directions_boat),
         ),
         title: const Text('Warships'),
@@ -64,7 +65,7 @@ class LeftDrawer extends StatelessWidget {
       ),
       ListTile(
         leading: IconTheme(
-          data: IconThemeData(color: Theme.of(context).accentColor),
+          data: IconThemeData(color: theme.accentColor),
           child: Icon(Icons.assistant),
         ),
         title: const Text('Commander skill'),
@@ -74,7 +75,7 @@ class LeftDrawer extends StatelessWidget {
       ),
       ListTile(
         leading: IconTheme(
-            data: IconThemeData(color: Theme.of(context).accentColor),
+            data: IconThemeData(color: theme.accentColor),
             child: const Icon(Icons.library_books)),
         title: const Text('Encyclopeida'),
         onTap: () {
@@ -83,7 +84,7 @@ class LeftDrawer extends StatelessWidget {
       ),
       ListTile(
         leading: IconTheme(
-          data: IconThemeData(color: Theme.of(context).accentColor),
+          data: IconThemeData(color: theme.accentColor),
           child: Icon(Icons.settings),
         ),
         title: const Text('Settings'),
@@ -101,7 +102,7 @@ class LeftDrawer extends StatelessWidget {
         decoration: BoxDecoration(
           border: Border(
             top: BorderSide(
-              color: Theme.of(context).accentColor,
+              color: theme.accentColor,
               width: 0.2,
             ),
           ),

@@ -22,10 +22,10 @@ class Wassistant extends StatelessWidget {
         ),
       ],
       child: Consumer<HomeViewModel>(
-        builder: (_, HomeViewModel _model, __) {
+        builder: (_, model, __) {
           return MaterialApp(
             title: Constant.appName,
-            theme: _model.appTheme,
+            theme: model.appTheme,
             onGenerateRoute: router.generator,
             debugShowCheckedModeBanner: false,
           );
