@@ -24,6 +24,8 @@ analyzer:
   strong-mode:
     implicit-casts: false
     implicit-dynamic: false
+  exclude:
+    - "lib/models/*.g.dart"
 
 linter:
   rules:

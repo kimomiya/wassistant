@@ -11,8 +11,10 @@ class Player {
 
   factory Player.fromJson(Map<String, dynamic> json) => _$PlayerFromJson(json);
 
+  /// Player name
   final String nickname;
 
+  /// Player ID
   @JsonKey(name: 'account_id')
   final int accountId;
 
