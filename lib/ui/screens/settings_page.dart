@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:wassistant/ui/widgets/left_drawer.dart';
-import 'package:wassistant/ui/widgets/navigation_bar.dart';
+import 'package:wassistant/ui/components/left_drawer.dart';
+import 'package:wassistant/ui/components/navigation_bar.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({@required this.text});

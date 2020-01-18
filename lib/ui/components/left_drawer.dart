@@ -12,9 +12,9 @@ class LeftDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final HomeViewModel _homeViewModel = Provider.of(context);
+    final homeViewModel = Provider.of<HomeViewModel>(context);
 
-    final List<Widget> _listItems = <Widget>[
+    final _listItems = <Widget>[
       Container(
         padding: const EdgeInsets.only(top: 8, bottom: 12),
         decoration: BoxDecoration(
@@ -110,9 +110,9 @@ class LeftDrawer extends StatelessWidget {
         child: ListTile(
           title: const Text('Dark Mode'),
           trailing: Switch(
-            value: _homeViewModel.isDarkModeEnabled,
+            value: homeViewModel.isDarkModeEnabled,
             onChanged: (bool isDarkModeEnabled) {
-              _homeViewModel.setTheme(isDarkModeEnabled);
+              homeViewModel.setTheme(isDarkModeEnabled);
             },
           ),
         ),
