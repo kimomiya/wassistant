@@ -1,3 +1,3 @@
 class Constant {
-  static const String appName = 'Wassistant';
+  static const appName = 'Wassistant';
 }

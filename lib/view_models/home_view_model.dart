@@ -8,16 +8,16 @@ class HomeViewModel extends ChangeNotifier {
     _initTheme();
   }
 
-  ThemeData _appTheme = lightTheme;
+  var _appTheme = lightTheme;
 
   ThemeData get appTheme => _appTheme;
 
   bool get isDarkModeEnabled => _appTheme.brightness == Brightness.dark;
 
   Future<void> _initTheme() async {
-    final SharedPreferences _prefs = await SharedPreferences.getInstance();
-    final String key = SharedPreferenceKey.isDarkModeEnabled.toString();
-    final bool isDarkModeEnabled = _prefs.getBool(key) ?? false;
+    final prefs = await SharedPreferences.getInstance();
+    final key = SharedPreferenceKey.isDarkModeEnabled.toString();
+    final isDarkModeEnabled = prefs.getBool(key) ?? false;
 
     _toggleTheme(isDarkModeEnabled);
 
@@ -27,15 +27,15 @@ class HomeViewModel extends ChangeNotifier {
   Future<void> setTheme(bool isDarkModeEnabled) async {
     _toggleTheme(isDarkModeEnabled);
 
-    final SharedPreferences _prefs = await SharedPreferences.getInstance();
-    final String key = SharedPreferenceKey.isDarkModeEnabled.toString();
-    await _prefs.setBool(key, isDarkModeEnabled);
+    final prefs = await SharedPreferences.getInstance();
+    final key = SharedPreferenceKey.isDarkModeEnabled.toString();
+    await prefs.setBool(key, isDarkModeEnabled);
 
     notifyListeners();
   }
 }
 
-extension on HomeViewModel {
+extension Private on HomeViewModel {
   void _toggleTheme(bool isDarkModeEnabled) {
     if (isDarkModeEnabled) {
       _appTheme = darkTheme;

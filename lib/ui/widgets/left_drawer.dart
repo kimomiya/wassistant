@@ -27,15 +27,11 @@ class LeftDrawer extends StatelessWidget {
             style: Theme.of(context).textTheme.title,
           ),
           subtitle: const Text('Admiral, are you free now?'),
-          leading: Container(
+          leading: Image.asset(
+            'images/logo.png',
             width: 50,
             height: 50,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/images/logo.png'),
-                fit: BoxFit.fill,
-              ),
-            ),
+            fit: BoxFit.contain,
           ),
         ),
       ),
@@ -110,15 +106,12 @@ class LeftDrawer extends StatelessWidget {
       ),
     ];
 
-    return SafeArea(
-      bottom: false,
-      child: Drawer(
-        child: Container(
-          margin: const EdgeInsets.all(12),
-          child: ListView.builder(
-            itemCount: _listItems.length,
-            itemBuilder: (_, int index) => _listItems[index],
-          ),
+    return Drawer(
+      child: Container(
+        margin: const EdgeInsets.all(12),
+        child: ListView.builder(
+          itemCount: _listItems.length,
+          itemBuilder: (_, int index) => _listItems[index],
         ),
       ),
     );

@@ -21,7 +21,7 @@ class Wassistant extends StatelessWidget {
           return MaterialApp(
             title: Constant.appName,
             theme: _model.appTheme,
-            home: const HomePage(),
+            home: HomePage(),
             debugShowCheckedModeBanner: false,
           );
         },
