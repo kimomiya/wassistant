@@ -2,10 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:wassistant/core/constants/constant.dart';
-import 'package:wassistant/ui/pages/home_page.dart';
+import 'package:wassistant/ui/router/router.dart';
+import 'package:wassistant/ui/router/routes.dart';
 import 'package:wassistant/view_models/home_view_model.dart';
 
-void main() => runApp(Wassistant());
+void main() {
+  Routes.configureRoutes();
+
+  runApp(Wassistant());
+}
 
 class Wassistant extends StatelessWidget {
   @override
@@ -21,7 +26,7 @@ class Wassistant extends StatelessWidget {
           return MaterialApp(
             title: Constant.appName,
             theme: _model.appTheme,
-            home: HomePage(),
+            onGenerateRoute: router.generator,
             debugShowCheckedModeBanner: false,
           );
         },

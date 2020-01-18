@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:wassistant/ui/widgets/left_drawer.dart';
 import 'package:wassistant/ui/widgets/navigation_bar.dart';
 
-class HomePage extends StatelessWidget {
-  final _title = 'Home';
+class SettingsPage extends StatelessWidget {
+  const SettingsPage({@required this.text});
+
+  final String text;
+  String get _title => 'Settings';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: NavigationBar(_title),
-      body: Container(
-        child: const Center(
-          child: Text('Hello world!'),
-        ),
-        color: Theme.of(context).primaryColor,
+      body: Center(
+        child: Text(text),
       ),
       drawer: const LeftDrawer(),
     );

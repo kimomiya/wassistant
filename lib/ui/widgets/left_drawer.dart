@@ -1,6 +1,9 @@
+import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wassistant/core/constants/constant.dart';
+import 'package:wassistant/ui/router/router.dart';
+import 'package:wassistant/ui/router/routes.dart';
 import 'package:wassistant/view_models/home_view_model.dart';
 
 class LeftDrawer extends StatelessWidget {
@@ -42,7 +45,11 @@ class LeftDrawer extends StatelessWidget {
         ),
         title: const Text('Home'),
         onTap: () {
-          print('object');
+          router.navigateTo(
+            context,
+            Routes.home,
+            transition: TransitionType.cupertino,
+          );
         },
       ),
       ListTile(
@@ -81,7 +88,12 @@ class LeftDrawer extends StatelessWidget {
         ),
         title: const Text('Settings'),
         onTap: () {
-          print('object');
+          const text = 'paramater!';
+          router.navigateTo(
+            context,
+            '${Routes.settings}?text=$text',
+            transition: TransitionType.cupertino,
+          );
         },
       ),
       Container(
