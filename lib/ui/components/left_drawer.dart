@@ -1,5 +1,6 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 import 'package:wassistant/core/constants/constant.dart';
 import 'package:wassistant/ui/router/router.dart';
@@ -60,7 +61,7 @@ class LeftDrawer extends StatelessWidget {
         ),
         title: const Text('Warships'),
         onTap: () {
-          print('object');
+          showToast('coming soooon');
         },
       ),
       ListTile(
@@ -70,7 +71,7 @@ class LeftDrawer extends StatelessWidget {
         ),
         title: const Text('Commander skill'),
         onTap: () {
-          print('object');
+          showToast('coming soooon');
         },
       ),
       ListTile(
@@ -79,7 +80,7 @@ class LeftDrawer extends StatelessWidget {
             child: const Icon(Icons.library_books)),
         title: const Text('Encyclopeida'),
         onTap: () {
-          print('object');
+          showToast('coming soooon');
         },
       ),
       ListTile(

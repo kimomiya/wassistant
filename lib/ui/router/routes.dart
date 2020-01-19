@@ -6,7 +6,7 @@ class Routes {
   static const home = '/';
   static const settings = '/settings';
 
-  static void configureRoutes() {
+  static void configure() {
     router.notFoundHandler = Handler(
       handlerFunc: (context, params) {
         // TODO(hiei): waiting for Firebase Crashlytics
