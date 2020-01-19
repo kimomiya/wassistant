@@ -112,3 +112,7 @@ coverage/
 
 # Environment file
 env.dart
+
+# Firebase
+google-services.json
+GoogleService-Info.plist

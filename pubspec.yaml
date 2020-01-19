@@ -26,6 +26,9 @@ dependencies:
 
   connectivity: ^0.4.6+2
   dio: ^3.0.8
+  firebase_core: ^0.4.3+2
+  firebase_analytics: ^5.0.9
+  firebase_crashlytics: ^0.1.2+4
   fluro: ^1.5.1
   intl: ^0.16.1
   json_annotation: ^3.0.1
