@@ -35,7 +35,7 @@ class RootViewModel extends ChangeNotifier {
   }
 }
 
-extension Private on RootViewModel {
+extension on RootViewModel {
   void _toggleTheme(bool isDarkModeEnabled) {
     if (isDarkModeEnabled) {
       _appTheme = darkTheme;

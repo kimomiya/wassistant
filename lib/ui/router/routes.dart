@@ -10,7 +10,7 @@ class Routes {
   static void configure() {
     router.notFoundHandler = Handler(
       handlerFunc: (context, params) {
-        logger.e('No route for $context, with $params.');
+        logger.e('Route Not Found.');
         return null;
       },
     );
