@@ -8,7 +8,7 @@ import 'package:provider/single_child_widget.dart';
 import 'package:wassistant/core/constants/constant.dart';
 import 'package:wassistant/ui/router/router.dart';
 import 'package:wassistant/ui/router/routes.dart';
-import 'package:wassistant/view_models/home_view_model.dart';
+import 'package:wassistant/view_models/root_view_model.dart';
 
 void main() {
   Crashlytics.instance.enableInDevMode = true;
@@ -26,11 +26,11 @@ class Wassistant extends StatelessWidget {
 
     return MultiProvider(
       providers: <SingleChildWidget>[
-        ChangeNotifierProvider<HomeViewModel>(
-          create: (_) => HomeViewModel(),
+        ChangeNotifierProvider<RootViewModel>(
+          create: (_) => RootViewModel(),
         ),
       ],
-      child: Consumer<HomeViewModel>(
+      child: Consumer<RootViewModel>(
         builder: (_, model, __) {
           return OKToast(
             position: ToastPosition(

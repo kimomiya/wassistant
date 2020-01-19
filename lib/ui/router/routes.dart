@@ -4,7 +4,7 @@ import 'package:wassistant/ui/router/route_handlers.dart';
 import 'package:wassistant/utils/logger.dart';
 
 class Routes {
-  static const home = '/';
+  static const root = '/';
   static const settings = '/settings';
 
   static void configure() {
@@ -15,7 +15,7 @@ class Routes {
       },
     );
 
-    router.define(home, handler: homeHandler);
+    router.define(root, handler: rootHandler);
     router.define(settings, handler: settingsHandler);
   }
 }

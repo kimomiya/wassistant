@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:wassistant/core/constants/constant.dart';
 import 'package:wassistant/ui/router/router.dart';
 import 'package:wassistant/ui/router/routes.dart';
-import 'package:wassistant/view_models/home_view_model.dart';
+import 'package:wassistant/view_models/root_view_model.dart';
 
 class LeftDrawer extends StatelessWidget {
   const LeftDrawer({Key key}) : super(key: key);
@@ -13,7 +13,7 @@ class LeftDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final homeViewModel = Provider.of<HomeViewModel>(context);
+    final rootViewModel = Provider.of<RootViewModel>(context);
 
     final _listItems = <Widget>[
       Container(
@@ -49,7 +49,7 @@ class LeftDrawer extends StatelessWidget {
         onTap: () {
           router.navigateTo(
             context,
-            Routes.home,
+            Routes.root,
             transition: TransitionType.cupertino,
           );
         },
@@ -111,9 +111,9 @@ class LeftDrawer extends StatelessWidget {
         child: ListTile(
           title: const Text('Dark Mode'),
           trailing: Switch(
-            value: homeViewModel.isDarkModeEnabled,
+            value: rootViewModel.isDarkModeEnabled,
             onChanged: (bool isDarkModeEnabled) {
-              homeViewModel.setTheme(isDarkModeEnabled);
+              rootViewModel.setTheme(isDarkModeEnabled);
             },
           ),
         ),

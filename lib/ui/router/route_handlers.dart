@@ -1,9 +1,9 @@
 import 'package:fluro/fluro.dart';
-import 'package:wassistant/ui/screens/home_page.dart';
+import 'package:wassistant/ui/screens/root_page.dart';
 import 'package:wassistant/ui/screens/settings_page.dart';
 
-final homeHandler = Handler(
-  handlerFunc: (_, params) => HomePage(),
+final rootHandler = Handler(
+  handlerFunc: (_, params) => RootPage(),
 );
 
 final settingsHandler = Handler(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wassistant/ui/components/left_drawer.dart';
 import 'package:wassistant/ui/components/navigation_bar.dart';
 
-class HomePage extends StatelessWidget {
+class RootPage extends StatelessWidget {
   final _title = 'Home';
 
   @override
