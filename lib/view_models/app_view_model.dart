@@ -3,8 +3,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wassistant/core/enums/shared_preferences_key.dart';
 import 'package:wassistant/core/theme/theme.dart';
 
-class RootViewModel extends ChangeNotifier {
-  RootViewModel() {
+class AppViewModel extends ChangeNotifier {
+  AppViewModel() {
     _initTheme();
   }
 
@@ -35,7 +35,7 @@ class RootViewModel extends ChangeNotifier {
   }
 }
 
-extension on RootViewModel {
+extension on AppViewModel {
   void _toggleTheme(bool isDarkModeEnabled) {
     if (isDarkModeEnabled) {
       _appTheme = darkTheme;

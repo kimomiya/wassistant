@@ -1,19 +1,19 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
-import 'package:provider/provider.dart';
 import 'package:wassistant/core/constants/constant.dart';
 import 'package:wassistant/ui/router/router.dart';
 import 'package:wassistant/ui/router/routes.dart';
-import 'package:wassistant/view_models/root_view_model.dart';
+import 'package:wassistant/view_models/app_view_model.dart';
 
 class LeftDrawer extends StatelessWidget {
-  const LeftDrawer({Key key}) : super(key: key);
+  const LeftDrawer(this.appViewModel);
+
+  final AppViewModel appViewModel;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final rootViewModel = Provider.of<RootViewModel>(context);
 
     final _listItems = <Widget>[
       Container(
@@ -111,9 +111,9 @@ class LeftDrawer extends StatelessWidget {
         child: ListTile(
           title: const Text('Dark Mode'),
           trailing: Switch(
-            value: rootViewModel.isDarkModeEnabled,
+            value: appViewModel.isDarkModeEnabled,
             onChanged: (bool isDarkModeEnabled) {
-              rootViewModel.setTheme(isDarkModeEnabled);
+              appViewModel.setTheme(isDarkModeEnabled);
             },
           ),
         ),

@@ -6,9 +6,10 @@ import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:wassistant/core/constants/constant.dart';
+import 'package:wassistant/providers.dart';
 import 'package:wassistant/ui/router/router.dart';
 import 'package:wassistant/ui/router/routes.dart';
-import 'package:wassistant/view_models/root_view_model.dart';
+import 'package:wassistant/view_models/app_view_model.dart';
 
 void main() {
   Crashlytics.instance.enableInDevMode = true;
@@ -26,20 +27,18 @@ class Wassistant extends StatelessWidget {
 
     return MultiProvider(
       providers: <SingleChildWidget>[
-        ChangeNotifierProvider<RootViewModel>(
-          create: (_) => RootViewModel(),
-        ),
+        ...providers,
       ],
-      child: Consumer<RootViewModel>(
-        builder: (_, model, __) {
+      child: Consumer<AppViewModel>(
+        builder: (_, appViewModel, __) {
           return OKToast(
             position: ToastPosition(
               align: Alignment.bottomCenter,
             ),
-            backgroundColor: model.appTheme.accentColor,
+            backgroundColor: appViewModel.appTheme.accentColor,
             child: MaterialApp(
               title: Constant.appName,
-              theme: model.appTheme,
+              theme: appViewModel.appTheme,
               onGenerateRoute: router.generator,
               navigatorObservers: [
                 FirebaseAnalyticsObserver(analytics: analytics),

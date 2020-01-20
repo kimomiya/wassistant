@@ -4,14 +4,16 @@ import 'package:wassistant/models/player.dart';
 import 'package:wassistant/repository/api_client.dart';
 
 class PlayerRepository {
-  final _apiClient = ApiClient();
+  const PlayerRepository(this.apiClient);
+
+  final ApiClient apiClient;
 
   Future<List<Player>> fetchPlayers(String search) async {
     final parameters = {
       'application_id': Env.applicaionId,
       'search': search,
     };
-    final dynamic response = await _apiClient.request(
+    final dynamic response = await apiClient.request(
       ApiType.players,
       parameters: parameters,
     );
