@@ -3,27 +3,27 @@ import 'package:provider/single_child_widget.dart';
 import 'package:wassistant/repository/api_client.dart';
 import 'package:wassistant/repository/palyer_repository.dart';
 import 'package:wassistant/view_models/app_view_model.dart';
-import 'package:wassistant/view_models/search_view_model.dart';
+import 'package:wassistant/view_models/components/search_view_model.dart';
 
-final providers = <SingleChildWidget>[
+final providers = <SingleChildStatelessWidget>[
   ..._appProviders,
   ..._independentProviders,
   ..._dependentProviders,
 ];
 
-final _appProviders = <SingleChildWidget>[
+final _appProviders = <SingleChildStatelessWidget>[
   ChangeNotifierProvider(
     create: (_) => AppViewModel(),
   ),
 ];
 
-final _independentProviders = <SingleChildWidget>[
+final _independentProviders = <SingleChildStatelessWidget>[
   Provider(
     create: (_) => ApiClient(),
   ),
 ];
 
-final _dependentProviders = <SingleChildWidget>[
+final _dependentProviders = <SingleChildStatelessWidget>[
   ProxyProvider<ApiClient, PlayerRepository>(
     update: (_, apiClient, __) => PlayerRepository(apiClient),
   ),

@@ -1,3 +1,4 @@
 enum SharedPreferenceKey {
   isDarkModeEnabled,
+  searchHistory,
 }
