@@ -7,9 +7,9 @@ import 'package:wassistant/ui/router/routes.dart';
 import 'package:wassistant/view_models/app_view_model.dart';
 
 class LeftDrawer extends StatelessWidget {
-  const LeftDrawer(this.appViewModel);
+  const LeftDrawer(this._appViewModel);
 
-  final AppViewModel appViewModel;
+  final AppViewModel _appViewModel;
 
   @override
   Widget build(BuildContext context) {
@@ -111,9 +111,9 @@ class LeftDrawer extends StatelessWidget {
         child: ListTile(
           title: const Text('Dark Mode'),
           trailing: Switch(
-            value: appViewModel.isDarkModeEnabled,
+            value: _appViewModel.isDarkModeEnabled,
             onChanged: (bool isDarkModeEnabled) {
-              appViewModel.setTheme(isDarkModeEnabled);
+              _appViewModel.setTheme(isDarkModeEnabled);
             },
           ),
         ),
