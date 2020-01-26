@@ -1,4 +1,4 @@
-import 'package:wassistant/core/exceptions/http_exceptions.dart';
+import '../error/exceptions.dart';
 
 enum ApiType {
   players,
@@ -19,7 +19,10 @@ extension ApiTypeValues on ApiType {
         return 'https://api.worldofwarships.asia/wows/clans';
 
       default:
-        throw HttpRequestException('The API type $this dose not exists.');
+        throw ServerException(
+          code: 1,
+          message: 'The API type [$this] dose not exists.',
+        );
     }
   }
 
@@ -34,7 +37,10 @@ extension ApiTypeValues on ApiType {
         return '/info/';
 
       default:
-        throw HttpRequestException('The API type $this dose not exists.');
+        throw ServerException(
+          code: 1,
+          message: 'The API type [$this] dose not exists.',
+        );
     }
   }
 
@@ -47,7 +53,10 @@ extension ApiTypeValues on ApiType {
         return 'GET';
 
       default:
-        throw HttpRequestException('The API type $this dose not exists.');
+        throw ServerException(
+          code: 1,
+          message: 'The API type [$this] dose not exists.',
+        );
     }
   }
 }
