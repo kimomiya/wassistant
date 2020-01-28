@@ -1,4 +1,4 @@
-import '../error/exceptions.dart';
+import '../env/env.dart';
 
 enum ApiType {
   players,
@@ -7,56 +7,23 @@ enum ApiType {
   clan,
 }
 
-extension ApiTypeValues on ApiType {
-  String get baseURL {
-    switch (this) {
-      case ApiType.players:
-      case ApiType.player:
-        return 'https://api.worldofwarships.asia/wows/account';
-
-      case ApiType.clans:
-      case ApiType.clan:
-        return 'https://api.worldofwarships.asia/wows/clans';
-
-      default:
-        throw ServerException(
-          code: 1,
-          message: 'The API type [$this] dose not exists.',
-        );
-    }
-  }
+extension Properties on ApiType {
+  String get baseURL => 'https://api.worldofwarships.${Env.realm}';
 
   String get path {
     switch (this) {
       case ApiType.players:
       case ApiType.player:
-      case ApiType.clans:
-        return '/list/';
+        return '/account/list/';
 
+      case ApiType.clans:
       case ApiType.clan:
-        return '/info/';
+        return '/clans/info/';
 
       default:
-        throw ServerException(
-          code: 1,
-          message: 'The API type [$this] dose not exists.',
-        );
+        throw Exception('The API type [$this] dose not exists.');
     }
   }
 
-  String get method {
-    switch (this) {
-      case ApiType.players:
-      case ApiType.player:
-      case ApiType.clans:
-      case ApiType.clan:
-        return 'GET';
-
-      default:
-        throw ServerException(
-          code: 1,
-          message: 'The API type [$this] dose not exists.',
-        );
-    }
-  }
+  String get method => 'GET';
 }

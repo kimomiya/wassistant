@@ -25,7 +25,7 @@ analyzer:
     implicit-casts: false
     implicit-dynamic: false
   exclude:
-    - "lib/data/models/*.g.dart"
+    - "lib/**/models/*.g.dart"
 
 linter:
   rules:

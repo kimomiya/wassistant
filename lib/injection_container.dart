@@ -3,18 +3,18 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
 import 'core/network/network_info.dart';
-import 'data/data_sources/player_remote_data_source.dart';
-import 'data/repositories/palyer_repository_impl.dart';
-import 'domain/repositories/player_repository.dart';
-import 'domain/usecaces/fetch_player_info.dart';
-import 'domain/usecaces/fetch_player_list.dart';
+import 'features/player/data/data_sources/player_remote_data_source.dart';
+import 'features/player/data/repositories/palyer_repository_impl.dart';
+import 'features/player/domain/repositories/player_repository.dart';
+import 'features/player/domain/usecaces/fetch_player_info.dart';
+import 'features/player/domain/usecaces/fetch_player_list.dart';
 
 final locator = GetIt.instance;
 
 Future<void> init() async {
   //! External
-  locator.registerLazySingleton<Connectivity>(() => Connectivity());
-  locator.registerLazySingleton<Dio>(() => Dio());
+  locator.registerLazySingleton(() => Connectivity());
+  locator.registerLazySingleton(() => Dio());
 
   //! Core
   locator.registerLazySingleton<NetworkInfo>(
@@ -22,19 +22,20 @@ Future<void> init() async {
   );
 
   //! Features - Player
-  // Data source
+  //* Data source
   locator.registerLazySingleton(
     () => PlayerRemoteDataSourceImpl(client: locator<Dio>()),
   );
 
-  // Repository
+  //* Repository
   locator.registerLazySingleton<PlayerRepository>(
     () => PlayerRepositoryImpl(
       remoteDataSource: locator<PlayerRemoteDataSource>(),
+      networkInfo: locator<NetworkInfo>(),
     ),
   );
 
-  // Usecase
+  //* Usecase
   locator.registerLazySingleton(
     () => FetchPlayerList(locator<PlayerRepository>()),
   );
