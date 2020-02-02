@@ -39,5 +39,5 @@ Map<String, dynamic> _$PlayerInfoModelToJson(PlayerInfoModel instance) =>
       'nickname': instance.nickname,
       'stats_updated_at': instance.statsUpdatedAt,
       'updated_at': instance.updatedAt,
-      'statistics': instance.statistics,
+      'statistics': instance.statistics?.toJson(),
     };

@@ -1,24 +1,53 @@
-import 'package:connectivity/connectivity.dart';
+import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/network/network_info.dart';
 import 'features/player/data/data_sources/player_remote_data_source.dart';
 import 'features/player/data/repositories/palyer_repository_impl.dart';
 import 'features/player/domain/repositories/player_repository.dart';
 import 'features/player/domain/usecaces/fetch_player_info.dart';
-import 'features/player/domain/usecaces/fetch_player_list.dart';
+import 'features/search/data/data_sources/search_local_data_source.dart';
+import 'features/search/data/data_sources/search_remote_data_source.dart';
+import 'features/search/data/repositories/search_repository_impl.dart';
+import 'features/search/domain/repositories/search_repository.dart';
+import 'features/search/domain/usecase/fetch_player_list.dart';
 
 final locator = GetIt.instance;
 
 Future<void> init() async {
   //! External
-  locator.registerLazySingleton(() => Connectivity());
+  locator.registerLazySingleton(() => DataConnectionChecker());
   locator.registerLazySingleton(() => Dio());
+  final _prefs = await SharedPreferences.getInstance();
+  locator.registerLazySingleton(() => _prefs);
 
   //! Core
   locator.registerLazySingleton<NetworkInfo>(
-    () => NetworkInfoImpl(locator<Connectivity>()),
+    () => NetworkInfoImpl(locator<DataConnectionChecker>()),
+  );
+
+  //! Features - Search
+  //* Data source
+  locator.registerLazySingleton(
+    () => SearchRemoteDataSourceImpl(client: locator<Dio>()),
+  );
+  locator.registerLazySingleton(
+    () => SearchLocalDataSourceImpl(prefs: locator<SharedPreferences>()),
+  );
+
+  //* Repository
+  locator.registerLazySingleton<SearchRepository>(
+    () => SearchRepositoryImpl(
+      remoteDataSource: locator<SearchRemoteDataSource>(),
+      networkInfo: locator<NetworkInfo>(),
+    ),
+  );
+
+  //* Usecase
+  locator.registerLazySingleton(
+    () => FetchPlayerList(locator<SearchRepository>()),
   );
 
   //! Features - Player
@@ -36,9 +65,6 @@ Future<void> init() async {
   );
 
   //* Usecase
-  locator.registerLazySingleton(
-    () => FetchPlayerList(locator<PlayerRepository>()),
-  );
   locator.registerLazySingleton(
     () => FetchPlayerInfo(locator<PlayerRepository>()),
   );

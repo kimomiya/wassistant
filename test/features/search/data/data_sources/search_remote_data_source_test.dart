@@ -5,8 +5,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:wassistant/core/env/env.dart';
 import 'package:wassistant/core/errors/exceptions.dart';
-import 'package:wassistant/features/player/data/data_sources/player_remote_data_source.dart';
-import 'package:wassistant/features/player/data/models/player_info_model.dart';
+import 'package:wassistant/features/search/data/data_sources/search_remote_data_source.dart';
+import 'package:wassistant/features/search/data/models/player_model.dart';
 
 import '../../../../fixtures/fixture_reader.dart';
 
@@ -15,12 +15,12 @@ class MockHttpClient extends Mock implements Dio {}
 class MockHttpClientAdapter extends Mock implements HttpClientAdapter {}
 
 void main() {
-  PlayerRemoteDataSourceImpl dataSource;
+  SearchRemoteDataSourceImpl dataSource;
   MockHttpClient mockHttpClient;
 
   setUp(() {
     mockHttpClient = MockHttpClient();
-    dataSource = PlayerRemoteDataSourceImpl(client: mockHttpClient);
+    dataSource = SearchRemoteDataSourceImpl(client: mockHttpClient);
   });
 
   void setUpMockHttpClientSuccess200(String fixturePath) {
@@ -49,41 +49,45 @@ void main() {
   }
 
   group(
-    'Fetch player info data source',
+    'Fetch player list data source',
     () {
-      const tAccountId = 2022009820;
-      final tResponse =
-          jsonDecode(fixture('player_info_response')) as Map<String, dynamic>;
-      final tPlayerInfoModel = PlayerInfoModel.fromJson(
-        tResponse['data'][tAccountId.toString()] as Map<String, dynamic>,
-      );
+      const tSearch = 'horta';
+      const tPlayerModelList = <PlayerModel>[
+        PlayerModel(
+          nickname: 'Horta_luo',
+          accountId: 2022009820,
+        ),
+        PlayerModel(
+          nickname: 'horta_ro0193',
+          accountId: 2019754947,
+        ),
+      ];
 
       test(
         'should perform a GET request on a URL with players being the endpoint',
         () async {
-          setUpMockHttpClientSuccess200('player_info_response');
+          setUpMockHttpClientSuccess200('player_list_response');
 
-          await dataSource.fetchPlayerInfo(tAccountId);
+          await dataSource.fetchPlayerList(tSearch);
 
           verify(mockHttpClient.get<dynamic>(
             '${env.baseURL}/account/list/',
             queryParameters: <String, dynamic>{
               'application_id': env.applicaionId,
-              'account_id': tAccountId,
+              'search': tSearch,
             },
           ));
         },
       );
 
       test(
-        'should return player info when the response status code is 200',
+        'should return a player list when the response status code is 200',
         () async {
-          setUpMockHttpClientSuccess200('player_info_response');
+          setUpMockHttpClientSuccess200('player_list_response');
 
-          final result = await dataSource.fetchPlayerInfo(tAccountId);
+          final result = await dataSource.fetchPlayerList(tSearch);
 
-          expect(result.toJson(), equals(tPlayerInfoModel.toJson()));
-          expect(result.statistics, equals(tPlayerInfoModel.statistics));
+          expect(result, equals(tPlayerModelList));
         },
       );
 
@@ -92,9 +96,9 @@ void main() {
         () async {
           setUpMockHttpClientFailure404();
 
-          final call = dataSource.fetchPlayerInfo;
+          final call = dataSource.fetchPlayerList;
 
-          expect(() => call(tAccountId), throwsA(isA<ServerException>()));
+          expect(() => call(tSearch), throwsA(isA<ServerException>()));
         },
       );
     },

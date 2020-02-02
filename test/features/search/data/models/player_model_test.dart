@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:wassistant/features/player/data/models/player_model.dart';
+import 'package:wassistant/features/search/data/models/player_model.dart';
 
 import '../../../../fixtures/fixture_reader.dart';
 
@@ -27,8 +27,7 @@ void main() {
     test(
       'should return a valid model when the JSON is a player',
       () {
-        final jsonMap =
-            jsonDecode(fixture('player.json')) as Map<String, dynamic>;
+        final jsonMap = jsonDecode(fixture('player')) as Map<String, dynamic>;
         final result = PlayerModel.fromJson(jsonMap);
 
         expect(result, equals(tPlayerModel));

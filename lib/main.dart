@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
-import 'package:wassistant/providers.dart';
-import 'package:wassistant/ui/router/router.dart';
-import 'package:wassistant/ui/router/routes.dart';
-import 'package:wassistant/view_models/app_view_model.dart';
+
+import 'features/router/router.dart';
 import 'injection_container.dart' as di;
+import 'providers.dart';
+import 'view_models/app_view_model.dart';
 
 Future<void> main() async {
   Crashlytics.instance.enableInDevMode = true;
@@ -29,7 +29,7 @@ class Wassistant extends StatelessWidget {
 
     return MultiProvider(
       providers: <SingleChildWidget>[
-        // ...providers,
+        ...providers,
       ],
       child: Consumer<AppViewModel>(
         builder: (_, appViewModel, __) {

@@ -6,7 +6,7 @@ import 'player_statistics_model.dart';
 
 part 'player_info_model.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class PlayerInfoModel extends PlayerInfo {
   const PlayerInfoModel({
     @required this.accountId,

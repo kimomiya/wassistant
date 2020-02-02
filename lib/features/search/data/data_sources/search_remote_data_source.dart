@@ -3,33 +3,35 @@ import 'package:meta/meta.dart';
 
 import '../../../../core/env/env.dart';
 import '../../../../core/utils/http_helper.dart';
-import '../models/player_info_model.dart';
+import '../models/player_model.dart';
 
-abstract class PlayerRemoteDataSource {
-  Future<PlayerInfoModel> fetchPlayerInfo(int accountId);
+abstract class SearchRemoteDataSource {
+  Future<List<PlayerModel>> fetchPlayerList(String search);
 }
 
-class PlayerRemoteDataSourceImpl implements PlayerRemoteDataSource {
-  PlayerRemoteDataSourceImpl({
+class SearchRemoteDataSourceImpl implements SearchRemoteDataSource {
+  SearchRemoteDataSourceImpl({
     @required this.client,
   });
 
   final Dio client;
 
   @override
-  Future<PlayerInfoModel> fetchPlayerInfo(int accountId) async {
-    final responseData = await _fetchData(
+  Future<List<PlayerModel>> fetchPlayerList(String search) async {
+    final dynamic responseData = await _fetchData(
       path: '${env.baseURL}/account/list/',
       queryParameters: <String, dynamic>{
         'application_id': env.applicaionId,
-        'account_id': accountId,
+        'search': search,
       },
-    ) as Map<String, dynamic>;
+    );
 
-    final playerInfoData =
-        responseData[accountId.toString()] as Map<String, dynamic>;
+    final players = <PlayerModel>[];
+    for (final Map<String, dynamic> player in responseData) {
+      players.add(PlayerModel.fromJson(player));
+    }
 
-    return PlayerInfoModel.fromJson(playerInfoData);
+    return players;
   }
 
   Future<dynamic> _fetchData({
