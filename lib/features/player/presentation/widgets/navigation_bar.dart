@@ -2,7 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wassistant/core/enums/shared_preferences_key.dart';
+
+import '../../../../core/enums/prefs_key.dart';
 
 class NavigationBar extends StatelessWidget implements PreferredSizeWidget {
   const NavigationBar(this._title);
@@ -47,7 +48,7 @@ class _PlayerSearchDelegate extends SearchDelegate<String> {
   final SharedPreferences _prefs;
 
   List<String> _getSearchHistory() {
-    final prefKey = SharedPreferenceKey.searchHistory.toString();
+    final prefKey = PrefsKey.searchHistory.toString();
     return _prefs.getStringList(prefKey) ?? [];
   }
 
@@ -88,7 +89,7 @@ class _PlayerSearchDelegate extends SearchDelegate<String> {
     histories.remove(query);
     histories.add(query);
     _prefs.setStringList(
-      SharedPreferenceKey.searchHistory.toString(),
+      PrefsKey.searchHistory.toString(),
       histories,
     );
 

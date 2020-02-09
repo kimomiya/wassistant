@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wassistant/core/enums/shared_preferences_key.dart';
-import 'package:wassistant/core/theme/theme.dart';
+import 'package:wassistant/core/enums/prefs_key.dart';
+
+import '../resources/app_theme.dart';
 
 class AppViewModel extends ChangeNotifier {
   AppViewModel() {
@@ -16,7 +17,7 @@ class AppViewModel extends ChangeNotifier {
 
   Future<void> _initTheme() async {
     final prefs = await SharedPreferences.getInstance();
-    final key = SharedPreferenceKey.isDarkModeEnabled.toString();
+    final key = PrefsKey.isDarkModeEnabled.toString();
     final isDarkModeEnabled = prefs.getBool(key) ?? false;
 
     _toggleTheme(isDarkModeEnabled);
@@ -28,7 +29,7 @@ class AppViewModel extends ChangeNotifier {
     _toggleTheme(isDarkModeEnabled);
 
     final prefs = await SharedPreferences.getInstance();
-    final key = SharedPreferenceKey.isDarkModeEnabled.toString();
+    final key = PrefsKey.isDarkModeEnabled.toString();
     await prefs.setBool(key, isDarkModeEnabled);
 
     notifyListeners();

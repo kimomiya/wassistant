@@ -68,7 +68,7 @@ void main() {
         () async {
           setUpMockHttpClientSuccess200('player_list_response');
 
-          await dataSource.fetchPlayerList(tSearch);
+          await dataSource.searchPlayers(tSearch);
 
           verify(mockHttpClient.get<dynamic>(
             '${env.baseURL}/account/list/',
@@ -85,7 +85,7 @@ void main() {
         () async {
           setUpMockHttpClientSuccess200('player_list_response');
 
-          final result = await dataSource.fetchPlayerList(tSearch);
+          final result = await dataSource.searchPlayers(tSearch);
 
           expect(result, equals(tPlayerModelList));
         },
@@ -96,7 +96,7 @@ void main() {
         () async {
           setUpMockHttpClientFailure404();
 
-          final call = dataSource.fetchPlayerList;
+          final call = dataSource.searchPlayers;
 
           expect(() => call(tSearch), throwsA(isA<ServerException>()));
         },

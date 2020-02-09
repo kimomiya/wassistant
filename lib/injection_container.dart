@@ -12,7 +12,7 @@ import 'features/search/data/data_sources/search_local_data_source.dart';
 import 'features/search/data/data_sources/search_remote_data_source.dart';
 import 'features/search/data/repositories/search_repository_impl.dart';
 import 'features/search/domain/repositories/search_repository.dart';
-import 'features/search/domain/usecase/fetch_player_list.dart';
+import 'features/search/domain/usecase/search_players.dart';
 
 final locator = GetIt.instance;
 
@@ -41,13 +41,14 @@ Future<void> init() async {
   locator.registerLazySingleton<SearchRepository>(
     () => SearchRepositoryImpl(
       remoteDataSource: locator<SearchRemoteDataSource>(),
+      localDataSource: locator<SearchLocalDataSource>(),
       networkInfo: locator<NetworkInfo>(),
     ),
   );
 
   //* Usecase
   locator.registerLazySingleton(
-    () => FetchPlayerList(locator<SearchRepository>()),
+    () => SearchPlayers(locator<SearchRepository>()),
   );
 
   //! Features - Player

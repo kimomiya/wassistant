@@ -1,11 +1,8 @@
 import 'package:dio/dio.dart';
 
-import '../../utils/logger.dart';
 import '../errors/exceptions.dart';
 
 dynamic mappingValidation(Response<Map<String, dynamic>> response) {
-  logger.d(response);
-
   if (response.statusCode != 200) {
     throw ServerException(
       code: response.statusCode,

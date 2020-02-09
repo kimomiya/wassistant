@@ -6,7 +6,7 @@ import '../../../../core/utils/http_helper.dart';
 import '../models/player_model.dart';
 
 abstract class SearchRemoteDataSource {
-  Future<List<PlayerModel>> fetchPlayerList(String search);
+  Future<List<PlayerModel>> searchPlayers(String search);
 }
 
 class SearchRemoteDataSourceImpl implements SearchRemoteDataSource {
@@ -17,7 +17,7 @@ class SearchRemoteDataSourceImpl implements SearchRemoteDataSource {
   final Dio client;
 
   @override
-  Future<List<PlayerModel>> fetchPlayerList(String search) async {
+  Future<List<PlayerModel>> searchPlayers(String search) async {
     final dynamic responseData = await _fetchData(
       path: '${env.baseURL}/account/list/',
       queryParameters: <String, dynamic>{

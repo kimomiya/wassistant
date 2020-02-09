@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
 
+  bloc: ^3.0.0
   cupertino_icons: ^0.1.2
   dartz: ^0.8.9
   data_connection_checker: ^0.3.4
@@ -19,6 +20,7 @@ dependencies:
   firebase_analytics: ^5.0.11
   firebase_crashlytics: ^0.1.2+5
   fluro: ^1.5.1
+  flutter_bloc: ^3.2.0
   flutter_screenutil: ^1.0.2
   flutter_spinkit: ^4.1.1+1
   get_it: ^3.1.0
@@ -26,7 +28,6 @@ dependencies:
   json_annotation: ^3.0.1
   logger: ^0.8.3
   oktoast: ^2.3.1
-  provider: ^4.0.3
   pull_to_refresh: ^1.5.8
   shared_preferences: ^0.5.6+1
   url_launcher: ^5.4.1

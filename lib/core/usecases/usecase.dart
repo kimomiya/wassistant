@@ -7,7 +7,7 @@ abstract class UseCase<Success, Parameters> {
   Future<Either<Failure, Success>> call(Parameters parameters);
 }
 
-class NoParameters extends Equatable {
+class NoParams extends Equatable {
   @override
   List<Object> get props => [];
 }

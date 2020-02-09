@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:wassistant/core/constants/error_code.dart';
 import 'package:wassistant/core/errors/exceptions.dart';
 import 'package:wassistant/core/errors/failures.dart';
 import 'package:wassistant/core/network/network_info.dart';
@@ -39,11 +40,15 @@ void main() {
       test(
         'should check if the device is online',
         () {
-          when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
+          when(
+            mockNetworkInfo.checkConnection(),
+          ).thenAnswer(
+            (_) async => null,
+          );
 
           repository.fetchPlayerInfo(tAccountId);
 
-          verify(mockNetworkInfo.isConnected);
+          verify(mockNetworkInfo.checkConnection());
         },
       );
 
@@ -59,7 +64,11 @@ void main() {
           final PlayerInfo tPlayerInfo = tPlayerInfoModel;
 
           setUp(() {
-            when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
+            when(
+              mockNetworkInfo.checkConnection(),
+            ).thenAnswer(
+              (_) async => null,
+            );
           });
 
           test(
@@ -94,10 +103,12 @@ void main() {
               verify(mockRemoteDataSource.fetchPlayerInfo(tAccountId));
               expect(
                 result,
-                equals(Left<Failure, List<PlayerInfo>>(const ServerFailure(
-                  code: 402,
-                  message: 'SEARCH_NOT_SPECIFIED',
-                ))),
+                equals(Left<Failure, List<PlayerInfo>>(
+                  const ServerFailure(
+                    code: 402,
+                    message: 'SEARCH_NOT_SPECIFIED',
+                  ),
+                )),
               );
             },
           );
@@ -108,7 +119,14 @@ void main() {
         'offline',
         () {
           setUp(() {
-            when(mockNetworkInfo.isConnected).thenAnswer((_) async => false);
+            when(
+              mockNetworkInfo.checkConnection(),
+            ).thenThrow(
+              ServerException(
+                code: ErrorCode.networkUnreachable,
+                message: 'Network is unreachable.',
+              ),
+            );
           });
 
           test(
@@ -121,7 +139,7 @@ void main() {
               expect(
                 result,
                 equals(Left<Failure, PlayerInfo>(const ServerFailure(
-                  code: 0,
+                  code: ErrorCode.networkUnreachable,
                   message: 'Network is unreachable.',
                 ))),
               );

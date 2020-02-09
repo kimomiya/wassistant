@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
+import 'package:wassistant/core/constants/error_code.dart';
 
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/failures.dart';
@@ -30,25 +31,22 @@ class PlayerRepositoryImpl implements PlayerRepository {
   Future<Either<Failure, Type>> _fetchData<Type>(
     _Executable<Type> executor,
   ) async {
-    if (!await networkInfo.isConnected) {
-      return Left(const ServerFailure(
-        code: 0,
-        message: 'Network is unreachable.',
-      ));
-    }
-
     try {
+      await networkInfo.checkConnection();
       final result = await executor();
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure(code: e.code, message: e.message));
     } on DioError catch (e) {
       return Left(ServerFailure(
-        code: e.response?.statusCode ?? 1,
+        code: e.response?.statusCode ?? ErrorCode.fatalError,
         message: e.response?.statusMessage ?? e.message,
       ));
     } catch (e) {
-      return Left(ServerFailure(code: 1, message: e.toString()));
+      return Left(ServerFailure(
+        code: ErrorCode.fatalError,
+        message: e.toString(),
+      ));
     }
   }
 }

@@ -1,4 +1,4 @@
-enum SharedPreferenceKey {
+enum PrefsKey {
   isDarkModeEnabled,
   searchHistory,
 }

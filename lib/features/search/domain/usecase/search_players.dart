@@ -7,28 +7,30 @@ import '../../../../core/usecases/usecase.dart';
 import '../entities/player.dart';
 import '../repositories/search_repository.dart';
 
-class FetchPlayerList implements UseCase<List<Player>, FetchPlayerListParams> {
-  FetchPlayerList(this._repository);
+class SearchPlayers implements UseCase<List<Player>, SearchPlayersParams> {
+  SearchPlayers(this._repository);
 
   final SearchRepository _repository;
 
   @override
   Future<Either<Failure, List<Player>>> call(
-    FetchPlayerListParams fetchPlayerListParams,
+    SearchPlayersParams searchPlayersParams,
   ) async {
-    return await _repository.fetchPlayerList(
-      fetchPlayerListParams.search,
+    return await _repository.searchPlayers(
+      searchPlayersParams.search,
     );
   }
 }
 
-class FetchPlayerListParams extends Equatable {
-  const FetchPlayerListParams({
+class SearchPlayersParams extends Equatable {
+  const SearchPlayersParams({
     @required this.search,
   });
 
   final String search;
 
   @override
-  List<Object> get props => [search];
+  List<Object> get props => [
+        search,
+      ];
 }

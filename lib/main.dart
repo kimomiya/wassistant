@@ -6,7 +6,7 @@ import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
-import 'features/router/router.dart';
+import 'core/router/router.dart';
 import 'injection_container.dart' as di;
 import 'providers.dart';
 import 'view_models/app_view_model.dart';
