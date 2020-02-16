@@ -1,6 +1,7 @@
 import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wassistant/core/enums/prefs_key.dart';
+
+import '../../../../core/enums/prefs_key.dart';
 
 abstract class SearchLocalDataSource {
   Future<void> cacheSearchHistory(List<String> history);
