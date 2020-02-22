@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wassistant/core/enums/prefs_key.dart';
 
-import '../resources/app_theme.dart';
+import '../core/enums/prefs_key.dart';
+import '../core/resources/app_theme.dart';
 
 class AppViewModel extends ChangeNotifier {
   AppViewModel() {

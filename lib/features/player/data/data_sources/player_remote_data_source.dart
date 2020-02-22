@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../core/data_source/mapping_validation.dart';
 import '../../../../core/env/env.dart';
-import '../../../../core/utils/http_helper.dart';
 import '../models/player_info_model.dart';
 
 abstract class PlayerRemoteDataSource {
@@ -41,6 +41,6 @@ class PlayerRemoteDataSourceImpl implements PlayerRemoteDataSource {
       queryParameters: queryParameters,
     );
 
-    return mappingValidation(response);
+    return response.mappingValidation();
   }
 }

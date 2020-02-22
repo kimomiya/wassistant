@@ -16,9 +16,7 @@ class SearchPlayers implements UseCase<List<Player>, SearchPlayersParams> {
   Future<Either<Failure, List<Player>>> call(
     SearchPlayersParams searchPlayersParams,
   ) async {
-    return await _repository.searchPlayers(
-      searchPlayersParams.search,
-    );
+    return await _repository.searchPlayers(searchPlayersParams.search);
   }
 }
 
@@ -30,7 +28,5 @@ class SearchPlayersParams extends Equatable {
   final String search;
 
   @override
-  List<Object> get props => [
-        search,
-      ];
+  List<Object> get props => [search];
 }

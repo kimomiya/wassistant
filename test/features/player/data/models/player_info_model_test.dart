@@ -46,8 +46,6 @@ void main() {
           fixture('player_info'),
         ) as Map<String, dynamic>;
         final result = PlayerInfoModel.fromJson(jsonMap);
-        print(result.toJson().toString());
-        print(tPlayerInfoModel.toJson().toString());
 
         expect(result, equals(tPlayerInfoModel));
       },

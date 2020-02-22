@@ -2,13 +2,13 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:fimber/fimber.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../core/constants/error_code.dart';
 import '../../../../core/constants/error_message.dart';
 import '../../../../core/errors/failures.dart';
 import '../../../../core/usecases/usecase.dart';
-import '../../../../core/utils/logger.dart';
 import '../../domain/entities/player.dart';
 import '../../domain/usecase/get_search_history.dart';
 import '../../domain/usecase/search_players.dart';
@@ -44,7 +44,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     }
   }
 
-  //* Handler methods
+  //* Evnet handler
 
   Stream<SearchState> _handleGetHistory() async* {
     final failureOrHistory = await getSearchHistory(NoParams());
@@ -67,8 +67,10 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     );
   }
 
+  //* Helper methods
+
   String _mapFailureToMessage(Failure failure) {
-    logger.e(failure);
+    Fimber.e('Search bolc', ex: failure);
 
     switch (failure.runtimeType) {
       case ServerFailure:

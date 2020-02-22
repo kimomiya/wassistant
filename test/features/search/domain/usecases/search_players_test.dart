@@ -29,7 +29,7 @@ void main() {
     'searchPlayers',
     () {
       test(
-        'should search players from the repository',
+        'should get searched players from the repository',
         () async {
           when(
             mockSearchRepository.searchPlayers(any),

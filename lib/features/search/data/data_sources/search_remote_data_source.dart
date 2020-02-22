@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../core/data_source/mapping_validation.dart';
 import '../../../../core/env/env.dart';
-import '../../../../core/utils/http_helper.dart';
 import '../models/player_model.dart';
 
 abstract class SearchRemoteDataSource {
@@ -43,6 +43,6 @@ class SearchRemoteDataSourceImpl implements SearchRemoteDataSource {
       queryParameters: queryParameters,
     );
 
-    return mappingValidation(response);
+    return response.mappingValidation();
   }
 }
