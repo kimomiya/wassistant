@@ -38,6 +38,7 @@ dev_dependencies:
     sdk: flutter
 
   build_runner: ^1.7.4
+  intl_translation: ^0.17.9
   json_serializable: ^3.2.5
   mockito: ^4.1.1
   pedantic: ^1.8.0+1

@@ -5,39 +5,45 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/enums/prefs_key.dart';
 
-class NavigationBar extends StatelessWidget implements PreferredSizeWidget {
-  const NavigationBar(this._title);
+class SliverSearchBar extends StatelessWidget implements PreferredSizeWidget {
+  const SliverSearchBar({
+    Key key,
+    this.title,
+    @required this.slivers,
+  }) : super(key: key);
 
-  final String _title;
+  final Widget title;
+
+  /// The slivers to place inside the viewport.
+  final List<Widget> slivers;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return Container(
-      child: AppBar(
-        title: Text(_title),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () async {
-              final prefs = await SharedPreferences.getInstance();
-              await showSearch(
-                context: context,
-                delegate: _PlayerSearchDelegate(prefs),
-              );
-            },
-          ),
-        ],
-        elevation: 0,
-        iconTheme: IconThemeData(
-          color: theme.accentColor,
+    return CustomScrollView(
+      slivers: <Widget>[
+        SliverAppBar(
+          snap: true,
+          floating: true,
+          forceElevated: true,
+          title: title,
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () async {
+                final prefs = await SharedPreferences.getInstance();
+                await showSearch(
+                  context: context,
+                  delegate: _PlayerSearchDelegate(prefs),
+                );
+              },
+            ),
+          ],
         ),
-        textTheme: theme.textTheme,
-      ),
+        ...slivers,
+      ],
     );
   }
 }
@@ -81,17 +87,15 @@ class _PlayerSearchDelegate extends SearchDelegate<String> {
 
   @override
   Widget buildResults(BuildContext context) {
-    if (query.isEmpty) {
-      return Container();
+    if (query.isNotEmpty) {
+      final histories = _getSearchHistory();
+      histories.remove(query);
+      histories.add(query);
+      _prefs.setStringList(
+        PrefsKey.searchHistory.toString(),
+        histories,
+      );
     }
-
-    final histories = _getSearchHistory();
-    histories.remove(query);
-    histories.add(query);
-    _prefs.setStringList(
-      PrefsKey.searchHistory.toString(),
-      histories,
-    );
 
     return Container();
   }

@@ -1,21 +1,22 @@
-// import 'package:fluro/fluro.dart';
-// import 'package:wassistant/ui/router/router.dart';
-// import 'package:wassistant/ui/router/route_handlers.dart';
-// import 'package:wassistant/utils/logger.dart';
+import 'package:fimber/fimber.dart';
+import 'package:fluro/fluro.dart';
 
-// class Routes {
-//   static const root = '/';
-//   static const settings = '/settings';
+import 'route_handlers.dart';
+import 'router.dart';
 
-//   static void configure() {
-//     router.notFoundHandler = Handler(
-//       handlerFunc: (context, params) {
-//         logger.e('Route Not Found.');
-//         return null;
-//       },
-//     );
+class Routes {
+  static const home = '/';
+  static const settings = '/settings';
 
-//     router.define(root, handler: rootHandler);
-//     router.define(settings, handler: settingsHandler);
-//   }
-// }
+  static void configure() {
+    router.notFoundHandler = Handler(
+      handlerFunc: (_, __) {
+        Fimber.e('Route Was Not Found.');
+        return null;
+      },
+    );
+
+    router.define(home, handler: homeHandler);
+    router.define(settings, handler: settingsHandler);
+  }
+}

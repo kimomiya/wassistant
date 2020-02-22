@@ -3,21 +3,20 @@ import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
-import 'package:provider/provider.dart';
-import 'package:provider/single_child_widget.dart';
 
 import 'core/router/router.dart';
+import 'core/router/routes.dart';
 import 'injection_container.dart' as di;
-import 'providers.dart';
-import 'view_models/app_view_model.dart';
 
 Future<void> main() async {
   Crashlytics.instance.enableInDevMode = true;
   FlutterError.onError = Crashlytics.instance.recordFlutterError;
 
+  WidgetsFlutterBinding.ensureInitialized();
+
   await di.init();
 
-  // Routes.configure();
+  Routes.configure();
 
   runApp(Wassistant());
 }
@@ -27,28 +26,17 @@ class Wassistant extends StatelessWidget {
   Widget build(BuildContext context) {
     final analytics = FirebaseAnalytics();
 
-    return MultiProvider(
-      providers: <SingleChildWidget>[
-        ...providers,
-      ],
-      child: Consumer<AppViewModel>(
-        builder: (_, appViewModel, __) {
-          return OKToast(
-            position: ToastPosition(
-              align: Alignment.bottomCenter,
-            ),
-            backgroundColor: appViewModel.appTheme.accentColor,
-            child: MaterialApp(
-              title: 'Wassistant',
-              theme: appViewModel.appTheme,
-              onGenerateRoute: router.generator,
-              navigatorObservers: [
-                FirebaseAnalyticsObserver(analytics: analytics),
-              ],
-              debugShowCheckedModeBanner: false,
-            ),
-          );
-        },
+    return OKToast(
+      position: ToastPosition(
+        align: Alignment.bottomCenter,
+      ),
+      child: MaterialApp(
+        title: 'Wassistant',
+        onGenerateRoute: router.generator,
+        // navigatorObservers: [
+        //   FirebaseAnalyticsObserver(analytics: analytics),
+        // ],
+        debugShowCheckedModeBanner: false,
       ),
     );
   }
