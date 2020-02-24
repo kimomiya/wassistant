@@ -8,8 +8,10 @@ import 'package:wassistant/core/network/network_info.dart';
 import 'package:wassistant/features/search/data/data_sources/search_local_data_source.dart';
 import 'package:wassistant/features/search/data/data_sources/search_remote_data_source.dart';
 import 'package:wassistant/features/search/data/models/player_model.dart';
+import 'package:wassistant/features/search/data/models/search_history_model.dart';
 import 'package:wassistant/features/search/data/repositories/search_repository_impl.dart';
 import 'package:wassistant/features/search/domain/entities/player.dart';
+import 'package:wassistant/features/search/domain/entities/search_history.dart';
 
 class MockRemoteDataSource extends Mock implements SearchRemoteDataSource {}
 
@@ -33,6 +35,163 @@ void main() {
       networkInfo: mockNetworkInfo,
     );
   });
+
+  group(
+    'getSearchHistory',
+    () {
+      test(
+        'should return SearchHistory '
+        'when the call to local data source is successful',
+        () async {
+          const tSearch = 'test';
+          const tSearchHistoryModel = SearchHistoryModel(history: ['test1']);
+
+          when(
+            mockLocalDataSource.getSearchHistory(),
+          ).thenAnswer(
+            (_) async => tSearchHistoryModel,
+          );
+
+          final result = await repository.getSuggestibleHistory(tSearch);
+
+          verify(mockLocalDataSource.getSearchHistory());
+
+          const expectedHistory = SearchHistory(history: ['test1']);
+          expect(result, Right<Failure, SearchHistory>(expectedHistory));
+        },
+      );
+
+      test(
+        'should return SearchHistory '
+        'without value dose not contains search keyword '
+        'when the call to local data source is successful',
+        () async {
+          const tSearch = 'test1';
+          const tSearchHistoryModel = SearchHistoryModel(
+            history: [tSearch, 'test2'],
+          );
+
+          when(
+            mockLocalDataSource.getSearchHistory(),
+          ).thenAnswer(
+            (_) async => tSearchHistoryModel,
+          );
+
+          final result = await repository.getSuggestibleHistory(tSearch);
+
+          verify(mockLocalDataSource.getSearchHistory());
+          const expectedHistory = SearchHistory(history: [tSearch]);
+          expect(result, Right<Failure, SearchHistory>(expectedHistory));
+        },
+      );
+
+      test(
+        'should return SearchHistory '
+        'sorted in descending order of the creation time '
+        'when the call to local data source is successful',
+        () async {
+          const tSearch = 'test';
+          const tSearchHistoryModel = SearchHistoryModel(
+            history: ['test1', 'test2', 'test3', 'search'],
+          );
+
+          when(
+            mockLocalDataSource.getSearchHistory(),
+          ).thenAnswer(
+            (_) async => tSearchHistoryModel,
+          );
+
+          final result = await repository.getSuggestibleHistory(tSearch);
+
+          verify(mockLocalDataSource.getSearchHistory());
+          const expectedHistory = SearchHistory(
+            history: ['test3', 'test2', 'test1'],
+          );
+          expect(result, Right<Failure, SearchHistory>(expectedHistory));
+        },
+      );
+
+      test(
+        'should return CacheFailure '
+        'when the call to local data source is unsuccessful',
+        () async {
+          const tSearch = 'test';
+          final tException = CacheException(
+            code: 0,
+            message: 'Something went wrong.',
+          );
+
+          when(
+            mockLocalDataSource.getSearchHistory(),
+          ).thenThrow(
+            tException,
+          );
+
+          final result = await repository.getSuggestibleHistory(tSearch);
+
+          verify(mockLocalDataSource.getSearchHistory());
+          expect(
+            result,
+            Left<Failure, SearchHistory>(
+              CacheFailure(
+                code: tException.code,
+                message: tException.message,
+              ),
+            ),
+          );
+        },
+      );
+    },
+  );
+
+  group(
+    'cacheSearchHistory',
+    () {
+      const tSearchHistoryModel = SearchHistoryModel(
+        history: ['test1', 'test2'],
+      );
+
+      test(
+        'should return void '
+        'when the call to local data source is successful',
+        () async {
+          when(
+            mockLocalDataSource.getSearchHistory(),
+          ).thenAnswer(
+            (_) async => tSearchHistoryModel,
+          );
+
+          final result = await repository.cacheSearchHistory('search');
+
+          verify(mockLocalDataSource.getSearchHistory());
+          final expectedHistory = [...tSearchHistoryModel.history, 'search'];
+          final expectedModel = SearchHistoryModel(history: expectedHistory);
+          verify(mockLocalDataSource.cacheSearchHistory(expectedModel));
+          expect(result, Right<Failure, void>(null));
+        },
+      );
+
+      test(
+        'should remove duplicate values before cache new data',
+        () async {
+          when(
+            mockLocalDataSource.getSearchHistory(),
+          ).thenAnswer(
+            (_) async => tSearchHistoryModel,
+          );
+
+          final result = await repository.cacheSearchHistory('search');
+
+          verify(mockLocalDataSource.getSearchHistory());
+          const expectedModel = SearchHistoryModel(
+            history: ['test1', 'test2', 'search'],
+          );
+          verify(mockLocalDataSource.cacheSearchHistory(expectedModel));
+          expect(result, Right<Failure, void>(null));
+        },
+      );
+    },
+  );
 
   group(
     'searchPlayers',
@@ -153,30 +312,6 @@ void main() {
               );
             },
           );
-        },
-      );
-    },
-  );
-
-  group(
-    'getSearchHistory',
-    () {
-      test(
-        'should return searched keywords '
-        'when the call to local data source is successful',
-        () async {
-          const tSearchHistory = ['test1', 'test2'];
-
-          when(
-            mockLocalDataSource.getSearchHistory(),
-          ).thenReturn(
-            tSearchHistory,
-          );
-
-          final result = await repository.getSearchHistory();
-
-          verify(mockLocalDataSource.getSearchHistory());
-          expect(result, Right<Failure, List<String>>(tSearchHistory));
         },
       );
     },

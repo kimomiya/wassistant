@@ -2,25 +2,25 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:wassistant/core/errors/failures.dart';
-import 'package:wassistant/core/usecases/usecase.dart';
-import 'package:wassistant/features/search/domain/usecase/get_search_history.dart';
+import 'package:wassistant/features/search/domain/entities/search_history.dart';
+import 'package:wassistant/features/search/domain/usecase/get_suggestible_history.dart';
 import 'package:wassistant/features/search/domain/usecase/search_players.dart';
 import 'package:wassistant/features/search/presentation/bloc/search_bloc.dart';
 
-class MockGetSearchHistory extends Mock implements GetSearchHistory {}
+class MockGetSuggestibleHistory extends Mock implements GetSuggestibleHistory {}
 
 class MockSearchPlayer extends Mock implements SearchPlayers {}
 
 void main() {
   SearchBloc bloc;
-  MockGetSearchHistory mockGetSearchHistory;
+  MockGetSuggestibleHistory mockGetSuggestibleHistory;
   MockSearchPlayer mockSearchPlayer;
 
   setUp(() {
-    mockGetSearchHistory = MockGetSearchHistory();
+    mockGetSuggestibleHistory = MockGetSuggestibleHistory();
     mockSearchPlayer = MockSearchPlayer();
     bloc = SearchBloc(
-      history: mockGetSearchHistory,
+      suggestions: mockGetSuggestibleHistory,
       players: mockSearchPlayer,
     );
   });
@@ -33,23 +33,25 @@ void main() {
   );
 
   group(
-    'GetSearchHistory',
+    'GetSuggestibleHistory',
     () {
-      final tSearchHistory = ['test1', 'test2'];
+      const tSearch = 'test1';
+      const tSearchHistory = SearchHistory(history: ['test1', 'test2']);
 
       test(
-        'should get data from the GetSearchHistory usecase',
+        'should get data from the GetSuggestibleHistory usecase',
         () async {
           when(
-            mockGetSearchHistory(any),
+            mockGetSuggestibleHistory(any),
           ).thenAnswer(
             (_) async => Right(tSearchHistory),
           );
 
-          bloc.add(const GetHistory());
-          await untilCalled(mockGetSearchHistory(any));
+          bloc.add(const GetSuggestions(search: tSearch));
+          await untilCalled(mockGetSuggestibleHistory(any));
 
-          verify(mockGetSearchHistory(NoParams()));
+          const params = GetSuggestibleHistoryParams(search: tSearch);
+          verify(mockGetSuggestibleHistory(params));
         },
       );
 
@@ -58,7 +60,7 @@ void main() {
         'when getting data fails',
         () {
           when(
-            mockGetSearchHistory(any),
+            mockGetSuggestibleHistory(any),
           ).thenAnswer(
             (_) async => Left(
               const ServerFailure(
@@ -74,7 +76,7 @@ void main() {
           ];
           expectLater(bloc, emitsInOrder(expectedEmits));
 
-          bloc.add(const GetHistory());
+          bloc.add(const GetSuggestions(search: tSearch));
         },
       );
     },

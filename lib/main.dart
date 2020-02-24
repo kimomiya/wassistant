@@ -1,5 +1,4 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
@@ -33,6 +32,7 @@ class Wassistant extends StatelessWidget {
       child: MaterialApp(
         title: 'Wassistant',
         onGenerateRoute: router.generator,
+        // TODO(hiei): will be added later
         // navigatorObservers: [
         //   FirebaseAnalyticsObserver(analytics: analytics),
         // ],

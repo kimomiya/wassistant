@@ -8,9 +8,8 @@ import 'package:meta/meta.dart';
 import '../../../../core/constants/error_code.dart';
 import '../../../../core/constants/error_message.dart';
 import '../../../../core/errors/failures.dart';
-import '../../../../core/usecases/usecase.dart';
 import '../../domain/entities/player.dart';
-import '../../domain/usecase/get_search_history.dart';
+import '../../domain/usecase/get_suggestible_history.dart';
 import '../../domain/usecase/search_players.dart';
 
 part 'search_event.dart';
@@ -18,14 +17,14 @@ part 'search_state.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
   SearchBloc({
-    @required GetSearchHistory history,
+    @required GetSuggestibleHistory suggestions,
     @required SearchPlayers players,
-  })  : assert(history != null),
+  })  : assert(suggestions != null),
         assert(players != null),
-        getSearchHistory = history,
+        getSuggestibleHistory = suggestions,
         searchPlayers = players;
 
-  GetSearchHistory getSearchHistory;
+  GetSuggestibleHistory getSuggestibleHistory;
   SearchPlayers searchPlayers;
 
   @override
@@ -35,8 +34,8 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   @override
   Stream<SearchState> mapEventToState(SearchEvent event) async* {
-    if (event is GetHistory) {
-      yield* _handleGetHistory();
+    if (event is GetSuggestions) {
+      yield* _handleGetSuggestions(event);
     }
 
     if (event is FindPlayers) {
@@ -46,11 +45,12 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   //* Evnet handler
 
-  Stream<SearchState> _handleGetHistory() async* {
-    final failureOrHistory = await getSearchHistory(NoParams());
+  Stream<SearchState> _handleGetSuggestions(GetSuggestions event) async* {
+    final params = GetSuggestibleHistoryParams(search: event.search);
+    final failureOrHistory = await getSuggestibleHistory(params);
     yield failureOrHistory.fold(
       (_) => const FoundHistory(history: []),
-      (history) => FoundHistory(history: history),
+      (searchHistory) => FoundHistory(history: searchHistory.history),
     );
   }
 

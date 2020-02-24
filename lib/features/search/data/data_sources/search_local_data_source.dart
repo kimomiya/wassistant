@@ -1,12 +1,17 @@
+import 'dart:convert';
+
 import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../core/constants/error_code.dart';
 import '../../../../core/enums/prefs_key.dart';
+import '../../../../core/errors/exceptions.dart';
+import '../models/search_history_model.dart';
 
 abstract class SearchLocalDataSource {
-  Future<void> cacheSearchHistory(List<String> history);
+  Future<void> cacheSearchHistory(SearchHistoryModel history);
 
-  List<String> getSearchHistory();
+  Future<SearchHistoryModel> getSearchHistory();
 }
 
 final searchHistoryKey = PrefsKey.searchHistory.toString();
@@ -19,12 +24,23 @@ class SearchLocalDataSourceImpl implements SearchLocalDataSource {
   final SharedPreferences prefs;
 
   @override
-  Future<void> cacheSearchHistory(List<String> history) async {
-    await prefs.setStringList(searchHistoryKey, history);
+  Future<void> cacheSearchHistory(SearchHistoryModel history) async {
+    final jsonString = jsonEncode(history.toJson());
+    await prefs.setString(searchHistoryKey, jsonString);
   }
 
   @override
-  List<String> getSearchHistory() {
-    return prefs.getStringList(searchHistoryKey) ?? [];
+  Future<SearchHistoryModel> getSearchHistory() {
+    final jsonString = prefs.getString(searchHistoryKey);
+
+    if (jsonString == null) {
+      throw CacheException(
+        code: ErrorCode.noContent,
+        message: 'No data found.',
+      );
+    }
+
+    final jsonMap = jsonDecode(jsonString) as Map<String, dynamic>;
+    return Future.value(SearchHistoryModel.fromJson(jsonMap));
   }
 }

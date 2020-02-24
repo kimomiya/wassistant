@@ -1,7 +1,8 @@
+import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-class Clan {
-  Clan({
+class Clan extends Equatable {
+  const Clan({
     @required this.clanId,
     @required this.createdAt,
     @required this.membersCount,
@@ -23,4 +24,13 @@ class Clan {
 
   /// Clan tag
   final String tag;
+
+  @override
+  List<Object> get props => [
+        clanId,
+        createdAt,
+        membersCount,
+        name,
+        tag,
+      ];
 }

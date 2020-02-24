@@ -7,8 +7,17 @@ abstract class SearchEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetHistory extends SearchEvent {
-  const GetHistory();
+class GetSuggestions extends SearchEvent {
+  const GetSuggestions({
+    @required this.search,
+  });
+
+  final String search;
+
+  @override
+  List<Object> get props => [
+        search,
+      ];
 }
 
 class FindPlayers extends SearchEvent {

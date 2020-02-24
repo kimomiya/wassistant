@@ -2,39 +2,40 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:wassistant/core/errors/failures.dart';
-import 'package:wassistant/core/usecases/usecase.dart';
+import 'package:wassistant/features/search/domain/entities/search_history.dart';
 import 'package:wassistant/features/search/domain/repositories/search_repository.dart';
-import 'package:wassistant/features/search/domain/usecase/get_search_history.dart';
+import 'package:wassistant/features/search/domain/usecase/get_suggestible_history.dart';
 
 class MockSearchRepository extends Mock implements SearchRepository {}
 
 void main() {
-  GetSearchHistory usecase;
+  GetSuggestibleHistory usecase;
   MockSearchRepository mockSearchRepository;
 
   setUp(() {
     mockSearchRepository = MockSearchRepository();
-    usecase = GetSearchHistory(mockSearchRepository);
+    usecase = GetSuggestibleHistory(mockSearchRepository);
   });
 
-  const tSearchHistory = ['test1', 'test2'];
+  const tSearchHistory = SearchHistory(history: ['test1', 'test2']);
 
   group(
-    'getSearchHistory',
+    'GetSuggestibleHistory',
     () {
       test(
         'should get search history from the repository',
         () async {
           when(
-            mockSearchRepository.getSearchHistory(),
+            mockSearchRepository.getSuggestibleHistory(any),
           ).thenAnswer(
             (_) async => Right(tSearchHistory),
           );
 
-          final result = await usecase(NoParams());
+          const params = GetSuggestibleHistoryParams(search: 'test1');
+          final result = await usecase(params);
 
-          expect(result, Right<Failure, List<String>>(tSearchHistory));
-          verify(mockSearchRepository.getSearchHistory());
+          expect(result, Right<Failure, SearchHistory>(tSearchHistory));
+          verify(mockSearchRepository.getSuggestibleHistory(params.search));
           verifyNoMoreInteractions(mockSearchRepository);
         },
       );

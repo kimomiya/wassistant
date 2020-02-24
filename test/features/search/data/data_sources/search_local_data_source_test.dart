@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wassistant/core/errors/exceptions.dart';
 import 'package:wassistant/features/search/data/data_sources/search_local_data_source.dart';
+import 'package:wassistant/features/search/data/models/search_history_model.dart';
 
 class MockSharedPreferences extends Mock implements SharedPreferences {}
 
@@ -16,21 +20,18 @@ void main() {
     );
   });
 
-  const tSearchHistory = ['test1', 'test2'];
+  const tSearchHistoryModel = SearchHistoryModel(history: ['test1', 'test2']);
+  final jsonString = jsonEncode(tSearchHistoryModel.toJson());
 
   group(
     'cacheSearchHistory',
     () {
       test(
-        'should call SharedPreferences '
-        'to cache the search history',
+        'should call SharedPreferences to cache SearchHistoryModel',
         () async {
-          await dataSource.cacheSearchHistory(tSearchHistory);
+          await dataSource.cacheSearchHistory(tSearchHistoryModel);
 
-          verify(
-            mockSharedPreferences.setStringList(
-                searchHistoryKey, tSearchHistory),
-          );
+          verify(mockSharedPreferences.setString(searchHistoryKey, jsonString));
         },
       );
     },
@@ -40,35 +41,34 @@ void main() {
     'getSearchHistory',
     () {
       test(
-        'should call SharedPreferences '
-        'to get the search history',
-        () {
+        'should return SearchHistoryModel from SharedPreferences '
+        'when there is one in the cache',
+        () async {
           when(
-            mockSharedPreferences.getStringList(searchHistoryKey),
+            mockSharedPreferences.getString(searchHistoryKey),
           ).thenReturn(
-            tSearchHistory,
+            jsonString,
           );
 
-          final result = dataSource.getSearchHistory();
+          final result = await dataSource.getSearchHistory();
 
-          verify(mockSharedPreferences.getStringList(searchHistoryKey));
-          expect(result, tSearchHistory);
+          verify(mockSharedPreferences.getString(searchHistoryKey));
+          expect(result, tSearchHistoryModel);
         },
       );
 
       test(
-        'should return an empty list if no cached data',
+        'should throw a CacheExeption when there is not a cached value',
         () {
           when(
-            mockSharedPreferences.getStringList(searchHistoryKey),
+            mockSharedPreferences.getString(searchHistoryKey),
           ).thenReturn(
             null,
           );
 
-          final result = dataSource.getSearchHistory();
+          final call = dataSource.getSearchHistory;
 
-          verify(mockSharedPreferences.getStringList(searchHistoryKey));
-          expect(result, <String>[]);
+          expect(() => call(), throwsA(isA<CacheException>()));
         },
       );
     },

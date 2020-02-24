@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 
 class Player extends Equatable {
@@ -12,7 +11,6 @@ class Player extends Equatable {
   final String nickname;
 
   /// Player ID
-  @JsonKey(name: 'account_id')
   final int accountId;
 
   @override

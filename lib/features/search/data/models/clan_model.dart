@@ -7,7 +7,7 @@ part 'clan_model.g.dart';
 
 @JsonSerializable()
 class ClanModel extends Clan {
-  ClanModel({
+  const ClanModel({
     @required this.clanId,
     @required this.createdAt,
     @required this.membersCount,
