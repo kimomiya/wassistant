@@ -8,6 +8,7 @@ import '../../../../core/constants/error_code.dart';
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/failures.dart';
 import '../../../../core/network/network_info.dart';
+import '../../domain/entities/clan.dart';
 import '../../domain/entities/player.dart';
 import '../../domain/entities/search_history.dart';
 import '../../domain/repositories/search_repository.dart';
@@ -69,17 +70,24 @@ class SearchRepositoryImpl implements SearchRepository {
 
   @override
   Future<Either<Failure, List<Player>>> searchPlayers(String search) async {
-    return await _fetchData(() {
+    return await _execute(() {
       return remoteDataSource.searchPlayers(search);
     });
   }
 
-  Future<Either<Failure, Type>> _fetchData<Type>(
-    _Executable<Type> executor,
+  @override
+  Future<Either<Failure, List<Clan>>> searchClans(String search) async {
+    return await _execute(() {
+      return remoteDataSource.searchClans(search);
+    });
+  }
+
+  Future<Either<Failure, Type>> _execute<Type>(
+    _Executable<Type> execution,
   ) async {
     try {
       await networkInfo.checkConnection();
-      final result = await executor();
+      final result = await execution();
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure(code: e.code, message: e.message));

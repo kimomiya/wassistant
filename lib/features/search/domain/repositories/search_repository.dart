@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/errors/failures.dart';
+import '../entities/clan.dart';
 import '../entities/player.dart';
 import '../entities/search_history.dart';
 
@@ -10,4 +11,6 @@ abstract class SearchRepository {
   Future<Either<Failure, void>> cacheSearchHistory(String search);
 
   Future<Either<Failure, List<Player>>> searchPlayers(String search);
+
+  Future<Either<Failure, List<Clan>>> searchClans(String search);
 }

@@ -7,9 +7,11 @@ import 'package:wassistant/core/errors/failures.dart';
 import 'package:wassistant/core/network/network_info.dart';
 import 'package:wassistant/features/search/data/data_sources/search_local_data_source.dart';
 import 'package:wassistant/features/search/data/data_sources/search_remote_data_source.dart';
+import 'package:wassistant/features/search/data/models/clan_model.dart';
 import 'package:wassistant/features/search/data/models/player_model.dart';
 import 'package:wassistant/features/search/data/models/search_history_model.dart';
 import 'package:wassistant/features/search/data/repositories/search_repository_impl.dart';
+import 'package:wassistant/features/search/domain/entities/clan.dart';
 import 'package:wassistant/features/search/domain/entities/player.dart';
 import 'package:wassistant/features/search/domain/entities/search_history.dart';
 
@@ -272,7 +274,10 @@ void main() {
               when(
                 mockRemoteDataSource.searchPlayers(any),
               ).thenThrow(
-                ServerException(code: 402, message: 'SEARCH_NOT_SPECIFIED'),
+                ServerException(
+                  code: 402,
+                  message: 'SEARCH_NOT_SPECIFIED',
+                ),
               );
 
               final result = await repository.searchPlayers(tSearch);
@@ -316,6 +321,142 @@ void main() {
               expect(
                 result,
                 equals(Left<Failure, List<Player>>(
+                  const ServerFailure(
+                    code: ErrorCode.networkUnreachable,
+                    message: 'Network is unreachable.',
+                  ),
+                )),
+              );
+            },
+          );
+        },
+      );
+    },
+  );
+
+  group(
+    'searchClans',
+    () {
+      const tSearch = 'note';
+
+      test(
+        'should check if the device is online',
+        () {
+          when(
+            mockNetworkInfo.checkConnection(),
+          ).thenAnswer(
+            (_) async => null,
+          );
+
+          repository.searchClans(tSearch);
+
+          verify(mockNetworkInfo.checkConnection());
+        },
+      );
+
+      group(
+        'online',
+        () {
+          const tClanModels = <ClanModel>[
+            ClanModel(
+              clanId: 2000018586,
+              createdAt: 1554897532,
+              membersCount: 4,
+              name: 'NOTEmi',
+              tag: 'NOTE',
+            ),
+            ClanModel(
+              clanId: 2000016337,
+              createdAt: 1533994576,
+              membersCount: 43,
+              name: 'Rebirth of Type-Moon&NOTES',
+              tag: 'TPM',
+            ),
+          ];
+          const List<Clan> tClans = tClanModels;
+
+          setUp(() {
+            when(
+              mockNetworkInfo.checkConnection(),
+            ).thenAnswer(
+              (_) async => null,
+            );
+          });
+
+          test(
+            'should return a list of Clan '
+            'when the call to remote data source is successful',
+            () async {
+              when(
+                mockRemoteDataSource.searchClans(any),
+              ).thenAnswer(
+                (_) async => tClanModels,
+              );
+
+              final result = await repository.searchClans(tSearch);
+
+              verify(mockRemoteDataSource.searchClans(tSearch));
+              expect(
+                result,
+                equals(Right<Failure, List<Clan>>(tClans)),
+              );
+            },
+          );
+
+          test(
+            'should return ServerFailure '
+            'when the call to remote data source is failed',
+            () async {
+              when(
+                mockRemoteDataSource.searchClans(any),
+              ).thenThrow(
+                ServerException(
+                  code: 402,
+                  message: 'SEARCH_NOT_SPECIFIED',
+                ),
+              );
+
+              final result = await repository.searchClans(tSearch);
+
+              verify(mockRemoteDataSource.searchClans(tSearch));
+              expect(
+                result,
+                equals(Left<Failure, List<Clan>>(
+                  const ServerFailure(
+                    code: 402,
+                    message: 'SEARCH_NOT_SPECIFIED',
+                  ),
+                )),
+              );
+            },
+          );
+        },
+      );
+
+      group(
+        'offline',
+        () {
+          setUp(() {
+            when(
+              mockNetworkInfo.checkConnection(),
+            ).thenThrow(
+              ServerException(
+                code: ErrorCode.networkUnreachable,
+                message: 'Network is unreachable.',
+              ),
+            );
+          });
+
+          test(
+            'should return ServerFailure '
+            'without the call to remote data source',
+            () async {
+              final result = await repository.searchClans(tSearch);
+
+              verifyZeroInteractions(mockRemoteDataSource);
+              expect(
+                result,
+                equals(Left<Failure, List<Clan>>(
                   const ServerFailure(
                     code: ErrorCode.networkUnreachable,
                     message: 'Network is unreachable.',
