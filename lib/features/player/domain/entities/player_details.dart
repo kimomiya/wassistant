@@ -3,8 +3,8 @@ import 'package:meta/meta.dart';
 
 import 'player_statistics.dart';
 
-class PlayerInfo extends Equatable {
-  const PlayerInfo({
+class PlayerDetails extends Equatable {
+  const PlayerDetails({
     @required this.accountId,
     @required this.createdAt,
     @required this.hiddenProfile,

@@ -1,0 +1,24 @@
+{
+  "status": "ok",
+  "meta": {
+    "count": 2,
+    "total": 2,
+    "page": 1
+  },
+  "data": [
+    {
+      "members_count": 4,
+      "created_at": 1554897532,
+      "clan_id": 2000018586,
+      "tag": "NOTE",
+      "name": "NOTEmi"
+    },
+    {
+      "members_count": 43,
+      "created_at": 1533994576,
+      "clan_id": 2000016337,
+      "tag": "TPM",
+      "name": "Rebirth of Type-Moon&NOTES"
+    }
+  ]
+}

@@ -1,24 +1,26 @@
 import 'package:dio/dio.dart';
+import 'package:get_it/get_it.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../core/env/env.dart';
 import '../../../../core/extensions/dio_request.dart';
-import '../../../../injection_container.dart';
-import '../models/player_info_model.dart';
+import '../models/player_details_model.dart';
 
 abstract class PlayerRemoteDataSource {
-  Future<PlayerInfoModel> fetchPlayerInfo(int accountId);
+  Future<PlayerDetailsModel> fetchPlayerDetails(int accountId);
 }
 
 class PlayerRemoteDataSourceImpl implements PlayerRemoteDataSource {
   PlayerRemoteDataSourceImpl({
+    @required this.locator,
     @required this.client,
   });
 
+  final GetIt locator;
   final Dio client;
 
   @override
-  Future<PlayerInfoModel> fetchPlayerInfo(int accountId) async {
+  Future<PlayerDetailsModel> fetchPlayerDetails(int accountId) async {
     final env = locator<Env>();
 
     final responseData = await client.compactGet(
@@ -29,9 +31,8 @@ class PlayerRemoteDataSourceImpl implements PlayerRemoteDataSource {
       },
     ) as Map<String, dynamic>;
 
-    final playerInfoData =
-        responseData[accountId.toString()] as Map<String, dynamic>;
+    final jsonMap = responseData[accountId.toString()] as Map<String, dynamic>;
 
-    return PlayerInfoModel.fromJson(playerInfoData);
+    return PlayerDetailsModel.fromJson(jsonMap);
   }
 }

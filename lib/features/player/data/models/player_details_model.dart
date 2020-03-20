@@ -1,14 +1,14 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 
-import '../../domain/entities/player_info.dart';
+import '../../domain/entities/player_details.dart';
 import 'player_statistics_model.dart';
 
-part 'player_info_model.g.dart';
+part 'player_details_model.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class PlayerInfoModel extends PlayerInfo {
-  const PlayerInfoModel({
+class PlayerDetailsModel extends PlayerDetails {
+  const PlayerDetailsModel({
     @required this.accountId,
     @required this.createdAt,
     @required this.hiddenProfile,
@@ -23,8 +23,8 @@ class PlayerInfoModel extends PlayerInfo {
     @required this.statistics,
   });
 
-  factory PlayerInfoModel.fromJson(Map<String, dynamic> json) {
-    return _$PlayerInfoModelFromJson(json);
+  factory PlayerDetailsModel.fromJson(Map<String, dynamic> json) {
+    return _$PlayerDetailsModelFromJson(json);
   }
 
   /// User id
@@ -86,5 +86,5 @@ class PlayerInfoModel extends PlayerInfo {
   @override
   final PlayerStatisticsModel statistics;
 
-  Map<String, dynamic> toJson() => _$PlayerInfoModelToJson(this);
+  Map<String, dynamic> toJson() => _$PlayerDetailsModelToJson(this);
 }

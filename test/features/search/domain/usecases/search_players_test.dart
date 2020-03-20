@@ -41,7 +41,10 @@ void main() {
             const SearchPlayersParams(search: tSearch),
           );
 
-          expect(result, Right<Failure, List<Player>>(tPlayers));
+          expect(
+            result,
+            equals(Right<Failure, List<Player>>(tPlayers)),
+          );
           verify(mockSearchRepository.searchPlayers(tSearch));
           verifyNoMoreInteractions(mockSearchRepository);
         },

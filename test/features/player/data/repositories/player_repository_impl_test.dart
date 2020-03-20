@@ -8,9 +8,9 @@ import 'package:wassistant/core/errors/exceptions.dart';
 import 'package:wassistant/core/errors/failures.dart';
 import 'package:wassistant/core/network/network_info.dart';
 import 'package:wassistant/features/player/data/data_sources/player_remote_data_source.dart';
-import 'package:wassistant/features/player/data/models/player_info_model.dart';
+import 'package:wassistant/features/player/data/models/player_details_model.dart';
 import 'package:wassistant/features/player/data/repositories/palyer_repository_impl.dart';
-import 'package:wassistant/features/player/domain/entities/player_info.dart';
+import 'package:wassistant/features/player/domain/entities/player_details.dart';
 
 import '../../../../fixtures/fixture_reader.dart';
 
@@ -33,7 +33,7 @@ void main() {
   });
 
   group(
-    'Fetch player info repository',
+    'fetchPlayerDetails',
     () {
       const tAccountId = 2022009820;
 
@@ -46,7 +46,7 @@ void main() {
             (_) async => null,
           );
 
-          repository.fetchPlayerInfo(tAccountId);
+          repository.fetchPlayerDetails(tAccountId);
 
           verify(mockNetworkInfo.checkConnection());
         },
@@ -56,12 +56,12 @@ void main() {
         'online',
         () {
           final tResponse = jsonDecode(
-            fixture('player_info_response'),
+            fixture('player_details_response'),
           ) as Map<String, dynamic>;
-          final tPlayerInfoModel = PlayerInfoModel.fromJson(
+          final tPlayerDetailsModel = PlayerDetailsModel.fromJson(
             tResponse['data'][tAccountId.toString()] as Map<String, dynamic>,
           );
-          final PlayerInfo tPlayerInfo = tPlayerInfoModel;
+          final PlayerDetails tPlayerDetails = tPlayerDetailsModel;
 
           setUp(() {
             when(
@@ -72,19 +72,22 @@ void main() {
           });
 
           test(
-            'should return PlayerInfo '
+            'should return PlayerDetails '
             'when the call to remote data source is successful',
             () async {
               when(
-                mockRemoteDataSource.fetchPlayerInfo(any),
+                mockRemoteDataSource.fetchPlayerDetails(any),
               ).thenAnswer(
-                (_) async => tPlayerInfoModel,
+                (_) async => tPlayerDetailsModel,
               );
 
-              final result = await repository.fetchPlayerInfo(tAccountId);
+              final result = await repository.fetchPlayerDetails(tAccountId);
 
-              verify(mockRemoteDataSource.fetchPlayerInfo(tAccountId));
-              expect(result, equals(Right<Failure, PlayerInfo>(tPlayerInfo)));
+              verify(mockRemoteDataSource.fetchPlayerDetails(tAccountId));
+              expect(
+                result,
+                equals(Right<Failure, PlayerDetails>(tPlayerDetails)),
+              );
             },
           );
 
@@ -93,17 +96,17 @@ void main() {
             'when the call to remote data source is failed',
             () async {
               when(
-                mockRemoteDataSource.fetchPlayerInfo(any),
+                mockRemoteDataSource.fetchPlayerDetails(any),
               ).thenThrow(
                 ServerException(code: 402, message: 'SEARCH_NOT_SPECIFIED'),
               );
 
-              final result = await repository.fetchPlayerInfo(tAccountId);
+              final result = await repository.fetchPlayerDetails(tAccountId);
 
-              verify(mockRemoteDataSource.fetchPlayerInfo(tAccountId));
+              verify(mockRemoteDataSource.fetchPlayerDetails(tAccountId));
               expect(
                 result,
-                equals(Left<Failure, List<PlayerInfo>>(
+                equals(Left<Failure, List<PlayerDetails>>(
                   const ServerFailure(
                     code: 402,
                     message: 'SEARCH_NOT_SPECIFIED',
@@ -133,15 +136,17 @@ void main() {
             'should return ServerFailure '
             'without the call to remote data source',
             () async {
-              final result = await repository.fetchPlayerInfo(tAccountId);
+              final result = await repository.fetchPlayerDetails(tAccountId);
 
               verifyZeroInteractions(mockRemoteDataSource);
               expect(
                 result,
-                equals(Left<Failure, PlayerInfo>(const ServerFailure(
-                  code: ErrorCode.networkUnreachable,
-                  message: 'Network is unreachable.',
-                ))),
+                equals(Left<Failure, PlayerDetails>(
+                  const ServerFailure(
+                    code: ErrorCode.networkUnreachable,
+                    message: 'Network is unreachable.',
+                  ),
+                )),
               );
             },
           );

@@ -57,7 +57,10 @@ void main() {
           verify(mockLocalDataSource.getSearchHistory());
 
           const expectedHistory = SearchHistory(history: ['test1']);
-          expect(result, Right<Failure, SearchHistory>(expectedHistory));
+          expect(
+            result,
+            equals(Right<Failure, SearchHistory>(expectedHistory)),
+          );
         },
       );
 
@@ -81,7 +84,10 @@ void main() {
 
           verify(mockLocalDataSource.getSearchHistory());
           const expectedHistory = SearchHistory(history: [tSearch]);
-          expect(result, Right<Failure, SearchHistory>(expectedHistory));
+          expect(
+            result,
+            equals(Right<Failure, SearchHistory>(expectedHistory)),
+          );
         },
       );
 
@@ -107,7 +113,10 @@ void main() {
           const expectedHistory = SearchHistory(
             history: ['test3', 'test2', 'test1'],
           );
-          expect(result, Right<Failure, SearchHistory>(expectedHistory));
+          expect(
+            result,
+            equals(Right<Failure, SearchHistory>(expectedHistory)),
+          );
         },
       );
 
@@ -132,12 +141,12 @@ void main() {
           verify(mockLocalDataSource.getSearchHistory());
           expect(
             result,
-            Left<Failure, SearchHistory>(
+            equals(Left<Failure, SearchHistory>(
               CacheFailure(
                 code: tException.code,
                 message: tException.message,
               ),
-            ),
+            )),
           );
         },
       );
@@ -216,7 +225,7 @@ void main() {
       group(
         'online',
         () {
-          const tPlayerModelList = <PlayerModel>[
+          const tPlayerModels = <PlayerModel>[
             PlayerModel(
               nickname: 'Horta_luo',
               accountId: 2022009820,
@@ -226,7 +235,7 @@ void main() {
               accountId: 2019754947,
             ),
           ];
-          const List<Player> tPlayerList = tPlayerModelList;
+          const List<Player> tPlayers = tPlayerModels;
 
           setUp(() {
             when(
@@ -243,13 +252,16 @@ void main() {
               when(
                 mockRemoteDataSource.searchPlayers(any),
               ).thenAnswer(
-                (_) async => tPlayerModelList,
+                (_) async => tPlayerModels,
               );
 
               final result = await repository.searchPlayers(tSearch);
 
               verify(mockRemoteDataSource.searchPlayers(tSearch));
-              expect(result, equals(Right<Failure, List<Player>>(tPlayerList)));
+              expect(
+                result,
+                equals(Right<Failure, List<Player>>(tPlayers)),
+              );
             },
           );
 

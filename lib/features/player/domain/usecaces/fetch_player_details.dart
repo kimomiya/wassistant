@@ -3,17 +3,17 @@ import 'package:equatable/equatable.dart';
 
 import '../../../../core/errors/failures.dart';
 import '../../../../core/usecases/usecase.dart';
-import '../entities/player_info.dart';
+import '../entities/player_details.dart';
 import '../repositories/player_repository.dart';
 
-class FetchPlayerInfo extends UseCase<PlayerInfo, Parameters> {
-  FetchPlayerInfo(this._repository);
+class FetchPlayerDetails extends UseCase<PlayerDetails, Parameters> {
+  FetchPlayerDetails(this._repository);
 
   final PlayerRepository _repository;
 
   @override
-  Future<Either<Failure, PlayerInfo>> call(Parameters parameters) async {
-    return await _repository.fetchPlayerInfo(parameters.accountId);
+  Future<Either<Failure, PlayerDetails>> call(Parameters parameters) async {
+    return await _repository.fetchPlayerDetails(parameters.accountId);
   }
 }
 

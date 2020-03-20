@@ -34,7 +34,10 @@ void main() {
           const params = GetSuggestibleHistoryParams(search: 'test1');
           final result = await usecase(params);
 
-          expect(result, Right<Failure, SearchHistory>(tSearchHistory));
+          expect(
+            result,
+            equals(Right<Failure, SearchHistory>(tSearchHistory)),
+          );
           verify(mockSearchRepository.getSuggestibleHistory(params.search));
           verifyNoMoreInteractions(mockSearchRepository);
         },

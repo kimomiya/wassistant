@@ -2,13 +2,13 @@ import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wassistant/core/env/env.dart';
 
+import 'core/env/env.dart';
 import 'core/network/network_info.dart';
 import 'features/player/data/data_sources/player_remote_data_source.dart';
 import 'features/player/data/repositories/palyer_repository_impl.dart';
 import 'features/player/domain/repositories/player_repository.dart';
-import 'features/player/domain/usecaces/fetch_player_info.dart';
+import 'features/player/domain/usecaces/fetch_player_details.dart';
 import 'features/search/data/data_sources/search_local_data_source.dart';
 import 'features/search/data/data_sources/search_remote_data_source.dart';
 import 'features/search/data/repositories/search_repository_impl.dart';
@@ -33,7 +33,10 @@ Future<void> init() async {
   //! Features - Search
   //* Data source
   locator.registerLazySingleton(
-    () => SearchRemoteDataSourceImpl(client: locator<Dio>()),
+    () => SearchRemoteDataSourceImpl(
+      locator: locator,
+      client: locator<Dio>(),
+    ),
   );
   locator.registerLazySingleton(
     () => SearchLocalDataSourceImpl(prefs: locator<SharedPreferences>()),
@@ -56,7 +59,10 @@ Future<void> init() async {
   //! Features - Player
   //* Data source
   locator.registerLazySingleton(
-    () => PlayerRemoteDataSourceImpl(client: locator<Dio>()),
+    () => PlayerRemoteDataSourceImpl(
+      locator: locator,
+      client: locator<Dio>(),
+    ),
   );
 
   //* Repository
@@ -69,6 +75,6 @@ Future<void> init() async {
 
   //* Usecase
   locator.registerLazySingleton(
-    () => FetchPlayerInfo(locator<PlayerRepository>()),
+    () => FetchPlayerDetails(locator<PlayerRepository>()),
   );
 }

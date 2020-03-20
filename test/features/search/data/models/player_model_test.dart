@@ -12,7 +12,7 @@ void main() {
   );
 
   group(
-    'Player model',
+    'PlayerModel',
     () {
       test(
         'should be a subclass of Player entity',
@@ -23,29 +23,35 @@ void main() {
     },
   );
 
-  group('PlayerModel.fromJson', () {
-    test(
-      'should return a valid model when the JSON is a player',
-      () {
-        final jsonMap = jsonDecode(fixture('player')) as Map<String, dynamic>;
-        final result = PlayerModel.fromJson(jsonMap);
+  group(
+    'fromJson',
+    () {
+      test(
+        'should return a valid model when the JSON is a player',
+        () {
+          final jsonMap = jsonDecode(fixture('player')) as Map<String, dynamic>;
+          final result = PlayerModel.fromJson(jsonMap);
 
-        expect(result, equals(tPlayerModel));
-      },
-    );
-  });
+          expect(result, equals(tPlayerModel));
+        },
+      );
+    },
+  );
 
-  group('PlayerModel.toJson', () {
-    test(
-      'should return a JSON map containing the player data',
-      () {
-        final result = tPlayerModel.toJson();
-        final expectedJsonMap = {
-          'nickname': 'Horta_luo',
-          'account_id': 2022009820,
-        };
-        expect(result, expectedJsonMap);
-      },
-    );
-  });
+  group(
+    'toJson',
+    () {
+      test(
+        'should return a JSON map containing the player data',
+        () {
+          final result = tPlayerModel.toJson();
+          final expectedJsonMap = {
+            'nickname': 'Horta_luo',
+            'account_id': 2022009820,
+          };
+          expect(result, expectedJsonMap);
+        },
+      );
+    },
+  );
 }

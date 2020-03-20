@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'player_info_model.dart';
+part of 'player_details_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-PlayerInfoModel _$PlayerInfoModelFromJson(Map<String, dynamic> json) {
-  return PlayerInfoModel(
+PlayerDetailsModel _$PlayerDetailsModelFromJson(Map<String, dynamic> json) {
+  return PlayerDetailsModel(
     accountId: json['account_id'] as int,
     createdAt: json['created_at'] as int,
     hiddenProfile: json['hidden_profile'] as bool,
@@ -26,7 +26,7 @@ PlayerInfoModel _$PlayerInfoModelFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$PlayerInfoModelToJson(PlayerInfoModel instance) =>
+Map<String, dynamic> _$PlayerDetailsModelToJson(PlayerDetailsModel instance) =>
     <String, dynamic>{
       'account_id': instance.accountId,
       'created_at': instance.createdAt,

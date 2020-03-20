@@ -53,7 +53,7 @@ void main() {
           final result = await dataSource.getSearchHistory();
 
           verify(mockSharedPreferences.getString(searchHistoryKey));
-          expect(result, tSearchHistoryModel);
+          expect(result, equals(tSearchHistoryModel));
         },
       );
 

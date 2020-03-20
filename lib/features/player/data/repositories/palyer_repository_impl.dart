@@ -6,7 +6,7 @@ import '../../../../core/constants/error_code.dart';
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/failures.dart';
 import '../../../../core/network/network_info.dart';
-import '../../domain/entities/player_info.dart';
+import '../../domain/entities/player_details.dart';
 import '../../domain/repositories/player_repository.dart';
 import '../data_sources/player_remote_data_source.dart';
 
@@ -22,9 +22,10 @@ class PlayerRepositoryImpl implements PlayerRepository {
   final NetworkInfo networkInfo;
 
   @override
-  Future<Either<Failure, PlayerInfo>> fetchPlayerInfo(int accountId) async {
+  Future<Either<Failure, PlayerDetails>> fetchPlayerDetails(
+      int accountId) async {
     return await _fetchData(() {
-      return remoteDataSource.fetchPlayerInfo(accountId);
+      return remoteDataSource.fetchPlayerDetails(accountId);
     });
   }
 
