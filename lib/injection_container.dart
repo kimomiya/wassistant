@@ -2,6 +2,7 @@ import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wassistant/core/env/env.dart';
 
 import 'core/network/network_info.dart';
 import 'features/player/data/data_sources/player_remote_data_source.dart';
@@ -18,6 +19,7 @@ final locator = GetIt.instance;
 
 Future<void> init() async {
   //! External
+  locator.registerLazySingleton(() => Env());
   locator.registerLazySingleton(() => DataConnectionChecker());
   locator.registerLazySingleton(() => Dio());
   final _prefs = await SharedPreferences.getInstance();

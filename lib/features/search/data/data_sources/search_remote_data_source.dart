@@ -1,8 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 
-import '../../../../core/data_source/mapping_validation.dart';
 import '../../../../core/env/env.dart';
+import '../../../../core/extensions/dio_request.dart';
+import '../../../../injection_container.dart';
 import '../models/player_model.dart';
 
 abstract class SearchRemoteDataSource {
@@ -18,8 +19,10 @@ class SearchRemoteDataSourceImpl implements SearchRemoteDataSource {
 
   @override
   Future<List<PlayerModel>> searchPlayers(String search) async {
-    final dynamic responseData = await _fetchData(
-      path: '${env.baseURL}/account/list/',
+    final env = locator<Env>();
+
+    final dynamic responseData = await client.compactGet(
+      '${env.baseURL}/account/list/',
       queryParameters: <String, dynamic>{
         'application_id': env.applicaionId,
         'search': search,
@@ -32,17 +35,5 @@ class SearchRemoteDataSourceImpl implements SearchRemoteDataSource {
     }
 
     return players;
-  }
-
-  Future<dynamic> _fetchData({
-    @required String path,
-    @required Map<String, dynamic> queryParameters,
-  }) async {
-    final response = await client.get<Map<String, dynamic>>(
-      path,
-      queryParameters: queryParameters,
-    );
-
-    return response.mappingValidation();
   }
 }

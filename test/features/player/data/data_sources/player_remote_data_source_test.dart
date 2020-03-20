@@ -7,6 +7,7 @@ import 'package:wassistant/core/env/env.dart';
 import 'package:wassistant/core/errors/exceptions.dart';
 import 'package:wassistant/features/player/data/data_sources/player_remote_data_source.dart';
 import 'package:wassistant/features/player/data/models/player_info_model.dart';
+import 'package:wassistant/injection_container.dart';
 
 import '../../../../fixtures/fixture_reader.dart';
 
@@ -22,6 +23,8 @@ void main() {
     mockHttpClient = MockHttpClient();
     dataSource = PlayerRemoteDataSourceImpl(client: mockHttpClient);
   });
+
+  final env = locator<Env>();
 
   void setUpMockHttpClientSuccess200(String fixturePath) {
     when(

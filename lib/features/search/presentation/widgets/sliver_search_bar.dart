@@ -25,9 +25,6 @@ class SliverSearchBar extends StatelessWidget implements PreferredSizeWidget {
     return CustomScrollView(
       slivers: <Widget>[
         SliverAppBar(
-          snap: true,
-          floating: true,
-          forceElevated: true,
           title: title,
           actions: <Widget>[
             IconButton(
@@ -41,6 +38,9 @@ class SliverSearchBar extends StatelessWidget implements PreferredSizeWidget {
               },
             ),
           ],
+          forceElevated: true,
+          floating: true,
+          snap: true,
         ),
         ...slivers,
       ],
