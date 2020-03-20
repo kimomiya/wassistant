@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../core/constants/error_code.dart';
+import '../../../../core/constants/status_code.dart';
 import '../../../../core/enums/prefs_key.dart';
 import '../../../../core/errors/exceptions.dart';
 import '../models/search_history_model.dart';
@@ -35,7 +35,7 @@ class SearchLocalDataSourceImpl implements SearchLocalDataSource {
 
     if (jsonString == null) {
       throw CacheException(
-        code: ErrorCode.noContent,
+        code: StatusCode.noContent,
         message: 'No data found.',
       );
     }

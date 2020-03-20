@@ -2,46 +2,43 @@ part of 'search_bloc.dart';
 
 abstract class SearchEvent extends Equatable {
   const SearchEvent();
-
-  @override
-  List<Object> get props => [];
 }
 
-class GetSuggestions extends SearchEvent {
-  const GetSuggestions({
+class SearchSuggestionsLoaded extends SearchEvent {
+  const SearchSuggestionsLoaded({
     @required this.search,
+    @required this.lastExecuteTime,
   });
 
   final String search;
+  final DateTime lastExecuteTime;
 
   @override
-  List<Object> get props => [
-        search,
-      ];
+  List<Object> get props => [search, lastExecuteTime];
 }
 
-class FindPlayers extends SearchEvent {
-  const FindPlayers({
+class SearchPlayersFound extends SearchEvent {
+  const SearchPlayersFound({
     @required this.search,
+    @required this.lastExecuteTime,
   });
 
   final String search;
+  final DateTime lastExecuteTime;
 
   @override
-  List<Object> get props => [
-        search,
-      ];
+  List<Object> get props => [search, lastExecuteTime];
 }
 
-class FindClans extends SearchEvent {
-  const FindClans({
+class SearchClansFound extends SearchEvent {
+  const SearchClansFound({
     @required this.search,
+    @required this.lastExecuteTime,
   });
 
   final String search;
+  final DateTime lastExecuteTime;
 
   @override
-  List<Object> get props => [
-        search,
-      ];
+  List<Object> get props => [search, lastExecuteTime];
 }

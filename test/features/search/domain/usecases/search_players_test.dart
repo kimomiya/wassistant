@@ -18,10 +18,14 @@ void main() {
   });
 
   const tSearch = 'horta';
-  final tPlayers = <Player>[
-    const Player(
-      nickname: 'player1',
-      accountId: 1022009820,
+  const tPlayers = <Player>[
+    Player(
+      nickname: 'Horta_luo',
+      accountId: 2022009820,
+    ),
+    Player(
+      nickname: 'horta_ro0193',
+      accountId: 2019754947,
     ),
   ];
 
@@ -29,7 +33,7 @@ void main() {
     'searchPlayers',
     () {
       test(
-        'should get searched players from the repository',
+        'should get a list of Player entity from the repository',
         () async {
           when(
             mockSearchRepository.searchPlayers(any),

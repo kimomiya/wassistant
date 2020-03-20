@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:wassistant/core/constants/error_code.dart';
+import 'package:wassistant/core/constants/status_code.dart';
 import 'package:wassistant/core/errors/exceptions.dart';
 import 'package:wassistant/core/errors/failures.dart';
 import 'package:wassistant/core/network/network_info.dart';
@@ -305,7 +305,7 @@ void main() {
               mockNetworkInfo.checkConnection(),
             ).thenThrow(
               ServerException(
-                code: ErrorCode.networkUnreachable,
+                code: StatusCode.networkUnreachable,
                 message: 'Network is unreachable.',
               ),
             );
@@ -322,7 +322,7 @@ void main() {
                 result,
                 equals(Left<Failure, List<Player>>(
                   const ServerFailure(
-                    code: ErrorCode.networkUnreachable,
+                    code: StatusCode.networkUnreachable,
                     message: 'Network is unreachable.',
                   ),
                 )),
@@ -441,7 +441,7 @@ void main() {
               mockNetworkInfo.checkConnection(),
             ).thenThrow(
               ServerException(
-                code: ErrorCode.networkUnreachable,
+                code: StatusCode.networkUnreachable,
                 message: 'Network is unreachable.',
               ),
             );
@@ -458,7 +458,7 @@ void main() {
                 result,
                 equals(Left<Failure, List<Clan>>(
                   const ServerFailure(
-                    code: ErrorCode.networkUnreachable,
+                    code: StatusCode.networkUnreachable,
                     message: 'Network is unreachable.',
                   ),
                 )),

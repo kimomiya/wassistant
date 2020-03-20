@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 
-import '../../../../core/constants/error_code.dart';
+import '../../../../core/constants/status_code.dart';
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/failures.dart';
 import '../../../../core/network/network_info.dart';
@@ -48,7 +48,7 @@ class SearchRepositoryImpl implements SearchRepository {
       return Left(CacheFailure(code: e.code, message: e.message));
     } catch (e) {
       return Left(
-        CacheFailure(code: ErrorCode.fatalError, message: e.toString()),
+        CacheFailure(code: StatusCode.fatalError, message: e.toString()),
       );
     }
   }
@@ -94,13 +94,13 @@ class SearchRepositoryImpl implements SearchRepository {
     } on DioError catch (e) {
       return Left(
         ServerFailure(
-          code: e.response?.statusCode ?? ErrorCode.fatalError,
+          code: e.response?.statusCode ?? StatusCode.fatalError,
           message: e.response?.statusMessage ?? e.message,
         ),
       );
     } catch (e) {
       return Left(
-        ServerFailure(code: ErrorCode.fatalError, message: e.toString()),
+        ServerFailure(code: StatusCode.fatalError, message: e.toString()),
       );
     }
   }

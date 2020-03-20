@@ -1,6 +1,6 @@
 import 'package:data_connection_checker/data_connection_checker.dart';
 
-import '../constants/error_code.dart';
+import '../constants/status_code.dart';
 import '../errors/exceptions.dart';
 
 abstract class NetworkInfo {
@@ -21,7 +21,7 @@ class NetworkInfoImpl implements NetworkInfo {
   Future<void> checkConnection() async {
     if (!await connectionChecker.hasConnection) {
       throw ServerException(
-        code: ErrorCode.networkUnreachable,
+        code: StatusCode.networkUnreachable,
         message: 'Network is unreachable.',
       );
     }

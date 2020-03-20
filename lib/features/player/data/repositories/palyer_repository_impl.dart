@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 
-import '../../../../core/constants/error_code.dart';
+import '../../../../core/constants/status_code.dart';
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/failures.dart';
 import '../../../../core/network/network_info.dart';
@@ -40,12 +40,12 @@ class PlayerRepositoryImpl implements PlayerRepository {
       return Left(ServerFailure(code: e.code, message: e.message));
     } on DioError catch (e) {
       return Left(ServerFailure(
-        code: e.response?.statusCode ?? ErrorCode.fatalError,
+        code: e.response?.statusCode ?? StatusCode.fatalError,
         message: e.response?.statusMessage ?? e.message,
       ));
     } catch (e) {
       return Left(ServerFailure(
-        code: ErrorCode.fatalError,
+        code: StatusCode.fatalError,
         message: e.toString(),
       ));
     }
