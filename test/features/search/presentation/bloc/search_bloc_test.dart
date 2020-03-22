@@ -242,6 +242,32 @@ void main() {
           bloc.add(const SearchPlayersFound(search: tSearch));
         },
       );
+
+      test(
+        'should emit [SearchPlayersFindInProgress, SearchPlayersFindFailure] '
+        'with a proper message for the error when getting invalid search error',
+        () {
+          const tServerFailure = ServerFailure(
+            code: StatusCode.invalidSearch,
+            message: 'Something went wrong.',
+          );
+
+          when(
+            mockSearchPlayers(any),
+          ).thenAnswer(
+            (_) async => Left<Failure, List<Player>>(tServerFailure),
+          );
+
+          const expectedStates = [
+            SearchInitial(),
+            SearchPlayersFindInProgress(),
+            SearchPlayersFindFailure(message: ErrorMessage.invalidSearch),
+          ];
+          expectLater(bloc, emitsInOrder(expectedStates));
+
+          bloc.add(const SearchPlayersFound(search: tSearch));
+        },
+      );
     },
   );
 
@@ -373,6 +399,32 @@ void main() {
             SearchInitial(),
             SearchClansFindInProgress(),
             SearchClansFindFailure(message: ErrorMessage.noSearchResults),
+          ];
+          expectLater(bloc, emitsInOrder(expectedStates));
+
+          bloc.add(const SearchClansFound(search: tSearch));
+        },
+      );
+
+      test(
+        'should emit [SearchClansFindInProgress, SearchClansFindFailure] '
+        'with a proper message for the error when getting invalid search error',
+        () {
+          const tServerFailure = ServerFailure(
+            code: StatusCode.invalidSearch,
+            message: 'Something went wrong.',
+          );
+
+          when(
+            mockSearchClans(any),
+          ).thenAnswer(
+            (_) async => Left<Failure, List<Clan>>(tServerFailure),
+          );
+
+          const expectedStates = [
+            SearchInitial(),
+            SearchClansFindInProgress(),
+            SearchClansFindFailure(message: ErrorMessage.invalidSearch),
           ];
           expectLater(bloc, emitsInOrder(expectedStates));
 

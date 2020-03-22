@@ -134,6 +134,10 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
           return ErrorMessage.networkUnreachable;
         }
 
+        if (failure.code == StatusCode.invalidSearch) {
+          return ErrorMessage.invalidSearch;
+        }
+
         if (failure.code == StatusCode.noContent) {
           return ErrorMessage.noSearchResults;
         }
