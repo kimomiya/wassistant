@@ -3,9 +3,7 @@ import 'dart:convert';
 import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../core/constants/status_code.dart';
 import '../../../../core/enums/prefs_key.dart';
-import '../../../../core/errors/exceptions.dart';
 import '../models/search_history_model.dart';
 
 abstract class SearchLocalDataSource {
@@ -34,10 +32,7 @@ class SearchLocalDataSourceImpl implements SearchLocalDataSource {
     final jsonString = prefs.getString(searchHistoryKey);
 
     if (jsonString == null) {
-      throw CacheException(
-        code: StatusCode.noContent,
-        message: 'No data found.',
-      );
+      return Future.value(const SearchHistoryModel(history: []));
     }
 
     final jsonMap = jsonDecode(jsonString) as Map<String, dynamic>;

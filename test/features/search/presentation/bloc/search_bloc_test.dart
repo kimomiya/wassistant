@@ -7,12 +7,15 @@ import 'package:wassistant/core/errors/failures.dart';
 import 'package:wassistant/features/search/domain/entities/clan.dart';
 import 'package:wassistant/features/search/domain/entities/player.dart';
 import 'package:wassistant/features/search/domain/entities/search_history.dart';
+import 'package:wassistant/features/search/domain/usecase/cache_search_history.dart';
 import 'package:wassistant/features/search/domain/usecase/get_suggestible_history.dart';
 import 'package:wassistant/features/search/domain/usecase/search_clans.dart';
 import 'package:wassistant/features/search/domain/usecase/search_players.dart';
 import 'package:wassistant/features/search/presentation/bloc/search_bloc.dart';
 
 class MockGetSuggestibleHistory extends Mock implements GetSuggestibleHistory {}
+
+class MockCacheSearchHistory extends Mock implements CacheSearchHistory {}
 
 class MockSearchPlayers extends Mock implements SearchPlayers {}
 
@@ -21,15 +24,18 @@ class MockSearchClans extends Mock implements SearchClans {}
 void main() {
   SearchBloc bloc;
   MockGetSuggestibleHistory mockGetSuggestibleHistory;
+  MockCacheSearchHistory mockCacheSearchHistory;
   MockSearchPlayers mockSearchPlayers;
   MockSearchClans mockSearchClans;
 
   setUp(() {
     mockGetSuggestibleHistory = MockGetSuggestibleHistory();
+    mockCacheSearchHistory = MockCacheSearchHistory();
     mockSearchPlayers = MockSearchPlayers();
     mockSearchClans = MockSearchClans();
     bloc = SearchBloc(
       suggestions: mockGetSuggestibleHistory,
+      history: mockCacheSearchHistory,
       players: mockSearchPlayers,
       clans: mockSearchClans,
     );
@@ -46,15 +52,11 @@ void main() {
     'GetSuggestibleHistory',
     () {
       const tSearch = 'horta';
-      final tLastExecuteTime = DateTime.now();
 
       test(
         'should get data from the GetSuggestibleHistory UseCase',
         () async {
-          bloc.add(SearchSuggestionsLoaded(
-            search: tSearch,
-            lastExecuteTime: tLastExecuteTime,
-          ));
+          bloc.add(const SearchSuggestionsLoaded(search: tSearch));
           await untilCalled(mockGetSuggestibleHistory(any));
 
           verify(mockGetSuggestibleHistory(
@@ -75,19 +77,13 @@ void main() {
             (_) async => Right(tSuggestions),
           );
 
-          final expectedStates = [
-            const SearchInitial(),
-            SearchSuggestionsLoadSuccess(
-              suggestions: tSuggestions,
-              lastExecuteTime: tLastExecuteTime,
-            )
+          const expectedStates = [
+            SearchInitial(),
+            SearchSuggestionsLoadSuccess(suggestions: tSuggestions)
           ];
           expectLater(bloc, emitsInOrder(expectedStates));
 
-          bloc.add(SearchSuggestionsLoaded(
-            search: tSearch,
-            lastExecuteTime: tLastExecuteTime,
-          ));
+          bloc.add(const SearchSuggestionsLoaded(search: tSearch));
         },
       );
 
@@ -106,18 +102,13 @@ void main() {
             (_) async => Left<Failure, SearchHistory>(tServerFailure),
           );
 
-          final expectedStates = [
-            const SearchInitial(),
-            SearchSuggestionsLoadFailure(
-              lastExecuteTime: tLastExecuteTime,
-            ),
+          const expectedStates = [
+            SearchInitial(),
+            SearchSuggestionsLoadFailure(),
           ];
           expectLater(bloc, emitsInOrder(expectedStates));
 
-          bloc.add(SearchSuggestionsLoaded(
-            search: tSearch,
-            lastExecuteTime: tLastExecuteTime,
-          ));
+          bloc.add(const SearchSuggestionsLoaded(search: tSearch));
         },
       );
     },
@@ -127,15 +118,11 @@ void main() {
     'SearchPlayers',
     () {
       const tSearch = 'horta';
-      final tLastExecuteTime = DateTime.now();
 
       test(
         'should get data from the SearchPlayers UseCase',
         () async {
-          bloc.add(SearchPlayersFound(
-            search: tSearch,
-            lastExecuteTime: tLastExecuteTime,
-          ));
+          bloc.add(const SearchPlayersFound(search: tSearch));
 
           await untilCalled(mockSearchPlayers(any));
 
@@ -166,20 +153,14 @@ void main() {
             (_) async => Right<Failure, List<Player>>(tPlayers),
           );
 
-          final expectedStates = [
-            const SearchInitial(),
-            const SearchPlayersFindInProgress(),
-            SearchPlayersFindSuccess(
-              players: tPlayers,
-              lastExecuteTime: tLastExecuteTime,
-            ),
+          const expectedStates = [
+            SearchInitial(),
+            SearchPlayersFindInProgress(),
+            SearchPlayersFindSuccess(players: tPlayers),
           ];
           expectLater(bloc, emitsInOrder(expectedStates));
 
-          bloc.add(SearchPlayersFound(
-            search: tSearch,
-            lastExecuteTime: tLastExecuteTime,
-          ));
+          bloc.add(const SearchPlayersFound(search: tSearch));
         },
       );
 
@@ -198,20 +179,14 @@ void main() {
             (_) async => Left<Failure, List<Player>>(tServerFailure),
           );
 
-          final expectedStates = [
-            const SearchInitial(),
-            const SearchPlayersFindInProgress(),
-            SearchPlayersFindFailure(
-              message: ErrorMessage.fatalError,
-              lastExecuteTime: tLastExecuteTime,
-            ),
+          const expectedStates = [
+            SearchInitial(),
+            SearchPlayersFindInProgress(),
+            SearchPlayersFindFailure(message: ErrorMessage.fatalError),
           ];
           expectLater(bloc, emitsInOrder(expectedStates));
 
-          bloc.add(SearchPlayersFound(
-            search: tSearch,
-            lastExecuteTime: tLastExecuteTime,
-          ));
+          bloc.add(const SearchPlayersFound(search: tSearch));
         },
       );
 
@@ -231,20 +206,14 @@ void main() {
             (_) async => Left<Failure, List<Player>>(tServerFailure),
           );
 
-          final expectedStates = [
-            const SearchInitial(),
-            const SearchPlayersFindInProgress(),
-            SearchPlayersFindFailure(
-              message: ErrorMessage.networkUnreachable,
-              lastExecuteTime: tLastExecuteTime,
-            ),
+          const expectedStates = [
+            SearchInitial(),
+            SearchPlayersFindInProgress(),
+            SearchPlayersFindFailure(message: ErrorMessage.networkUnreachable),
           ];
           expectLater(bloc, emitsInOrder(expectedStates));
 
-          bloc.add(SearchPlayersFound(
-            search: tSearch,
-            lastExecuteTime: tLastExecuteTime,
-          ));
+          bloc.add(const SearchPlayersFound(search: tSearch));
         },
       );
 
@@ -263,20 +232,14 @@ void main() {
             (_) async => Left<Failure, List<Player>>(tServerFailure),
           );
 
-          final expectedStates = [
-            const SearchInitial(),
-            const SearchPlayersFindInProgress(),
-            SearchPlayersFindFailure(
-              message: ErrorMessage.noSearchResults,
-              lastExecuteTime: tLastExecuteTime,
-            ),
+          const expectedStates = [
+            SearchInitial(),
+            SearchPlayersFindInProgress(),
+            SearchPlayersFindFailure(message: ErrorMessage.noSearchResults),
           ];
           expectLater(bloc, emitsInOrder(expectedStates));
 
-          bloc.add(SearchPlayersFound(
-            search: tSearch,
-            lastExecuteTime: tLastExecuteTime,
-          ));
+          bloc.add(const SearchPlayersFound(search: tSearch));
         },
       );
     },
@@ -286,15 +249,11 @@ void main() {
     'SearchClans',
     () {
       const tSearch = 'note';
-      final tLastExecuteTime = DateTime.now();
 
       test(
         'should get data from the SearchClans UseCase',
         () async {
-          bloc.add(SearchClansFound(
-            search: tSearch,
-            lastExecuteTime: tLastExecuteTime,
-          ));
+          bloc.add(const SearchClansFound(search: tSearch));
 
           await untilCalled(mockSearchClans(any));
 
@@ -331,20 +290,14 @@ void main() {
             (_) async => Right<Failure, List<Clan>>(tClans),
           );
 
-          final expectedStates = [
-            const SearchInitial(),
-            const SearchClansFindInProgress(),
-            SearchClansFindSuccess(
-              clans: tClans,
-              lastExecuteTime: tLastExecuteTime,
-            ),
+          const expectedStates = [
+            SearchInitial(),
+            SearchClansFindInProgress(),
+            SearchClansFindSuccess(clans: tClans),
           ];
           expectLater(bloc, emitsInOrder(expectedStates));
 
-          bloc.add(SearchClansFound(
-            search: tSearch,
-            lastExecuteTime: tLastExecuteTime,
-          ));
+          bloc.add(const SearchClansFound(search: tSearch));
         },
       );
 
@@ -363,20 +316,14 @@ void main() {
             (_) async => Left<Failure, List<Clan>>(tServerFailure),
           );
 
-          final expectedStates = [
-            const SearchInitial(),
-            const SearchClansFindInProgress(),
-            SearchClansFindFailure(
-              message: ErrorMessage.fatalError,
-              lastExecuteTime: tLastExecuteTime,
-            ),
+          const expectedStates = [
+            SearchInitial(),
+            SearchClansFindInProgress(),
+            SearchClansFindFailure(message: ErrorMessage.fatalError),
           ];
           expectLater(bloc, emitsInOrder(expectedStates));
 
-          bloc.add(SearchClansFound(
-            search: tSearch,
-            lastExecuteTime: tLastExecuteTime,
-          ));
+          bloc.add(const SearchClansFound(search: tSearch));
         },
       );
 
@@ -396,20 +343,14 @@ void main() {
             (_) async => Left<Failure, List<Clan>>(tServerFailure),
           );
 
-          final expectedStates = [
-            const SearchInitial(),
-            const SearchClansFindInProgress(),
-            SearchClansFindFailure(
-              message: ErrorMessage.networkUnreachable,
-              lastExecuteTime: tLastExecuteTime,
-            ),
+          const expectedStates = [
+            SearchInitial(),
+            SearchClansFindInProgress(),
+            SearchClansFindFailure(message: ErrorMessage.networkUnreachable),
           ];
           expectLater(bloc, emitsInOrder(expectedStates));
 
-          bloc.add(SearchClansFound(
-            search: tSearch,
-            lastExecuteTime: tLastExecuteTime,
-          ));
+          bloc.add(const SearchClansFound(search: tSearch));
         },
       );
 
@@ -428,20 +369,14 @@ void main() {
             (_) async => Left<Failure, List<Clan>>(tServerFailure),
           );
 
-          final expectedStates = [
-            const SearchInitial(),
-            const SearchClansFindInProgress(),
-            SearchClansFindFailure(
-              message: ErrorMessage.noSearchResults,
-              lastExecuteTime: tLastExecuteTime,
-            ),
+          const expectedStates = [
+            SearchInitial(),
+            SearchClansFindInProgress(),
+            SearchClansFindFailure(message: ErrorMessage.noSearchResults),
           ];
           expectLater(bloc, emitsInOrder(expectedStates));
 
-          bloc.add(SearchClansFound(
-            search: tSearch,
-            lastExecuteTime: tLastExecuteTime,
-          ));
+          bloc.add(const SearchClansFound(search: tSearch));
         },
       );
     },

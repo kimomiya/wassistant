@@ -1,3 +1,4 @@
+import 'package:fimber/fimber.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,8 @@ import 'injection_container.dart' as di;
 Future<void> main() async {
   Crashlytics.instance.enableInDevMode = true;
   FlutterError.onError = Crashlytics.instance.recordFlutterError;
+
+  Fimber.plantTree(DebugTree());
 
   WidgetsFlutterBinding.ensureInitialized();
 

@@ -7,8 +7,5 @@ final homeHandler = Handler(
 );
 
 final settingsHandler = Handler(
-  handlerFunc: (_, params) => SettingsPage(
-    // TODO(hiei): WIP
-    text: params['text'].first ?? '',
-  ),
+  handlerFunc: (_, __) => const SettingsPage(),
 );

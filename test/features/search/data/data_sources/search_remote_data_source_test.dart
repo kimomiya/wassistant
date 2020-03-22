@@ -82,7 +82,7 @@ void main() {
           await dataSource.searchPlayers(tSearch);
 
           verify(mockHttpClient.get<dynamic>(
-            '${tEnv.baseURL}/account/list/',
+            '${tEnv.baseURLForWows}/account/list/',
             queryParameters: <String, dynamic>{
               'application_id': tEnv.applicaionId,
               'search': tSearch,
@@ -146,7 +146,7 @@ void main() {
           await dataSource.searchClans(tSearch);
 
           verify(mockHttpClient.get<dynamic>(
-            '${tEnv.baseURL}/clans/list/',
+            '${tEnv.baseURLForWows}/clans/list/',
             queryParameters: <String, dynamic>{
               'application_id': tEnv.applicaionId,
               'search': tSearch,

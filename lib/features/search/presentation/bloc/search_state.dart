@@ -12,27 +12,33 @@ class SearchInitial extends SearchState {
 }
 
 class SearchSuggestionsLoadSuccess extends SearchState {
-  const SearchSuggestionsLoadSuccess({
-    @required this.suggestions,
-    @required this.lastExecuteTime,
-  });
+  const SearchSuggestionsLoadSuccess({@required this.suggestions});
 
   final SearchHistory suggestions;
-  final DateTime lastExecuteTime;
 
   @override
-  List<Object> get props => [suggestions, lastExecuteTime];
+  List<Object> get props => [suggestions];
 }
 
 class SearchSuggestionsLoadFailure extends SearchState {
-  const SearchSuggestionsLoadFailure({
-    @required this.lastExecuteTime,
-  });
-
-  final DateTime lastExecuteTime;
+  const SearchSuggestionsLoadFailure();
 
   @override
-  List<Object> get props => [lastExecuteTime];
+  List<Object> get props => [];
+}
+
+class SearchHistoryCacheSuccess extends SearchState {
+  const SearchHistoryCacheSuccess();
+
+  @override
+  List<Object> get props => [];
+}
+
+class SearchHistoryCacheFailure extends SearchState {
+  const SearchHistoryCacheFailure();
+
+  @override
+  List<Object> get props => [];
 }
 
 class SearchPlayersFindInProgress extends SearchState {
@@ -43,26 +49,18 @@ class SearchPlayersFindInProgress extends SearchState {
 }
 
 class SearchPlayersFindSuccess extends SearchState {
-  const SearchPlayersFindSuccess({
-    @required this.players,
-    @required this.lastExecuteTime,
-  });
+  const SearchPlayersFindSuccess({@required this.players});
 
   final List<Player> players;
-  final DateTime lastExecuteTime;
 
   @override
   List<Object> get props => [players];
 }
 
 class SearchPlayersFindFailure extends SearchState {
-  const SearchPlayersFindFailure({
-    @required this.message,
-    @required this.lastExecuteTime,
-  });
+  const SearchPlayersFindFailure({@required this.message});
 
   final String message;
-  final DateTime lastExecuteTime;
 
   @override
   List<Object> get props => [message];
@@ -76,27 +74,19 @@ class SearchClansFindInProgress extends SearchState {
 }
 
 class SearchClansFindSuccess extends SearchState {
-  const SearchClansFindSuccess({
-    @required this.clans,
-    @required this.lastExecuteTime,
-  });
+  const SearchClansFindSuccess({@required this.clans});
 
   final List<Clan> clans;
-  final DateTime lastExecuteTime;
 
   @override
-  List<Object> get props => [clans, lastExecuteTime];
+  List<Object> get props => [clans];
 }
 
 class SearchClansFindFailure extends SearchState {
-  const SearchClansFindFailure({
-    @required this.message,
-    @required this.lastExecuteTime,
-  });
+  const SearchClansFindFailure({@required this.message});
 
   final String message;
-  final DateTime lastExecuteTime;
 
   @override
-  List<Object> get props => [message, lastExecuteTime];
+  List<Object> get props => [message];
 }

@@ -2,9 +2,12 @@ import 'dart:async';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:get_it/get_it.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../core/constants/error_message.dart';
 import '../../../../core/constants/status_code.dart';
+import '../../../../core/env/env.dart';
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/failures.dart';
 import '../../../../core/network/network_info.dart';
@@ -20,11 +23,13 @@ typedef _Executable<Type> = Future<Type> Function();
 
 class SearchRepositoryImpl implements SearchRepository {
   const SearchRepositoryImpl({
+    @required this.locator,
     @required this.remoteDataSource,
     @required this.localDataSource,
     @required this.networkInfo,
   });
 
+  final GetIt locator;
   final SearchRemoteDataSource remoteDataSource;
   final SearchLocalDataSource localDataSource;
   final NetworkInfo networkInfo;
@@ -41,9 +46,7 @@ class SearchRepositoryImpl implements SearchRepository {
             (item) => item.contains(search),
           )
           .toList();
-      return Future.value(
-        Right(SearchHistory(history: suggestibleHistory)),
-      );
+      return Future.value(Right(SearchHistory(history: suggestibleHistory)));
     } on CacheException catch (e) {
       return Left(CacheFailure(code: e.code, message: e.message));
     } catch (e) {
@@ -62,6 +65,12 @@ class SearchRepositoryImpl implements SearchRepository {
         )
         .toList();
     history.add(search);
+
+    final env = locator<Env>();
+    if (history.length > env.searchHistoryStorageLimit) {
+      history.removeAt(0);
+    }
+
     final result = await localDataSource.cacheSearchHistory(
       SearchHistoryModel(history: history),
     );
@@ -70,15 +79,29 @@ class SearchRepositoryImpl implements SearchRepository {
 
   @override
   Future<Either<Failure, List<Player>>> searchPlayers(String search) async {
-    return await _execute(() {
-      return remoteDataSource.searchPlayers(search);
+    return await _execute(() async {
+      final players = await remoteDataSource.searchPlayers(search);
+      if (players == null || players.isEmpty) {
+        throw ServerException(
+          code: StatusCode.noContent,
+          message: ErrorMessage.noSearchResults,
+        );
+      }
+      return players;
     });
   }
 
   @override
   Future<Either<Failure, List<Clan>>> searchClans(String search) async {
-    return await _execute(() {
-      return remoteDataSource.searchClans(search);
+    return await _execute(() async {
+      final clans = await remoteDataSource.searchClans(search);
+      if (clans == null || clans.isEmpty) {
+        throw ServerException(
+          code: StatusCode.noContent,
+          message: ErrorMessage.noSearchResults,
+        );
+      }
+      return clans;
     });
   }
 

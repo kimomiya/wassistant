@@ -5,6 +5,6 @@ class ErrorMessage {
       'Please try again later.';
 
   //* Search
-  static const noSearchResults = "We couldn't find any results.\n"
-      'Please try another search.';
+  static const noSearchResults =
+      "We couldn't find any results for your search.";
 }

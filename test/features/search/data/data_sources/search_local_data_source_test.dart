@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wassistant/core/errors/exceptions.dart';
 import 'package:wassistant/features/search/data/data_sources/search_local_data_source.dart';
 import 'package:wassistant/features/search/data/models/search_history_model.dart';
 
@@ -58,17 +57,19 @@ void main() {
       );
 
       test(
-        'should throw a CacheExeption when there is not a cached value',
-        () {
+        'should return SearchHistoryModel with empty data '
+        'when there is not a cached value',
+        () async {
           when(
             mockSharedPreferences.getString(searchHistoryKey),
           ).thenReturn(
             null,
           );
 
-          final call = dataSource.getSearchHistory;
+          final result = await dataSource.getSearchHistory();
 
-          expect(() => call(), throwsA(isA<CacheException>()));
+          verify(mockSharedPreferences.getString(searchHistoryKey));
+          expect(result, equals(const SearchHistoryModel(history: [])));
         },
       );
     },

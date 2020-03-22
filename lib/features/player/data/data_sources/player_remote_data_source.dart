@@ -24,7 +24,7 @@ class PlayerRemoteDataSourceImpl implements PlayerRemoteDataSource {
     final env = locator<Env>();
 
     final responseData = await client.compactGet(
-      '${env.baseURL}/account/list/',
+      '${env.baseURLForWows}/account/list/',
       queryParameters: <String, dynamic>{
         'application_id': env.applicaionId,
         'account_id': accountId,

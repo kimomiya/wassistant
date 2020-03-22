@@ -11,6 +11,7 @@ import '../../../../core/errors/failures.dart';
 import '../../domain/entities/clan.dart';
 import '../../domain/entities/player.dart';
 import '../../domain/entities/search_history.dart';
+import '../../domain/usecase/cache_search_history.dart';
 import '../../domain/usecase/get_suggestible_history.dart';
 import '../../domain/usecase/search_clans.dart';
 import '../../domain/usecase/search_players.dart';
@@ -21,15 +22,20 @@ part 'search_state.dart';
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
   SearchBloc({
     @required GetSuggestibleHistory suggestions,
+    @required CacheSearchHistory history,
     @required SearchPlayers players,
     @required SearchClans clans,
   })  : assert(suggestions != null),
+        assert(history != null),
         assert(players != null),
+        assert(clans != null),
         getSuggestibleHistory = suggestions,
+        cacheSearchHistory = history,
         searchPlayers = players,
         searchClans = clans;
 
   GetSuggestibleHistory getSuggestibleHistory;
+  CacheSearchHistory cacheSearchHistory;
   SearchPlayers searchPlayers;
   SearchClans searchClans;
 
@@ -42,6 +48,10 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   Stream<SearchState> mapEventToState(SearchEvent event) async* {
     if (event is SearchSuggestionsLoaded) {
       yield* _handleSearchSuggestionsLoaded(event);
+    }
+
+    if (event is SearchHistoryCached) {
+      yield* _handleSearchHisotyCached(event);
     }
 
     if (event is SearchPlayersFound) {
@@ -62,13 +72,20 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       GetSuggestibleHistoryParams(search: event.search),
     );
     yield failureOrSuggestions.fold(
-      (failure) => SearchSuggestionsLoadFailure(
-        lastExecuteTime: event.lastExecuteTime,
-      ),
-      (suggestions) => SearchSuggestionsLoadSuccess(
-        suggestions: suggestions,
-        lastExecuteTime: event.lastExecuteTime,
-      ),
+      (failure) => const SearchSuggestionsLoadFailure(),
+      (suggestions) => SearchSuggestionsLoadSuccess(suggestions: suggestions),
+    );
+  }
+
+  Stream<SearchState> _handleSearchHisotyCached(
+    SearchHistoryCached event,
+  ) async* {
+    final failureOrVoid = await cacheSearchHistory(
+      CacheSearchHistoryParams(search: event.search),
+    );
+    yield failureOrVoid.fold(
+      (failure) => const SearchHistoryCacheFailure(),
+      (_) => const SearchHistoryCacheSuccess(),
     );
   }
 
@@ -84,12 +101,8 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     yield failureOrPlayers.fold(
       (failure) => SearchPlayersFindFailure(
         message: _mapFailureToMessage(failure),
-        lastExecuteTime: event.lastExecuteTime,
       ),
-      (players) => SearchPlayersFindSuccess(
-        players: players,
-        lastExecuteTime: event.lastExecuteTime,
-      ),
+      (players) => SearchPlayersFindSuccess(players: players),
     );
   }
 
@@ -105,12 +118,8 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     yield failureOrClans.fold(
       (failure) => SearchClansFindFailure(
         message: _mapFailureToMessage(failure),
-        lastExecuteTime: event.lastExecuteTime,
       ),
-      (clans) => SearchClansFindSuccess(
-        clans: clans,
-        lastExecuteTime: event.lastExecuteTime,
-      ),
+      (clans) => SearchClansFindSuccess(clans: clans),
     );
   }
 
@@ -124,6 +133,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         if (failure.code == StatusCode.networkUnreachable) {
           return ErrorMessage.networkUnreachable;
         }
+
         if (failure.code == StatusCode.noContent) {
           return ErrorMessage.noSearchResults;
         }

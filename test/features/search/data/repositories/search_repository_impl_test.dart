@@ -1,7 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
+import 'package:wassistant/core/constants/error_message.dart';
 import 'package:wassistant/core/constants/status_code.dart';
+import 'package:wassistant/core/env/env.dart';
 import 'package:wassistant/core/errors/exceptions.dart';
 import 'package:wassistant/core/errors/failures.dart';
 import 'package:wassistant/core/network/network_info.dart';
@@ -15,6 +18,10 @@ import 'package:wassistant/features/search/domain/entities/clan.dart';
 import 'package:wassistant/features/search/domain/entities/player.dart';
 import 'package:wassistant/features/search/domain/entities/search_history.dart';
 
+class MockEnv extends Mock implements Env {}
+
+class MockGetIt extends Mock implements GetIt {}
+
 class MockRemoteDataSource extends Mock implements SearchRemoteDataSource {}
 
 class MockLocalDataSource extends Mock implements SearchLocalDataSource {}
@@ -22,16 +29,21 @@ class MockLocalDataSource extends Mock implements SearchLocalDataSource {}
 class MockNetworkInfo extends Mock implements NetworkInfo {}
 
 void main() {
+  SearchRepositoryImpl repository;
+  MockEnv mockEnv;
+  MockGetIt mockLocator;
   MockRemoteDataSource mockRemoteDataSource;
   MockLocalDataSource mockLocalDataSource;
   MockNetworkInfo mockNetworkInfo;
-  SearchRepositoryImpl repository;
 
   setUp(() {
+    mockEnv = MockEnv();
+    mockLocator = MockGetIt();
     mockRemoteDataSource = MockRemoteDataSource();
     mockLocalDataSource = MockLocalDataSource();
     mockNetworkInfo = MockNetworkInfo();
     repository = SearchRepositoryImpl(
+      locator: mockLocator,
       remoteDataSource: mockRemoteDataSource,
       localDataSource: mockLocalDataSource,
       networkInfo: mockNetworkInfo,
@@ -158,24 +170,27 @@ void main() {
   group(
     'cacheSearchHistory',
     () {
-      const tSearchHistoryModel = SearchHistoryModel(
-        history: ['test1', 'test2'],
-      );
+      void setUpMockLocalDataSourceSuccess(List<String> tHistory) {
+        when(mockEnv.searchHistoryStorageLimit).thenReturn(999);
+        when(mockLocator<Env>()).thenReturn(mockEnv);
+        when(
+          mockLocalDataSource.getSearchHistory(),
+        ).thenAnswer(
+          (_) async => SearchHistoryModel(history: tHistory),
+        );
+      }
 
       test(
         'should return void '
         'when the call to local data source is successful',
         () async {
-          when(
-            mockLocalDataSource.getSearchHistory(),
-          ).thenAnswer(
-            (_) async => tSearchHistoryModel,
-          );
+          const tHistory = ['test1', 'test2'];
+          setUpMockLocalDataSourceSuccess(tHistory);
 
           final result = await repository.cacheSearchHistory('search');
 
           verify(mockLocalDataSource.getSearchHistory());
-          final expectedHistory = [...tSearchHistoryModel.history, 'search'];
+          final expectedHistory = [...tHistory, 'search'];
           final expectedModel = SearchHistoryModel(history: expectedHistory);
           verify(mockLocalDataSource.cacheSearchHistory(expectedModel));
           expect(result, Right<Failure, void>(null));
@@ -185,17 +200,42 @@ void main() {
       test(
         'should remove duplicate values before cache new data',
         () async {
+          const tSearch = 'search';
+          const tHistory = ['test1', tSearch, 'test2'];
+          setUpMockLocalDataSourceSuccess(tHistory);
+
+          final result = await repository.cacheSearchHistory(tSearch);
+
+          verify(mockLocalDataSource.getSearchHistory());
+          const expectedModel = SearchHistoryModel(
+            history: ['test1', 'test2', tSearch],
+          );
+          verify(mockLocalDataSource.cacheSearchHistory(expectedModel));
+          expect(result, Right<Failure, void>(null));
+        },
+      );
+
+      test(
+        'should remove the oldest data if cached history is over the limit',
+        () async {
+          const tHistory = ['test1', 'test2', 'test3'];
+          when(
+            mockEnv.searchHistoryStorageLimit,
+          ).thenReturn(
+            tHistory.length - 1,
+          );
+          when(mockLocator<Env>()).thenReturn(mockEnv);
           when(
             mockLocalDataSource.getSearchHistory(),
           ).thenAnswer(
-            (_) async => tSearchHistoryModel,
+            (_) async => const SearchHistoryModel(history: tHistory),
           );
 
           final result = await repository.cacheSearchHistory('search');
 
           verify(mockLocalDataSource.getSearchHistory());
           const expectedModel = SearchHistoryModel(
-            history: ['test1', 'test2', 'search'],
+            history: ['test2', 'test3', 'search'],
           );
           verify(mockLocalDataSource.cacheSearchHistory(expectedModel));
           expect(result, Right<Failure, void>(null));
@@ -289,6 +329,31 @@ void main() {
                   const ServerFailure(
                     code: 402,
                     message: 'SEARCH_NOT_SPECIFIED',
+                  ),
+                )),
+              );
+            },
+          );
+
+          test(
+            'should return ServerFailure '
+            'when the call to remote data source returning empty data',
+            () async {
+              when(
+                mockRemoteDataSource.searchPlayers(any),
+              ).thenAnswer(
+                (_) async => null,
+              );
+
+              final result = await repository.searchPlayers(tSearch);
+
+              verify(mockRemoteDataSource.searchPlayers(tSearch));
+              expect(
+                result,
+                equals(Left<Failure, List<Player>>(
+                  const ServerFailure(
+                    code: StatusCode.noContent,
+                    message: ErrorMessage.noSearchResults,
                   ),
                 )),
               );
@@ -425,6 +490,31 @@ void main() {
                   const ServerFailure(
                     code: 402,
                     message: 'SEARCH_NOT_SPECIFIED',
+                  ),
+                )),
+              );
+            },
+          );
+
+          test(
+            'should return ServerFailure '
+            'when the call to remote data source returning empty data',
+            () async {
+              when(
+                mockRemoteDataSource.searchClans(any),
+              ).thenAnswer(
+                (_) async => null,
+              );
+
+              final result = await repository.searchClans(tSearch);
+
+              verify(mockRemoteDataSource.searchClans(tSearch));
+              expect(
+                result,
+                equals(Left<Failure, List<Player>>(
+                  const ServerFailure(
+                    code: StatusCode.noContent,
+                    message: ErrorMessage.noSearchResults,
                   ),
                 )),
               );

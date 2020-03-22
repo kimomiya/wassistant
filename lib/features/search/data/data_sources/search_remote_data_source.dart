@@ -27,7 +27,7 @@ class SearchRemoteDataSourceImpl implements SearchRemoteDataSource {
     final env = locator<Env>();
 
     final dynamic responseData = await client.compactGet(
-      '${env.baseURL}/account/list/',
+      '${env.baseURLForWows}/account/list/',
       queryParameters: <String, dynamic>{
         'application_id': env.applicaionId,
         'search': search,
@@ -47,7 +47,7 @@ class SearchRemoteDataSourceImpl implements SearchRemoteDataSource {
     final env = locator<Env>();
 
     final dynamic responseData = await client.compactGet(
-      '${env.baseURL}/clans/list/',
+      '${env.baseURLForWows}/clans/list/',
       queryParameters: <String, dynamic>{
         'application_id': env.applicaionId,
         'search': search,

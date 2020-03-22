@@ -5,40 +5,39 @@ abstract class SearchEvent extends Equatable {
 }
 
 class SearchSuggestionsLoaded extends SearchEvent {
-  const SearchSuggestionsLoaded({
-    @required this.search,
-    @required this.lastExecuteTime,
-  });
+  const SearchSuggestionsLoaded({@required this.search});
 
   final String search;
-  final DateTime lastExecuteTime;
 
   @override
-  List<Object> get props => [search, lastExecuteTime];
+  List<Object> get props => [search];
+}
+
+class SearchHistoryCached extends SearchEvent {
+  const SearchHistoryCached({@required this.search});
+
+  final String search;
+
+  @override
+  List<Object> get props => [search];
 }
 
 class SearchPlayersFound extends SearchEvent {
-  const SearchPlayersFound({
-    @required this.search,
-    @required this.lastExecuteTime,
-  });
+  const SearchPlayersFound({@required this.search});
 
   final String search;
-  final DateTime lastExecuteTime;
 
   @override
-  List<Object> get props => [search, lastExecuteTime];
+  List<Object> get props => [search];
 }
 
 class SearchClansFound extends SearchEvent {
   const SearchClansFound({
     @required this.search,
-    @required this.lastExecuteTime,
   });
 
   final String search;
-  final DateTime lastExecuteTime;
 
   @override
-  List<Object> get props => [search, lastExecuteTime];
+  List<Object> get props => [search];
 }

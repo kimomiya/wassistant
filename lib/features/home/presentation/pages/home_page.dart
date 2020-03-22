@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../search/presentation/widgets/sliver_search_bar.dart';
+import '../../../search/presentation/widgets/search_app_bar.dart';
 import '../widgets/left_drawer.dart';
 
 class HomePage extends StatelessWidget {
@@ -12,22 +12,9 @@ class HomePage extends StatelessWidget {
     ScreenUtil.init(context, width: 750, height: 1334);
 
     return Scaffold(
+      appBar: const SearchAppBar(title: 'Home'),
       drawer: LeftDrawer(),
-      body: SliverSearchBar(
-        title: const Text('Home'),
-        slivers: <Widget>[
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) {
-                return ListTile(
-                  title: Text('Item #$index'),
-                );
-              },
-              childCount: 50,
-            ),
-          ),
-        ],
-      ),
+      body: Container(),
     );
   }
 }

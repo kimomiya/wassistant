@@ -10,13 +10,39 @@ void main() {
   });
 
   group(
-    'baseURL',
+    'applicaionId',
+    () {
+      test(
+        'should be a non-empty String',
+        () {
+          expect(env.applicaionId.isNotEmpty, true);
+        },
+      );
+    },
+  );
+
+  group(
+    'searchHistoryStorageLimit',
+    () {
+      test(
+        'should be a positive number',
+        () {
+          expect(env.searchHistoryStorageLimit > 0, true);
+        },
+      );
+    },
+  );
+
+  group(
+    'baseURLForWows',
     () {
       test(
         'should return a concatenated string in Asia realm',
         () {
-          final expectedURL = 'https://api.worldofwarships.${Realm.asia.value}';
-          expect(env.baseURL, expectedURL);
+          expect(
+            env.baseURLForWows,
+            'https://api.worldofwarships.${Realm.asia.value}/wows/',
+          );
         },
       );
 
@@ -28,9 +54,10 @@ void main() {
 
           env.changeRealm(expectedRealm);
 
-          final expectedURL =
-              'https://api.worldofwarships.${expectedRealm.value}';
-          expect(env.baseURL, expectedURL);
+          expect(
+            env.baseURLForWows,
+            'https://api.worldofwarships.${expectedRealm.value}/wows/',
+          );
         },
       );
     },

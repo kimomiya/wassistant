@@ -79,7 +79,7 @@ void main() {
           await dataSource.fetchPlayerDetails(tAccountId);
 
           verify(mockHttpClient.get<dynamic>(
-            '${tEnv.baseURL}/account/list/',
+            '${tEnv.baseURLForWows}/account/list/',
             queryParameters: <String, dynamic>{
               'application_id': tEnv.applicaionId,
               'account_id': tAccountId,

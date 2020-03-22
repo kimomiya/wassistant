@@ -1,4 +1,3 @@
-import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 
@@ -38,20 +37,6 @@ class LeftDrawer extends StatelessWidget {
       ListTile(
         leading: IconTheme(
           data: IconThemeData(color: theme.accentColor),
-          child: const Icon(Icons.home),
-        ),
-        title: const Text('Home'),
-        onTap: () {
-          router.navigateTo(
-            context,
-            Routes.home,
-            transition: TransitionType.cupertino,
-          );
-        },
-      ),
-      ListTile(
-        leading: IconTheme(
-          data: IconThemeData(color: theme.accentColor),
           child: const Icon(Icons.directions_boat),
         ),
         title: const Text('Warships'),
@@ -85,12 +70,8 @@ class LeftDrawer extends StatelessWidget {
         ),
         title: const Text('Settings'),
         onTap: () {
-          const text = 'paramater!';
-          router.navigateTo(
-            context,
-            '${Routes.settings}?text=$text',
-            transition: TransitionType.cupertino,
-          );
+          Navigator.pop(context);
+          router.navigateTo(context, Routes.settings);
         },
       ),
     ];
