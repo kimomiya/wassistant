@@ -1,4 +1,4 @@
-package com.example.wassistant
+package org.kimomiya.wassistant
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
