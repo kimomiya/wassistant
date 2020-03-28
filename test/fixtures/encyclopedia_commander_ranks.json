@@ -1,0 +1,1850 @@
+{
+    "status": "ok",
+    "meta": {
+        "count": 11
+    },
+    "data": {
+        "commonwealth": [
+            {
+                "experience": 0,
+                "name": null,
+                "rank": 0,
+                "names": {
+                    "0": "准尉"
+                }
+            },
+            {
+                "experience": 1500,
+                "name": null,
+                "rank": 1,
+                "names": {
+                    "0": "中尉"
+                }
+            },
+            {
+                "experience": 2500,
+                "name": null,
+                "rank": 1,
+                "names": {
+                    "0": "中尉"
+                }
+            },
+            {
+                "experience": 4000,
+                "name": null,
+                "rank": 2,
+                "names": {
+                    "0": "上尉"
+                }
+            },
+            {
+                "experience": 6000,
+                "name": null,
+                "rank": 2,
+                "names": {
+                    "0": "上尉"
+                }
+            },
+            {
+                "experience": 9000,
+                "name": null,
+                "rank": 3,
+                "names": {
+                    "0": "少校"
+                }
+            },
+            {
+                "experience": 14000,
+                "name": null,
+                "rank": 3,
+                "names": {
+                    "0": "少校"
+                }
+            },
+            {
+                "experience": 21000,
+                "name": null,
+                "rank": 4,
+                "names": {
+                    "0": "指挥官"
+                }
+            },
+            {
+                "experience": 30000,
+                "name": null,
+                "rank": 4,
+                "names": {
+                    "0": "指挥官"
+                }
+            },
+            {
+                "experience": 41000,
+                "name": null,
+                "rank": 5,
+                "names": {
+                    "0": "上校"
+                }
+            },
+            {
+                "experience": 54000,
+                "name": null,
+                "rank": 5,
+                "names": {
+                    "0": "上校"
+                }
+            },
+            {
+                "experience": 69000,
+                "name": null,
+                "rank": 6,
+                "names": {
+                    "0": "准将"
+                }
+            },
+            {
+                "experience": 87000,
+                "name": null,
+                "rank": 6,
+                "names": {
+                    "0": "准将"
+                }
+            },
+            {
+                "experience": 108000,
+                "name": null,
+                "rank": 7,
+                "names": {
+                    "0": "少将"
+                }
+            },
+            {
+                "experience": 132000,
+                "name": null,
+                "rank": 7,
+                "names": {
+                    "0": "少将"
+                }
+            },
+            {
+                "experience": 159000,
+                "name": null,
+                "rank": 8,
+                "names": {
+                    "0": "中将"
+                }
+            },
+            {
+                "experience": 189000,
+                "name": null,
+                "rank": 8,
+                "names": {
+                    "0": "中将"
+                }
+            },
+            {
+                "experience": 222000,
+                "name": null,
+                "rank": 9,
+                "names": {
+                    "0": "海军上将"
+                }
+            },
+            {
+                "experience": 259000,
+                "name": null,
+                "rank": 9,
+                "names": {
+                    "0": "海军上将"
+                }
+            },
+            {
+                "experience": 300000,
+                "name": null,
+                "rank": 10,
+                "names": {
+                    "0": "元帅"
+                }
+            }
+        ],
+        "europe": [
+            {
+                "experience": 0,
+                "name": null,
+                "rank": 0,
+                "names": {
+                    "0": "Adjudant-Onderofficier",
+                    "1": "Fänrik",
+                    "2": "海军少尉",
+                    "3": "Seefähnrich"
+                }
+            },
+            {
+                "experience": 1500,
+                "name": null,
+                "rank": 1,
+                "names": {
+                    "0": "Luitenant ter Zee der 3e klasse",
+                    "1": "Underlöjtnant",
+                    "2": "海军中尉",
+                    "3": "Korvettenleutnant"
+                }
+            },
+            {
+                "experience": 2500,
+                "name": null,
+                "rank": 1,
+                "names": {
+                    "0": "Luitenant ter Zee der 3e klasse",
+                    "1": "Underlöjtnant",
+                    "2": "海军中尉",
+                    "3": "Korvettenleutnant"
+                }
+            },
+            {
+                "experience": 4000,
+                "name": null,
+                "rank": 2,
+                "names": {
+                    "0": "Luitenant ter Zee der 2e klasse",
+                    "1": "Löjtnant",
+                    "2": "海军上尉",
+                    "3": "Fregattenleutnant"
+                }
+            },
+            {
+                "experience": 6000,
+                "name": null,
+                "rank": 2,
+                "names": {
+                    "0": "Luitenant ter Zee der 2e klasse",
+                    "1": "Löjtnant",
+                    "2": "海军上尉",
+                    "3": "Fregattenleutnant"
+                }
+            },
+            {
+                "experience": 9000,
+                "name": null,
+                "rank": 3,
+                "names": {
+                    "0": "Luitenant ter Zee der 1e klasse",
+                    "1": "Kapten",
+                    "2": "海军大尉",
+                    "3": "Linienschiffsleutnant"
+                }
+            },
+            {
+                "experience": 14000,
+                "name": null,
+                "rank": 3,
+                "names": {
+                    "0": "Luitenant ter Zee der 1e klasse",
+                    "1": "Kapten",
+                    "2": "海军大尉",
+                    "3": "Linienschiffsleutnant"
+                }
+            },
+            {
+                "experience": 21000,
+                "name": null,
+                "rank": 4,
+                "names": {
+                    "0": "Kapitein-Luitenant ter Zee",
+                    "1": "Kommendörkapten av 2 graden",
+                    "2": "少校",
+                    "3": "海军少校"
+                }
+            },
+            {
+                "experience": 30000,
+                "name": null,
+                "rank": 4,
+                "names": {
+                    "0": "Kapitein-Luitenant ter Zee",
+                    "1": "Kommendörkapten av 2 graden",
+                    "2": "少校",
+                    "3": "海军少校"
+                }
+            },
+            {
+                "experience": 41000,
+                "name": null,
+                "rank": 5,
+                "names": {
+                    "0": "Kapitein ter Zee",
+                    "1": "Kommendörkapten av 1 graden",
+                    "2": "中校",
+                    "3": "海军中校"
+                }
+            },
+            {
+                "experience": 54000,
+                "name": null,
+                "rank": 5,
+                "names": {
+                    "0": "Kapitein ter Zee",
+                    "1": "Kommendörkapten av 1 graden",
+                    "2": "中校",
+                    "3": "海军中校"
+                }
+            },
+            {
+                "experience": 69000,
+                "name": null,
+                "rank": 6,
+                "names": {
+                    "0": "Commandeur",
+                    "1": "Kommendör",
+                    "2": "上校",
+                    "3": "Linienschiffkapitän"
+                }
+            },
+            {
+                "experience": 87000,
+                "name": null,
+                "rank": 6,
+                "names": {
+                    "0": "Commandeur",
+                    "1": "Kommendör",
+                    "2": "上校",
+                    "3": "Linienschiffkapitän"
+                }
+            },
+            {
+                "experience": 108000,
+                "name": null,
+                "rank": 7,
+                "names": {
+                    "0": "Schout-bij-Nacht",
+                    "1": "Konteramiral",
+                    "2": "海军少将",
+                    "3": "Kontreadmiral"
+                }
+            },
+            {
+                "experience": 132000,
+                "name": null,
+                "rank": 7,
+                "names": {
+                    "0": "Schout-bij-Nacht",
+                    "1": "Konteramiral",
+                    "2": "海军少将",
+                    "3": "Kontreadmiral"
+                }
+            },
+            {
+                "experience": 159000,
+                "name": null,
+                "rank": 8,
+                "names": {
+                    "0": "Viceadmiraal",
+                    "1": "Viceamiral",
+                    "2": "海军中将",
+                    "3": "海军中将"
+                }
+            },
+            {
+                "experience": 189000,
+                "name": null,
+                "rank": 8,
+                "names": {
+                    "0": "Viceadmiraal",
+                    "1": "Viceamiral",
+                    "2": "海军中将",
+                    "3": "海军中将"
+                }
+            },
+            {
+                "experience": 222000,
+                "name": null,
+                "rank": 9,
+                "names": {
+                    "0": "Luitenant-Admiraal",
+                    "1": "海军上将",
+                    "2": "海军元帅",
+                    "3": "Admiral"
+                }
+            },
+            {
+                "experience": 259000,
+                "name": null,
+                "rank": 9,
+                "names": {
+                    "0": "Luitenant-Admiraal",
+                    "1": "海军上将",
+                    "2": "海军元帅",
+                    "3": "Admiral"
+                }
+            },
+            {
+                "experience": 300000,
+                "name": null,
+                "rank": 10,
+                "names": {
+                    "0": "Admiraal",
+                    "1": "Storamiral",
+                    "2": "海军上将",
+                    "3": "Großadmiral"
+                }
+            }
+        ],
+        "italy": [
+            {
+                "experience": 0,
+                "name": null,
+                "rank": 0,
+                "names": {
+                    "0": "海军士官候补生"
+                }
+            },
+            {
+                "experience": 1500,
+                "name": null,
+                "rank": 1,
+                "names": {
+                    "0": "海军少尉"
+                }
+            },
+            {
+                "experience": 2500,
+                "name": null,
+                "rank": 1,
+                "names": {
+                    "0": "海军少尉"
+                }
+            },
+            {
+                "experience": 4000,
+                "name": null,
+                "rank": 2,
+                "names": {
+                    "0": "海军中尉"
+                }
+            },
+            {
+                "experience": 6000,
+                "name": null,
+                "rank": 2,
+                "names": {
+                    "0": "海军中尉"
+                }
+            },
+            {
+                "experience": 9000,
+                "name": null,
+                "rank": 3,
+                "names": {
+                    "0": "海军上尉"
+                }
+            },
+            {
+                "experience": 14000,
+                "name": null,
+                "rank": 3,
+                "names": {
+                    "0": "海军上尉"
+                }
+            },
+            {
+                "experience": 21000,
+                "name": null,
+                "rank": 4,
+                "names": {
+                    "0": "海军少校"
+                }
+            },
+            {
+                "experience": 30000,
+                "name": null,
+                "rank": 4,
+                "names": {
+                    "0": "海军少校"
+                }
+            },
+            {
+                "experience": 41000,
+                "name": null,
+                "rank": 5,
+                "names": {
+                    "0": "海军中校"
+                }
+            },
+            {
+                "experience": 54000,
+                "name": null,
+                "rank": 5,
+                "names": {
+                    "0": "海军中校"
+                }
+            },
+            {
+                "experience": 69000,
+                "name": null,
+                "rank": 6,
+                "names": {
+                    "0": "海军上校"
+                }
+            },
+            {
+                "experience": 87000,
+                "name": null,
+                "rank": 6,
+                "names": {
+                    "0": "海军上校"
+                }
+            },
+            {
+                "experience": 108000,
+                "name": null,
+                "rank": 7,
+                "names": {
+                    "0": "海军少将"
+                }
+            },
+            {
+                "experience": 132000,
+                "name": null,
+                "rank": 7,
+                "names": {
+                    "0": "海军少将"
+                }
+            },
+            {
+                "experience": 159000,
+                "name": null,
+                "rank": 8,
+                "names": {
+                    "0": "海军上级少将"
+                }
+            },
+            {
+                "experience": 189000,
+                "name": null,
+                "rank": 8,
+                "names": {
+                    "0": "海军上级少将"
+                }
+            },
+            {
+                "experience": 222000,
+                "name": null,
+                "rank": 9,
+                "names": {
+                    "0": "海军中将"
+                }
+            },
+            {
+                "experience": 259000,
+                "name": null,
+                "rank": 9,
+                "names": {
+                    "0": "海军中将"
+                }
+            },
+            {
+                "experience": 300000,
+                "name": null,
+                "rank": 10,
+                "names": {
+                    "0": "海军上将"
+                }
+            }
+        ],
+        "usa": [
+            {
+                "experience": 0,
+                "name": null,
+                "rank": 0,
+                "names": {
+                    "0": "海军准尉"
+                }
+            },
+            {
+                "experience": 1500,
+                "name": null,
+                "rank": 1,
+                "names": {
+                    "0": "中尉"
+                }
+            },
+            {
+                "experience": 2500,
+                "name": null,
+                "rank": 1,
+                "names": {
+                    "0": "中尉"
+                }
+            },
+            {
+                "experience": 4000,
+                "name": null,
+                "rank": 2,
+                "names": {
+                    "0": "上尉"
+                }
+            },
+            {
+                "experience": 6000,
+                "name": null,
+                "rank": 2,
+                "names": {
+                    "0": "上尉"
+                }
+            },
+            {
+                "experience": 9000,
+                "name": null,
+                "rank": 3,
+                "names": {
+                    "0": "少校"
+                }
+            },
+            {
+                "experience": 14000,
+                "name": null,
+                "rank": 3,
+                "names": {
+                    "0": "少校"
+                }
+            },
+            {
+                "experience": 21000,
+                "name": null,
+                "rank": 4,
+                "names": {
+                    "0": "指挥官"
+                }
+            },
+            {
+                "experience": 30000,
+                "name": null,
+                "rank": 4,
+                "names": {
+                    "0": "指挥官"
+                }
+            },
+            {
+                "experience": 41000,
+                "name": null,
+                "rank": 5,
+                "names": {
+                    "0": "上校"
+                }
+            },
+            {
+                "experience": 54000,
+                "name": null,
+                "rank": 5,
+                "names": {
+                    "0": "上校"
+                }
+            },
+            {
+                "experience": 69000,
+                "name": null,
+                "rank": 6,
+                "names": {
+                    "0": "准将"
+                }
+            },
+            {
+                "experience": 87000,
+                "name": null,
+                "rank": 6,
+                "names": {
+                    "0": "准将"
+                }
+            },
+            {
+                "experience": 108000,
+                "name": null,
+                "rank": 7,
+                "names": {
+                    "0": "少将"
+                }
+            },
+            {
+                "experience": 132000,
+                "name": null,
+                "rank": 7,
+                "names": {
+                    "0": "少将"
+                }
+            },
+            {
+                "experience": 159000,
+                "name": null,
+                "rank": 8,
+                "names": {
+                    "0": "中将"
+                }
+            },
+            {
+                "experience": 189000,
+                "name": null,
+                "rank": 8,
+                "names": {
+                    "0": "中将"
+                }
+            },
+            {
+                "experience": 222000,
+                "name": null,
+                "rank": 9,
+                "names": {
+                    "0": "海军上将"
+                }
+            },
+            {
+                "experience": 259000,
+                "name": null,
+                "rank": 9,
+                "names": {
+                    "0": "海军上将"
+                }
+            },
+            {
+                "experience": 300000,
+                "name": null,
+                "rank": 10,
+                "names": {
+                    "0": "五星上将"
+                }
+            }
+        ],
+        "pan_asia": [
+            {
+                "experience": 0,
+                "name": null,
+                "rank": 0,
+                "names": {
+                    "0": "少尉"
+                }
+            },
+            {
+                "experience": 1500,
+                "name": null,
+                "rank": 1,
+                "names": {
+                    "0": "中尉"
+                }
+            },
+            {
+                "experience": 2500,
+                "name": null,
+                "rank": 1,
+                "names": {
+                    "0": "中尉"
+                }
+            },
+            {
+                "experience": 4000,
+                "name": null,
+                "rank": 2,
+                "names": {
+                    "0": "上尉"
+                }
+            },
+            {
+                "experience": 6000,
+                "name": null,
+                "rank": 2,
+                "names": {
+                    "0": "上尉"
+                }
+            },
+            {
+                "experience": 9000,
+                "name": null,
+                "rank": 3,
+                "names": {
+                    "0": "少校"
+                }
+            },
+            {
+                "experience": 14000,
+                "name": null,
+                "rank": 3,
+                "names": {
+                    "0": "少校"
+                }
+            },
+            {
+                "experience": 21000,
+                "name": null,
+                "rank": 4,
+                "names": {
+                    "0": "中校"
+                }
+            },
+            {
+                "experience": 30000,
+                "name": null,
+                "rank": 4,
+                "names": {
+                    "0": "中校"
+                }
+            },
+            {
+                "experience": 41000,
+                "name": null,
+                "rank": 5,
+                "names": {
+                    "0": "上校"
+                }
+            },
+            {
+                "experience": 54000,
+                "name": null,
+                "rank": 5,
+                "names": {
+                    "0": "上校"
+                }
+            },
+            {
+                "experience": 69000,
+                "name": null,
+                "rank": 6,
+                "names": {
+                    "0": "代将"
+                }
+            },
+            {
+                "experience": 87000,
+                "name": null,
+                "rank": 6,
+                "names": {
+                    "0": "代将"
+                }
+            },
+            {
+                "experience": 108000,
+                "name": null,
+                "rank": 7,
+                "names": {
+                    "0": "少将"
+                }
+            },
+            {
+                "experience": 132000,
+                "name": null,
+                "rank": 7,
+                "names": {
+                    "0": "少将"
+                }
+            },
+            {
+                "experience": 159000,
+                "name": null,
+                "rank": 8,
+                "names": {
+                    "0": "中将"
+                }
+            },
+            {
+                "experience": 189000,
+                "name": null,
+                "rank": 8,
+                "names": {
+                    "0": "中将"
+                }
+            },
+            {
+                "experience": 222000,
+                "name": null,
+                "rank": 9,
+                "names": {
+                    "0": "二级上将"
+                }
+            },
+            {
+                "experience": 259000,
+                "name": null,
+                "rank": 9,
+                "names": {
+                    "0": "二级上将"
+                }
+            },
+            {
+                "experience": 300000,
+                "name": null,
+                "rank": 10,
+                "names": {
+                    "0": "一级上将"
+                }
+            }
+        ],
+        "france": [
+            {
+                "experience": 0,
+                "name": null,
+                "rank": 0,
+                "names": {
+                    "0": "海军准尉"
+                }
+            },
+            {
+                "experience": 1500,
+                "name": null,
+                "rank": 1,
+                "names": {
+                    "0": "海军少尉"
+                }
+            },
+            {
+                "experience": 2500,
+                "name": null,
+                "rank": 1,
+                "names": {
+                    "0": "海军少尉"
+                }
+            },
+            {
+                "experience": 4000,
+                "name": null,
+                "rank": 2,
+                "names": {
+                    "0": "海军中尉"
+                }
+            },
+            {
+                "experience": 6000,
+                "name": null,
+                "rank": 2,
+                "names": {
+                    "0": "海军中尉"
+                }
+            },
+            {
+                "experience": 9000,
+                "name": null,
+                "rank": 3,
+                "names": {
+                    "0": "海军上尉"
+                }
+            },
+            {
+                "experience": 14000,
+                "name": null,
+                "rank": 3,
+                "names": {
+                    "0": "海军上尉"
+                }
+            },
+            {
+                "experience": 21000,
+                "name": null,
+                "rank": 4,
+                "names": {
+                    "0": "海军少校"
+                }
+            },
+            {
+                "experience": 30000,
+                "name": null,
+                "rank": 4,
+                "names": {
+                    "0": "海军少校"
+                }
+            },
+            {
+                "experience": 41000,
+                "name": null,
+                "rank": 5,
+                "names": {
+                    "0": "海军中校"
+                }
+            },
+            {
+                "experience": 54000,
+                "name": null,
+                "rank": 5,
+                "names": {
+                    "0": "海军中校"
+                }
+            },
+            {
+                "experience": 69000,
+                "name": null,
+                "rank": 6,
+                "names": {
+                    "0": "海军上校"
+                }
+            },
+            {
+                "experience": 87000,
+                "name": null,
+                "rank": 6,
+                "names": {
+                    "0": "海军上校"
+                }
+            },
+            {
+                "experience": 108000,
+                "name": null,
+                "rank": 7,
+                "names": {
+                    "0": "海军准将"
+                }
+            },
+            {
+                "experience": 132000,
+                "name": null,
+                "rank": 7,
+                "names": {
+                    "0": "海军准将"
+                }
+            },
+            {
+                "experience": 159000,
+                "name": null,
+                "rank": 8,
+                "names": {
+                    "0": "海军少将"
+                }
+            },
+            {
+                "experience": 189000,
+                "name": null,
+                "rank": 8,
+                "names": {
+                    "0": "海军少将"
+                }
+            },
+            {
+                "experience": 222000,
+                "name": null,
+                "rank": 9,
+                "names": {
+                    "0": "海军中将"
+                }
+            },
+            {
+                "experience": 259000,
+                "name": null,
+                "rank": 9,
+                "names": {
+                    "0": "海军中将"
+                }
+            },
+            {
+                "experience": 300000,
+                "name": null,
+                "rank": 10,
+                "names": {
+                    "0": "海军上将"
+                }
+            }
+        ],
+        "ussr": [
+            {
+                "experience": 0,
+                "name": null,
+                "rank": 0,
+                "names": {
+                    "0": "海军准尉"
+                }
+            },
+            {
+                "experience": 1500,
+                "name": null,
+                "rank": 1,
+                "names": {
+                    "0": "中尉"
+                }
+            },
+            {
+                "experience": 2500,
+                "name": null,
+                "rank": 1,
+                "names": {
+                    "0": "中尉"
+                }
+            },
+            {
+                "experience": 4000,
+                "name": null,
+                "rank": 2,
+                "names": {
+                    "0": "上尉"
+                }
+            },
+            {
+                "experience": 6000,
+                "name": null,
+                "rank": 2,
+                "names": {
+                    "0": "上尉"
+                }
+            },
+            {
+                "experience": 9000,
+                "name": null,
+                "rank": 3,
+                "names": {
+                    "0": "大尉"
+                }
+            },
+            {
+                "experience": 14000,
+                "name": null,
+                "rank": 3,
+                "names": {
+                    "0": "大尉"
+                }
+            },
+            {
+                "experience": 21000,
+                "name": null,
+                "rank": 4,
+                "names": {
+                    "0": "少校"
+                }
+            },
+            {
+                "experience": 30000,
+                "name": null,
+                "rank": 4,
+                "names": {
+                    "0": "少校"
+                }
+            },
+            {
+                "experience": 41000,
+                "name": null,
+                "rank": 5,
+                "names": {
+                    "0": "中校"
+                }
+            },
+            {
+                "experience": 54000,
+                "name": null,
+                "rank": 5,
+                "names": {
+                    "0": "中校"
+                }
+            },
+            {
+                "experience": 69000,
+                "name": null,
+                "rank": 6,
+                "names": {
+                    "0": "上校"
+                }
+            },
+            {
+                "experience": 87000,
+                "name": null,
+                "rank": 6,
+                "names": {
+                    "0": "上校"
+                }
+            },
+            {
+                "experience": 108000,
+                "name": null,
+                "rank": 7,
+                "names": {
+                    "0": "少将"
+                }
+            },
+            {
+                "experience": 132000,
+                "name": null,
+                "rank": 7,
+                "names": {
+                    "0": "少将"
+                }
+            },
+            {
+                "experience": 159000,
+                "name": null,
+                "rank": 8,
+                "names": {
+                    "0": "中将"
+                }
+            },
+            {
+                "experience": 189000,
+                "name": null,
+                "rank": 8,
+                "names": {
+                    "0": "中将"
+                }
+            },
+            {
+                "experience": 222000,
+                "name": null,
+                "rank": 9,
+                "names": {
+                    "0": "海军上将"
+                }
+            },
+            {
+                "experience": 259000,
+                "name": null,
+                "rank": 9,
+                "names": {
+                    "0": "海军上将"
+                }
+            },
+            {
+                "experience": 300000,
+                "name": null,
+                "rank": 10,
+                "names": {
+                    "0": "元帅"
+                }
+            }
+        ],
+        "germany": [
+            {
+                "experience": 0,
+                "name": null,
+                "rank": 0,
+                "names": {
+                    "0": "海军士官候补生"
+                }
+            },
+            {
+                "experience": 1500,
+                "name": null,
+                "rank": 1,
+                "names": {
+                    "0": "海军少尉"
+                }
+            },
+            {
+                "experience": 2500,
+                "name": null,
+                "rank": 1,
+                "names": {
+                    "0": "海军少尉"
+                }
+            },
+            {
+                "experience": 4000,
+                "name": null,
+                "rank": 2,
+                "names": {
+                    "0": "海军中尉"
+                }
+            },
+            {
+                "experience": 6000,
+                "name": null,
+                "rank": 2,
+                "names": {
+                    "0": "海军中尉"
+                }
+            },
+            {
+                "experience": 9000,
+                "name": null,
+                "rank": 3,
+                "names": {
+                    "0": "海军上尉"
+                }
+            },
+            {
+                "experience": 14000,
+                "name": null,
+                "rank": 3,
+                "names": {
+                    "0": "海军上尉"
+                }
+            },
+            {
+                "experience": 21000,
+                "name": null,
+                "rank": 4,
+                "names": {
+                    "0": "海军少校"
+                }
+            },
+            {
+                "experience": 30000,
+                "name": null,
+                "rank": 4,
+                "names": {
+                    "0": "海军少校"
+                }
+            },
+            {
+                "experience": 41000,
+                "name": null,
+                "rank": 5,
+                "names": {
+                    "0": "海军中校"
+                }
+            },
+            {
+                "experience": 54000,
+                "name": null,
+                "rank": 5,
+                "names": {
+                    "0": "海军中校"
+                }
+            },
+            {
+                "experience": 69000,
+                "name": null,
+                "rank": 6,
+                "names": {
+                    "0": "海军上校"
+                }
+            },
+            {
+                "experience": 87000,
+                "name": null,
+                "rank": 6,
+                "names": {
+                    "0": "海军上校"
+                }
+            },
+            {
+                "experience": 108000,
+                "name": null,
+                "rank": 7,
+                "names": {
+                    "0": "海军少将"
+                }
+            },
+            {
+                "experience": 132000,
+                "name": null,
+                "rank": 7,
+                "names": {
+                    "0": "海军少将"
+                }
+            },
+            {
+                "experience": 159000,
+                "name": null,
+                "rank": 8,
+                "names": {
+                    "0": "海军中将"
+                }
+            },
+            {
+                "experience": 189000,
+                "name": null,
+                "rank": 8,
+                "names": {
+                    "0": "海军中将"
+                }
+            },
+            {
+                "experience": 222000,
+                "name": null,
+                "rank": 9,
+                "names": {
+                    "0": "海军上将"
+                }
+            },
+            {
+                "experience": 259000,
+                "name": null,
+                "rank": 9,
+                "names": {
+                    "0": "海军上将"
+                }
+            },
+            {
+                "experience": 300000,
+                "name": null,
+                "rank": 10,
+                "names": {
+                    "0": "海军元帅"
+                }
+            }
+        ],
+        "uk": [
+            {
+                "experience": 0,
+                "name": null,
+                "rank": 0,
+                "names": {
+                    "0": "准尉"
+                }
+            },
+            {
+                "experience": 1500,
+                "name": null,
+                "rank": 1,
+                "names": {
+                    "0": "中尉"
+                }
+            },
+            {
+                "experience": 2500,
+                "name": null,
+                "rank": 1,
+                "names": {
+                    "0": "中尉"
+                }
+            },
+            {
+                "experience": 4000,
+                "name": null,
+                "rank": 2,
+                "names": {
+                    "0": "上尉"
+                }
+            },
+            {
+                "experience": 6000,
+                "name": null,
+                "rank": 2,
+                "names": {
+                    "0": "上尉"
+                }
+            },
+            {
+                "experience": 9000,
+                "name": null,
+                "rank": 3,
+                "names": {
+                    "0": "少校"
+                }
+            },
+            {
+                "experience": 14000,
+                "name": null,
+                "rank": 3,
+                "names": {
+                    "0": "少校"
+                }
+            },
+            {
+                "experience": 21000,
+                "name": null,
+                "rank": 4,
+                "names": {
+                    "0": "指挥官"
+                }
+            },
+            {
+                "experience": 30000,
+                "name": null,
+                "rank": 4,
+                "names": {
+                    "0": "指挥官"
+                }
+            },
+            {
+                "experience": 41000,
+                "name": null,
+                "rank": 5,
+                "names": {
+                    "0": "上校"
+                }
+            },
+            {
+                "experience": 54000,
+                "name": null,
+                "rank": 5,
+                "names": {
+                    "0": "上校"
+                }
+            },
+            {
+                "experience": 69000,
+                "name": null,
+                "rank": 6,
+                "names": {
+                    "0": "准将"
+                }
+            },
+            {
+                "experience": 87000,
+                "name": null,
+                "rank": 6,
+                "names": {
+                    "0": "准将"
+                }
+            },
+            {
+                "experience": 108000,
+                "name": null,
+                "rank": 7,
+                "names": {
+                    "0": "少将"
+                }
+            },
+            {
+                "experience": 132000,
+                "name": null,
+                "rank": 7,
+                "names": {
+                    "0": "少将"
+                }
+            },
+            {
+                "experience": 159000,
+                "name": null,
+                "rank": 8,
+                "names": {
+                    "0": "中将"
+                }
+            },
+            {
+                "experience": 189000,
+                "name": null,
+                "rank": 8,
+                "names": {
+                    "0": "中将"
+                }
+            },
+            {
+                "experience": 222000,
+                "name": null,
+                "rank": 9,
+                "names": {
+                    "0": "海军上将"
+                }
+            },
+            {
+                "experience": 259000,
+                "name": null,
+                "rank": 9,
+                "names": {
+                    "0": "海军上将"
+                }
+            },
+            {
+                "experience": 300000,
+                "name": null,
+                "rank": 10,
+                "names": {
+                    "0": "元帅"
+                }
+            }
+        ],
+        "japan": [
+            {
+                "experience": 0,
+                "name": null,
+                "rank": 0,
+                "names": {
+                    "0": "海军少尉候补生"
+                }
+            },
+            {
+                "experience": 1500,
+                "name": null,
+                "rank": 1,
+                "names": {
+                    "0": "海军少尉"
+                }
+            },
+            {
+                "experience": 2500,
+                "name": null,
+                "rank": 1,
+                "names": {
+                    "0": "海军少尉"
+                }
+            },
+            {
+                "experience": 4000,
+                "name": null,
+                "rank": 2,
+                "names": {
+                    "0": "海军中尉"
+                }
+            },
+            {
+                "experience": 6000,
+                "name": null,
+                "rank": 2,
+                "names": {
+                    "0": "海军中尉"
+                }
+            },
+            {
+                "experience": 9000,
+                "name": null,
+                "rank": 3,
+                "names": {
+                    "0": "海军大尉"
+                }
+            },
+            {
+                "experience": 14000,
+                "name": null,
+                "rank": 3,
+                "names": {
+                    "0": "海军大尉"
+                }
+            },
+            {
+                "experience": 21000,
+                "name": null,
+                "rank": 4,
+                "names": {
+                    "0": "海军少佐"
+                }
+            },
+            {
+                "experience": 30000,
+                "name": null,
+                "rank": 4,
+                "names": {
+                    "0": "海军少佐"
+                }
+            },
+            {
+                "experience": 41000,
+                "name": null,
+                "rank": 5,
+                "names": {
+                    "0": "海军中佐"
+                }
+            },
+            {
+                "experience": 54000,
+                "name": null,
+                "rank": 5,
+                "names": {
+                    "0": "海军中佐"
+                }
+            },
+            {
+                "experience": 69000,
+                "name": null,
+                "rank": 6,
+                "names": {
+                    "0": "海军大佐"
+                }
+            },
+            {
+                "experience": 87000,
+                "name": null,
+                "rank": 6,
+                "names": {
+                    "0": "海军大佐"
+                }
+            },
+            {
+                "experience": 108000,
+                "name": null,
+                "rank": 7,
+                "names": {
+                    "0": "海军少将"
+                }
+            },
+            {
+                "experience": 132000,
+                "name": null,
+                "rank": 7,
+                "names": {
+                    "0": "海军少将"
+                }
+            },
+            {
+                "experience": 159000,
+                "name": null,
+                "rank": 8,
+                "names": {
+                    "0": "海军中将"
+                }
+            },
+            {
+                "experience": 189000,
+                "name": null,
+                "rank": 8,
+                "names": {
+                    "0": "海军中将"
+                }
+            },
+            {
+                "experience": 222000,
+                "name": null,
+                "rank": 9,
+                "names": {
+                    "0": "海军大将"
+                }
+            },
+            {
+                "experience": 259000,
+                "name": null,
+                "rank": 9,
+                "names": {
+                    "0": "海军大将"
+                }
+            },
+            {
+                "experience": 300000,
+                "name": null,
+                "rank": 10,
+                "names": {
+                    "0": "元帅海军大将"
+                }
+            }
+        ],
+        "pan_america": [
+            {
+                "experience": 0,
+                "name": null,
+                "rank": 0,
+                "names": {
+                    "0": "海军少尉"
+                }
+            },
+            {
+                "experience": 1500,
+                "name": null,
+                "rank": 1,
+                "names": {
+                    "0": "海军中尉"
+                }
+            },
+            {
+                "experience": 2500,
+                "name": null,
+                "rank": 1,
+                "names": {
+                    "0": "海军中尉"
+                }
+            },
+            {
+                "experience": 4000,
+                "name": null,
+                "rank": 2,
+                "names": {
+                    "0": "海军少尉"
+                }
+            },
+            {
+                "experience": 6000,
+                "name": null,
+                "rank": 2,
+                "names": {
+                    "0": "海军少尉"
+                }
+            },
+            {
+                "experience": 9000,
+                "name": null,
+                "rank": 3,
+                "names": {
+                    "0": "海军上尉"
+                }
+            },
+            {
+                "experience": 14000,
+                "name": null,
+                "rank": 3,
+                "names": {
+                    "0": "海军上尉"
+                }
+            },
+            {
+                "experience": 21000,
+                "name": null,
+                "rank": 4,
+                "names": {
+                    "0": "海军少校"
+                }
+            },
+            {
+                "experience": 30000,
+                "name": null,
+                "rank": 4,
+                "names": {
+                    "0": "海军少校"
+                }
+            },
+            {
+                "experience": 41000,
+                "name": null,
+                "rank": 5,
+                "names": {
+                    "0": "海军中校"
+                }
+            },
+            {
+                "experience": 54000,
+                "name": null,
+                "rank": 5,
+                "names": {
+                    "0": "海军中校"
+                }
+            },
+            {
+                "experience": 69000,
+                "name": null,
+                "rank": 6,
+                "names": {
+                    "0": "海军上校"
+                }
+            },
+            {
+                "experience": 87000,
+                "name": null,
+                "rank": 6,
+                "names": {
+                    "0": "海军上校"
+                }
+            },
+            {
+                "experience": 108000,
+                "name": null,
+                "rank": 7,
+                "names": {
+                    "0": "海军少将"
+                }
+            },
+            {
+                "experience": 132000,
+                "name": null,
+                "rank": 7,
+                "names": {
+                    "0": "海军少将"
+                }
+            },
+            {
+                "experience": 159000,
+                "name": null,
+                "rank": 8,
+                "names": {
+                    "0": "海军准尉"
+                }
+            },
+            {
+                "experience": 189000,
+                "name": null,
+                "rank": 8,
+                "names": {
+                    "0": "海军准尉"
+                }
+            },
+            {
+                "experience": 222000,
+                "name": null,
+                "rank": 9,
+                "names": {
+                    "0": "海军中将"
+                }
+            },
+            {
+                "experience": 259000,
+                "name": null,
+                "rank": 9,
+                "names": {
+                    "0": "海军中将"
+                }
+            },
+            {
+                "experience": 300000,
+                "name": null,
+                "rank": 10,
+                "names": {
+                    "0": "海军上将"
+                }
+            }
+        ]
+    }
+}

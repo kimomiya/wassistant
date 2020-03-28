@@ -1,6 +1,6 @@
 import 'package:wassistant/features/encyclopedia/domain/requests/pedia_params.dart';
 
-class PediaParamsShips extends PediaParams {
+class PediaParamsShipParams extends PediaParams {
   // Number of returned entries (fewer can be returned, but not more than 100).
   // If the limit sent exceeds 100, a limit of 100 is applied (by default).
   // num limit;
@@ -19,20 +19,37 @@ class PediaParamsShips extends PediaParams {
 
   static Map<String, dynamic> toParams(Map<String, dynamic> params) {
     var map = PediaParams.toParams(params);
-    if (params['limit'] != null) {
-      map['limit'] = params['limit'];
+    if (params['ship_id'] == null) {
+      throw Exception('ship_id should not be empty');
     }
-    if (params['nation'] != null) {
-      map['nation'] = params['nation'];
+    map['ship_id'] = params['ship_id'];
+
+    if (params['artillery_id'] != null) {
+      map['artillery_id'] = params['artillery_id'];
     }
-    if (params['pageNo'] != null) {
-      map['page_no'] = params['page_no'];
+    if (params['dive_bomber_id'] != null) {
+      map['dive_bomber_id'] = params['dive_bomber_id'];
     }
-    if (params['shipId'] != null) {
-      map['ship_id'] = params['ship_id'];
+    if (params['engine_id'] != null) {
+      map['engine_id'] = params['engine_id'];
     }
-    if (params['type'] != null) {
-      map['type'] = params['type'];
+    if (params['fighter_id'] != null) {
+      map['fighter_id'] = params['fighter_id'];
+    }
+    if (params['fire_control_id'] != null) {
+      map['fire_control_id'] = params['fire_control_id'];
+    }
+    if (params['flight_control_id'] != null) {
+      map['flight_control_id'] = params['flight_control_id'];
+    }
+    if (params['hull_id'] != null) {
+      map['hull_id'] = params['hull_id'];
+    }
+    if (params['torpedo_bomber_id'] != null) {
+      map['torpedo_bomber_id'] = params['torpedo_bomber_id'];
+    }
+    if (params['torpedoes_id'] != null) {
+      map['torpedoes_id'] = params['torpedoes_id'];
     }
     return map;
   }

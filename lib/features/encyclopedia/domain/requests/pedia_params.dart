@@ -1,7 +1,6 @@
 import '../../../../core/env/env.dart';
 
 abstract class PediaParams {
-  static const String applicationId = env.applicationId;
   /* Response field. 
    * The fields are separated with commas. 
    * Embedded fields are separated with dots. 
@@ -13,7 +12,7 @@ abstract class PediaParams {
 
   static Map<String, dynamic> toParams(Map<String, dynamic> params) {
     var map = <String, dynamic>{
-      'application_id': applicationId,
+      'application_id': env.applicationId,
       'language': env.language,
     };
 

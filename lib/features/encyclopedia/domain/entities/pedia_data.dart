@@ -3,7 +3,7 @@ class PediaDataInterface {
     return null;
   }
 
-  Map<String, dynamic> toJson() {
+  static Map<String, dynamic> toJson(PediaDataInterface instance) {
     return null;
   }
 }

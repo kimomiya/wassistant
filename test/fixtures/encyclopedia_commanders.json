@@ -1,0 +1,32 @@
+{
+    "status": "ok",
+    "meta": {
+        "count": 1
+    },
+    "data": {
+        "3559040848": {
+            "base_training_level": 1,
+            "first_names": [
+                "里昂-泰罗克斯"
+            ],
+            "gold_training_hire_price": 25,
+            "gold_retraining_price": 500,
+            "subnation_index": 0,
+            "icons": [
+                {
+                    "8": "https:\/\/glossary-wows-global.gcdn.co\/icons\/\/crew_commander\/photos\/France_PFW701_PVE_1_1_6a818264013c24cd81c838f6a2d47da3747391cb0f655c6c14808f6313049271.png",
+                    "1": "https:\/\/glossary-wows-global.gcdn.co\/icons\/\/crew_commander\/photos\/France_PFW701_PVE_0_0_98fc79024ef339d9376354e2d0b31d2627f741cfc7e8f431152d860374064501.png",
+                    "14": "https:\/\/glossary-wows-global.gcdn.co\/icons\/\/crew_commander\/photos\/France_PFW701_PVE_2_2_8c32034665a9e0a5063c1df617bae2d69953422f068f0cf36224025698591ef9.png"
+                }
+            ],
+            "base_training_hire_price": 0,
+            "money_training_hire_price": 7500,
+            "nation": "france",
+            "last_names": [],
+            "money_retraining_price": 200000,
+            "money_training_level": 2,
+            "is_retrainable": true,
+            "gold_training_level": 4
+        }
+    }
+}

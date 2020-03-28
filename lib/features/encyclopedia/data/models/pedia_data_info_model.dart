@@ -35,13 +35,11 @@ class PediaInfo extends PediaDataInterface {
   @JsonKey(name: 'game_version')
   final String gameVersion;
 
-  @override
-  static PediaDataInterface fromJson(Map<String, dynamic> json) {
+  static PediaInfo fromJson(Map<String, dynamic> json) {
     return _$PediaInfoFromJson(json);
   }
 
-  @override
-  Map<String, dynamic> toJson() {
-    return _$PediaInfoToJson(this);
+  static Map<String, dynamic> toJson(PediaInfo instance) {
+    return _$PediaInfoToJson(instance);
   }
 }

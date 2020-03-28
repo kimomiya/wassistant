@@ -1,0 +1,50 @@
+{
+    "status": "ok",
+    "meta": {
+        "count": 2,
+        "page_total": 1,
+        "total": 2,
+        "limit": 100,
+        "page": 1
+    },
+    "data": {
+        "3255218000": {
+            "profile": {
+                "fire_control": {
+                    "distance": 19.1,
+                    "distance_increase": 0
+                }
+            },
+            "name": "PCA n°10 1型",
+            "image": "https:\/\/glossary-wows-global.gcdn.co\/icons\/\/module\/icon_module_radar_ac43353250b30100860f6fdd450a6f0fa137532a95d933d90a04295b7284bb73.png",
+            "tag": "PFUS991_C10_SUO_STOCK",
+            "module_id_str": "PFUS991",
+            "module_id": 3255218000,
+            "type": "Suo",
+            "price_credit": 1800000
+        },
+        "3255578448": {
+            "profile": {
+                "hull": {
+                    "anti_aircraft_barrels": 14,
+                    "torpedoes_barrels": 2,
+                    "range": {
+                        "max": 220,
+                        "min": 6
+                    },
+                    "health": 53300,
+                    "planes_amount": 0,
+                    "artillery_barrels": 3,
+                    "atba_barrels": 6
+                }
+            },
+            "name": "布伦努斯 (A)",
+            "image": "https:\/\/glossary-wows-global.gcdn.co\/icons\/\/module\/icon_module_hull_d3a16d27fac41ffb0c32772f901adff535e4b10b36e9d0beb85dbbb09bb3162e.png",
+            "tag": "PFUH991_C10_HULL_A",
+            "module_id_str": "PFUH991",
+            "module_id": 3255578448,
+            "type": "Hull",
+            "price_credit": 2900000
+        }
+    }
+}
