@@ -1,4 +1,0 @@
-enum PrefsKey {
-  isDarkModeEnabled,
-  searchHistory,
-}

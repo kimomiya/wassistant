@@ -25,7 +25,8 @@ analyzer:
     implicit-casts: false
     implicit-dynamic: false
   exclude:
-    - "lib/**/models/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/*.g.dart"
 
 linter:
   rules:
@@ -54,7 +55,6 @@ linter:
     - list_remove_unrelated_type
     - no_adjacent_strings_in_list
     - non_constant_identifier_names
-    # - overridden_fields
     - package_api_docs
     - package_names
     - package_prefixed_library_names
