@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:wassistant/core/enums/realm.dart';
-import 'package:wassistant/core/env/env.dart';
+import 'package:wassistant/shared/enums/realm.dart';
+import 'package:wassistant/shared/env.dart';
 
 void main() {
   Env env;
