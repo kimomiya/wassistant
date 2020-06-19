@@ -6,8 +6,9 @@ part of 'pedia_data_fire_control_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PediaDataFireControl _$PediaDataFireControlFromJson(Map<String, dynamic> json) {
-  return PediaDataFireControl(
+PediaDataFireControlModel _$PediaDataFireControlModelFromJson(
+    Map<String, dynamic> json) {
+  return PediaDataFireControlModel(
     distance: json['distance'] as num,
     distanceIncrease: json['distance_increase'] as num,
     fireControlId: json['fire_control_id'] as num,
@@ -15,8 +16,8 @@ PediaDataFireControl _$PediaDataFireControlFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$PediaDataFireControlToJson(
-        PediaDataFireControl instance) =>
+Map<String, dynamic> _$PediaDataFireControlModelToJson(
+        PediaDataFireControlModel instance) =>
     <String, dynamic>{
       'distance': instance.distance,
       'distance_increase': instance.distanceIncrease,

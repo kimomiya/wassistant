@@ -6,8 +6,9 @@ part of 'pedia_data_fighters_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PediaDataFighters _$PediaDataFightersFromJson(Map<String, dynamic> json) {
-  return PediaDataFighters(
+PediaDataFightersModel _$PediaDataFightersModelFromJson(
+    Map<String, dynamic> json) {
+  return PediaDataFightersModel(
     avgDamage: json['avg_damage'] as num,
     cruiseSpeed: json['cruise_speed'] as num,
     fightersId: json['fighters_id'] as num,
@@ -21,12 +22,13 @@ PediaDataFighters _$PediaDataFightersFromJson(Map<String, dynamic> json) {
     squadrons: json['squadrons'] as num,
     countInSquadron: json['count_in_squadron'] == null
         ? null
-        : PediaDataFightersCountInSquadron.fromJson(
+        : PediaDataFightersCountInSquadronModel.fromJson(
             json['count_in_squadron'] as Map<String, dynamic>),
   );
 }
 
-Map<String, dynamic> _$PediaDataFightersToJson(PediaDataFighters instance) =>
+Map<String, dynamic> _$PediaDataFightersModelToJson(
+        PediaDataFightersModel instance) =>
     <String, dynamic>{
       'avg_damage': instance.avgDamage,
       'cruise_speed': instance.cruiseSpeed,
@@ -42,16 +44,16 @@ Map<String, dynamic> _$PediaDataFightersToJson(PediaDataFighters instance) =>
       'count_in_squadron': instance.countInSquadron,
     };
 
-PediaDataFightersCountInSquadron _$PediaDataFightersCountInSquadronFromJson(
-    Map<String, dynamic> json) {
-  return PediaDataFightersCountInSquadron(
+PediaDataFightersCountInSquadronModel
+    _$PediaDataFightersCountInSquadronModelFromJson(Map<String, dynamic> json) {
+  return PediaDataFightersCountInSquadronModel(
     max: json['max'] as num,
     min: json['min'] as num,
   );
 }
 
-Map<String, dynamic> _$PediaDataFightersCountInSquadronToJson(
-        PediaDataFightersCountInSquadron instance) =>
+Map<String, dynamic> _$PediaDataFightersCountInSquadronModelToJson(
+        PediaDataFightersCountInSquadronModel instance) =>
     <String, dynamic>{
       'max': instance.max,
       'min': instance.min,

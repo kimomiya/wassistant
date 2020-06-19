@@ -1,12 +1,15 @@
-import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
+import 'package:wassistant/features/encyclopedia/domain/entities/profile/pedia_data_artillery.dart';
+
+import '../pedia_json_data.dart';
 
 part 'pedia_data_artillery_model.g.dart';
 
-@JsonSerializable()
-class PediaDataArtillery extends Equatable {
-  PediaDataArtillery({
+@JsonSerializable(fieldRename: FieldRename.snake)
+class PediaDataArtilleryModel extends PediaDataArtillery
+    implements PediaJsonData {
+  const PediaDataArtilleryModel({
     this.artilleryId,
     this.artilleryIdStr,
     this.distance,
@@ -18,89 +21,71 @@ class PediaDataArtillery extends Equatable {
     this.slots,
   });
   // Gun ID
-  @JsonKey(name: 'artillery_id')
+  @override
   final num artilleryId;
-  @JsonKey(name: 'artillery_id_str')
+  @override
   final String artilleryIdStr;
   // Firing range
-  @JsonKey(name: 'distance')
+  @override
   final num distance;
   // Rate of fire (rounds / min)
-  @JsonKey(name: 'gun_rate')
+  @override
   final num gunRate;
   // Maximum dispersion (m)
-  @JsonKey(name: 'max_dispersion')
+  @override
   final num maxDispersion;
   // 180 Degree Turn Time (sec)
-  @JsonKey(name: 'rotation_time')
+  @override
   final num rotationTime;
   // Main battery reload time (s)
-  @JsonKey(name: 'shot_delay')
+  @override
   final num shotDelay;
   // Shells
-  @JsonKey(name: 'shells')
-  final PediaDataArtilleryShells shells;
+  @override
+  final PediaDataArtilleryShellsModel shells;
   // Main gun slots
-  @JsonKey(name: 'slots')
-  final PediaDataArtillerySlots slots;
+  @override
+  final PediaDataArtillerySlotsModel slots;
 
-  static PediaDataArtillery fromJson(Map<String, dynamic> json) {
-    return _$PediaDataArtilleryFromJson(json);
-  }
-
-  static Map<String, dynamic> toJson(PediaDataArtillery instance) {
-    return _$PediaDataArtilleryToJson(instance);
+  @override
+  factory PediaDataArtilleryModel.fromJson(Map<String, dynamic> json) {
+    return _$PediaDataArtilleryModelFromJson(json);
   }
 
   @override
-  List<Object> get props => [
-        artilleryId,
-        artilleryIdStr,
-        distance,
-        gunRate,
-        maxDispersion,
-        rotationTime,
-        shotDelay,
-        shells,
-        slots,
-      ];
+  Map<String, dynamic> toJson() => _$PediaDataArtilleryModelToJson(this);
 }
 
-@JsonSerializable()
-class PediaDataArtillerySlots extends Equatable {
-  PediaDataArtillerySlots({
+@JsonSerializable(fieldRename: FieldRename.snake)
+class PediaDataArtillerySlotsModel extends PediaDataArtillerySlots
+    implements PediaJsonData {
+  const PediaDataArtillerySlotsModel({
     @required this.barrels,
     @required this.guns,
     @required this.name,
   });
   // Number of barrels per slot
-  @JsonKey(name: 'barrels')
+  @override
   final num barrels;
   // Number of main turrets
-  @JsonKey(name: 'guns')
+  @override
   final num guns;
-  @JsonKey(name: 'name')
+  @override
   final String name;
 
-  static PediaDataArtillerySlots fromJson(Map<String, dynamic> json) {
-    return _$PediaDataArtillerySlotsFromJson(json);
-  }
-
-  Map<String, dynamic> toJson() {
-    return _$PediaDataArtillerySlotsToJson(this);
+  @override
+  factory PediaDataArtillerySlotsModel.fromJson(Map<String, dynamic> json) {
+    return _$PediaDataArtillerySlotsModelFromJson(json);
   }
 
   @override
-  List<Object> get props => [
-        barrels,
-        guns,
-        name,
-      ];
+  Map<String, dynamic> toJson() => _$PediaDataArtillerySlotsModelToJson(this);
 }
 
-@JsonSerializable()
-class PediaDataArtilleryShells extends Equatable {
-  PediaDataArtilleryShells({
+@JsonSerializable(fieldRename: FieldRename.snake)
+class PediaDataArtilleryShellsModel extends PediaDataArtilleryShells
+    implements PediaJsonData {
+  const PediaDataArtilleryShellsModel({
     @required this.bulletMass,
     @required this.bulletSpeed,
     @required this.burnProbability,
@@ -109,37 +94,27 @@ class PediaDataArtilleryShells extends Equatable {
     @required this.type,
   });
   // Shell weight
-  @JsonKey(name: 'bullet_mass')
+  @override
   final num bulletMass;
   // Shell speed
-  @JsonKey(name: 'bullet_speed')
+  @override
   final num bulletSpeed;
   // Chance of Fire on target caused by shell (%)
-  @JsonKey(name: 'burn_probability')
+  @override
   final num burnProbability;
   // Maximum Damage
-  @JsonKey(name: 'damage')
+  @override
   final num damage;
-  @JsonKey(name: 'name')
+  @override
   final String name;
-  @JsonKey(name: 'type')
+  @override
   final String type;
 
-  static PediaDataArtilleryShells fromJson(Map<String, dynamic> json) {
-    return _$PediaDataArtilleryShellsFromJson(json);
-  }
-
-  Map<String, dynamic> toJson() {
-    return _$PediaDataArtilleryShellsToJson(this);
+  @override
+  factory PediaDataArtilleryShellsModel.fromJson(Map<String, dynamic> json) {
+    return _$PediaDataArtilleryShellsModelFromJson(json);
   }
 
   @override
-  List<Object> get props => [
-        bulletMass,
-        bulletSpeed,
-        burnProbability,
-        damage,
-        name,
-        type,
-      ];
+  Map<String, dynamic> toJson() => _$PediaDataArtilleryShellsModelToJson(this);
 }

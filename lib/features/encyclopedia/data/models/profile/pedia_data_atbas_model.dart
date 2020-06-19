@@ -1,40 +1,38 @@
-import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
+import 'package:wassistant/features/encyclopedia/domain/entities/profile/pedia_data_atbas.dart';
+
+import '../pedia_json_data.dart';
 
 part 'pedia_data_atbas_model.g.dart';
 
-@JsonSerializable()
-class PediaDataAtbas extends Equatable {
-  PediaDataAtbas({
+@JsonSerializable(fieldRename: FieldRename.snake)
+class PediaDataAtbasModel extends PediaDataAtbas implements PediaJsonData {
+  const PediaDataAtbasModel({
     @required this.distance,
     @required this.slots,
   });
-  // Firing range
-  @JsonKey(name: 'distance')
-  final num distance;
-  // Main gun slots
-  @JsonKey(name: 'slots')
-  final PediaDataAtbasSlots slots;
-
-  static PediaDataAtbas fromJson(Map<String, dynamic> json) {
-    return _$PediaDataAtbasFromJson(json);
-  }
-
-  static Map<String, dynamic> toJson(PediaDataAtbas instance) {
-    return _$PediaDataAtbasToJson(instance);
-  }
 
   @override
-  List<Object> get props => [
-        distance,
-        slots,
-      ];
+  factory PediaDataAtbasModel.fromJson(Map<String, dynamic> json) {
+    return _$PediaDataAtbasModelFromJson(json);
+  }
+
+  // Firing range
+  @override
+  final num distance;
+  // Main gun slots
+  @override
+  final PediaDataAtbasSlotsModel slots;
+
+  @override
+  Map<String, dynamic> toJson() => _$PediaDataAtbasModelToJson(this);
 }
 
-@JsonSerializable()
-class PediaDataAtbasSlots extends Equatable {
-  PediaDataAtbasSlots({
+@JsonSerializable(fieldRename: FieldRename.snake)
+class PediaDataAtbasSlotsModel extends PediaDataAtbasSlots
+    implements PediaJsonData {
+  const PediaDataAtbasSlotsModel({
     @required this.bulletMass,
     @required this.bulletSpeed,
     @required this.burnProbability,
@@ -44,46 +42,35 @@ class PediaDataAtbasSlots extends Equatable {
     @required this.shotDelay,
     @required this.type,
   });
-  // Shell weight
-  @JsonKey(name: 'bullet_mass')
-  final num bulletMass;
-  // Shell speed
-  @JsonKey(name: 'bullet_speed')
-  final num bulletSpeed;
-  // Chance of Fire on target caused by shell (%)
-  @JsonKey(name: 'burn_probability')
-  final num burnProbability;
-  // Maximum Damage
-  @JsonKey(name: 'damage')
-  final num damage;
-  // Rate of fire (rounds / min)
-  @JsonKey(name: 'gun_rate')
-  final num gunRate;
-  @JsonKey(name: 'name')
-  final String name;
-  // Reload time (s)
-  @JsonKey(name: 'shot_delay')
-  final num shotDelay;
-  @JsonKey(name: 'type')
-  final String type;
-
-  static PediaDataAtbasSlots fromJson(Map<String, dynamic> json) {
-    return _$PediaDataAtbasSlotsFromJson(json);
-  }
-
-  Map<String, dynamic> toJson() {
-    return _$PediaDataAtbasSlotsToJson(this);
-  }
 
   @override
-  List<Object> get props => [
-        bulletMass,
-        bulletSpeed,
-        burnProbability,
-        damage,
-        gunRate,
-        name,
-        shotDelay,
-        type,
-      ];
+  factory PediaDataAtbasSlotsModel.fromJson(Map<String, dynamic> json) {
+    return _$PediaDataAtbasSlotsModelFromJson(json);
+  }
+
+  // Shell weight
+  @override
+  final num bulletMass;
+  // Shell speed
+  @override
+  final num bulletSpeed;
+  // Chance of Fire on target caused by shell (%)
+  @override
+  final num burnProbability;
+  // Maximum Damage
+  @override
+  final num damage;
+  // Rate of fire (rounds / min)
+  @override
+  final num gunRate;
+  @override
+  final String name;
+  // Reload time (s)
+  @override
+  final num shotDelay;
+  @override
+  final String type;
+
+  @override
+  Map<String, dynamic> toJson() => _$PediaDataAtbasSlotsModelToJson(this);
 }

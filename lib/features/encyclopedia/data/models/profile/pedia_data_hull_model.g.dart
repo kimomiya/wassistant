@@ -6,8 +6,8 @@ part of 'pedia_data_hull_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PediaDataHull _$PediaDataHullFromJson(Map<String, dynamic> json) {
-  return PediaDataHull(
+PediaDataHullModel _$PediaDataHullModelFromJson(Map<String, dynamic> json) {
+  return PediaDataHullModel(
     antiAircraftBarrels: json['anti_aircraft_barrels'] as num,
     artilleryBarrels: json['artillery_barrels'] as num,
     atbaBarrels: json['atba_barrels'] as num,
@@ -18,11 +18,12 @@ PediaDataHull _$PediaDataHullFromJson(Map<String, dynamic> json) {
     torpedoesBarrels: json['torpedoes_barrels'] as num,
     range: json['range'] == null
         ? null
-        : PediaDataHullRange.fromJson(json['range'] as Map<String, dynamic>),
+        : PediaDataHullRangeModel.fromJson(
+            json['range'] as Map<String, dynamic>),
   );
 }
 
-Map<String, dynamic> _$PediaDataHullToJson(PediaDataHull instance) =>
+Map<String, dynamic> _$PediaDataHullModelToJson(PediaDataHullModel instance) =>
     <String, dynamic>{
       'anti_aircraft_barrels': instance.antiAircraftBarrels,
       'artillery_barrels': instance.artilleryBarrels,
@@ -35,14 +36,16 @@ Map<String, dynamic> _$PediaDataHullToJson(PediaDataHull instance) =>
       'range': instance.range,
     };
 
-PediaDataHullRange _$PediaDataHullRangeFromJson(Map<String, dynamic> json) {
-  return PediaDataHullRange(
+PediaDataHullRangeModel _$PediaDataHullRangeModelFromJson(
+    Map<String, dynamic> json) {
+  return PediaDataHullRangeModel(
     max: json['max'] as num,
     min: json['min'] as num,
   );
 }
 
-Map<String, dynamic> _$PediaDataHullRangeToJson(PediaDataHullRange instance) =>
+Map<String, dynamic> _$PediaDataHullRangeModelToJson(
+        PediaDataHullRangeModel instance) =>
     <String, dynamic>{
       'max': instance.max,
       'min': instance.min,

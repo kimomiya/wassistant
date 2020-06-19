@@ -6,8 +6,9 @@ part of 'pedia_data_torpedoes_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PediaDataTorpedoes _$PediaDataTorpedoesFromJson(Map<String, dynamic> json) {
-  return PediaDataTorpedoes(
+PediaDataTorpedoesModel _$PediaDataTorpedoesModelFromJson(
+    Map<String, dynamic> json) {
+  return PediaDataTorpedoesModel(
     distance: json['distance'] as num,
     maxDamage: json['max_damage'] as num,
     reloadTime: json['reload_time'] as num,
@@ -19,12 +20,13 @@ PediaDataTorpedoes _$PediaDataTorpedoesFromJson(Map<String, dynamic> json) {
     visibilityDist: json['visibility_dist'] as num,
     slots: json['slots'] == null
         ? null
-        : PediaDataTorpedoesSlots.fromJson(
+        : PediaDataTorpedoesSlotsModel.fromJson(
             json['slots'] as Map<String, dynamic>),
   );
 }
 
-Map<String, dynamic> _$PediaDataTorpedoesToJson(PediaDataTorpedoes instance) =>
+Map<String, dynamic> _$PediaDataTorpedoesModelToJson(
+        PediaDataTorpedoesModel instance) =>
     <String, dynamic>{
       'distance': instance.distance,
       'max_damage': instance.maxDamage,
@@ -38,9 +40,9 @@ Map<String, dynamic> _$PediaDataTorpedoesToJson(PediaDataTorpedoes instance) =>
       'slots': instance.slots,
     };
 
-PediaDataTorpedoesSlots _$PediaDataTorpedoesSlotsFromJson(
+PediaDataTorpedoesSlotsModel _$PediaDataTorpedoesSlotsModelFromJson(
     Map<String, dynamic> json) {
-  return PediaDataTorpedoesSlots(
+  return PediaDataTorpedoesSlotsModel(
     barrels: json['barrels'] as num,
     caliber: json['caliber'] as num,
     guns: json['guns'] as num,
@@ -48,8 +50,8 @@ PediaDataTorpedoesSlots _$PediaDataTorpedoesSlotsFromJson(
   );
 }
 
-Map<String, dynamic> _$PediaDataTorpedoesSlotsToJson(
-        PediaDataTorpedoesSlots instance) =>
+Map<String, dynamic> _$PediaDataTorpedoesSlotsModelToJson(
+        PediaDataTorpedoesSlotsModel instance) =>
     <String, dynamic>{
       'barrels': instance.barrels,
       'caliber': instance.caliber,

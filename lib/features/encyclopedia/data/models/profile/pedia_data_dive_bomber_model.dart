@@ -1,12 +1,15 @@
-import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
+import 'package:wassistant/features/encyclopedia/domain/entities/profile/pedia_data_dive_bomber.dart';
+
+import '../pedia_json_data.dart';
 
 part 'pedia_data_dive_bomber_model.g.dart';
 
-@JsonSerializable()
-class PediaDataDiveBomber extends Equatable {
-  PediaDataDiveBomber({
+@JsonSerializable(fieldRename: FieldRename.snake)
+class PediaDataDiveBomberModel extends PediaDataDiveBomber
+    implements PediaJsonData {
+  const PediaDataDiveBomberModel({
     this.bombBulletMass,
     this.bombBurnProbability,
     this.bombDamage,
@@ -24,133 +27,108 @@ class PediaDataDiveBomber extends Equatable {
     this.accuracy,
     this.countInSquadron,
   });
+
+  @override
+  factory PediaDataDiveBomberModel.fromJson(Map<String, dynamic> json) {
+    return _$PediaDataDiveBomberModelFromJson(json);
+  }
+
   // Bomb weight
-  @JsonKey(name: 'bomb_bullet_mass')
+  @override
   final num bombBulletMass;
   // Chance of Fire on target caused by bomb (%)
-  @JsonKey(name: 'bomb_burn_probability')
+  @override
   final num bombBurnProbability;
   // Maximum bomb damage
-  @JsonKey(name: 'bomb_damage')
+  @override
   final num bombDamage;
   // Bomb name
-  @JsonKey(name: 'bomb_name')
+  @override
   final String bombName;
   // Cruise Speed (knots)
-  @JsonKey(name: 'cruise_speed')
+  @override
   final num cruiseSpeed;
   // Dive bombers' ID
-  @JsonKey(name: 'dive_bomber_id')
+  @override
   final num diveBomberId;
   // Dive bombers string ID
-  @JsonKey(name: 'dive_bomber_id_str')
+  @override
   final String diveBomberIdStr;
   // Average damage per rear gunner of a dive bomber per second
-  @JsonKey(name: 'gunner_damage')
+  @override
   final num gunnerDamage;
   // Maximum Bomb Damage
-  @JsonKey(name: 'max_damage')
+  @override
   final num maxDamage;
   // Survivability
-  @JsonKey(name: 'max_health')
+  @override
   final num maxHealth;
   // Name of squadron
-  @JsonKey(name: 'name')
+  @override
   final String name;
   // Dive bomber tier
-  @JsonKey(name: 'plane_level')
+  @override
   final num planeLevel;
   // Time of preparation for takeoff (sec)
-  @JsonKey(name: 'prepare_time')
+  @override
   final num prepareTime;
   // Number of squadrons
-  @JsonKey(name: 'squadrons')
+  @override
   final num squadrons;
   // Accuracy
-  @JsonKey(name: 'accuracy')
-  final PediaDataDiveBomberAccuracy accuracy;
+  @override
+  final PediaDataDiveBomberAccuracyModel accuracy;
   // Number of aircraft in a squadron
-  @JsonKey(name: 'count_in_squadron')
-  final PediaDataDiveBomberCountInSquadron countInSquadron;
-
-  static PediaDataDiveBomber fromJson(Map<String, dynamic> json) {
-    return _$PediaDataDiveBomberFromJson(json);
-  }
-
-  static Map<String, dynamic> toJson(PediaDataDiveBomber instance) {
-    return _$PediaDataDiveBomberToJson(instance);
-  }
+  @override
+  final PediaDataDiveBomberCountInSquadronModel countInSquadron;
 
   @override
-  List<Object> get props => [
-        bombBulletMass,
-        bombBurnProbability,
-        bombDamage,
-        bombName,
-        cruiseSpeed,
-        diveBomberId,
-        diveBomberIdStr,
-        gunnerDamage,
-        maxDamage,
-        maxHealth,
-        name,
-        planeLevel,
-        prepareTime,
-        squadrons,
-        accuracy,
-        countInSquadron,
-      ];
+  Map<String, dynamic> toJson() => _$PediaDataDiveBomberModelToJson(this);
 }
 
-@JsonSerializable()
-class PediaDataDiveBomberCountInSquadron extends Equatable {
-  PediaDataDiveBomberCountInSquadron({
+@JsonSerializable(fieldRename: FieldRename.snake)
+class PediaDataDiveBomberCountInSquadronModel
+    extends PediaDataDiveBomberCountInSquadron implements PediaJsonData {
+  const PediaDataDiveBomberCountInSquadronModel({
     @required this.max,
     @required this.min,
   });
-  @JsonKey(name: 'max')
-  final num max;
-  @JsonKey(name: 'min')
-  final num min;
 
-  static PediaDataDiveBomberCountInSquadron fromJson(
+  @override
+  factory PediaDataDiveBomberCountInSquadronModel.fromJson(
       Map<String, dynamic> json) {
-    return _$PediaDataDiveBomberCountInSquadronFromJson(json);
-  }
-
-  Map<String, dynamic> toJson() {
-    return _$PediaDataDiveBomberCountInSquadronToJson(this);
+    return _$PediaDataDiveBomberCountInSquadronModelFromJson(json);
   }
 
   @override
-  List<Object> get props => [
-        max,
-        min,
-      ];
+  final num max;
+  @override
+  final num min;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$PediaDataDiveBomberCountInSquadronModelToJson(this);
 }
 
-@JsonSerializable()
-class PediaDataDiveBomberAccuracy extends Equatable {
-  PediaDataDiveBomberAccuracy({
+@JsonSerializable(fieldRename: FieldRename.snake)
+class PediaDataDiveBomberAccuracyModel extends PediaDataDiveBomberAccuracy
+    implements PediaJsonData {
+  const PediaDataDiveBomberAccuracyModel({
     @required this.max,
     @required this.min,
   });
-  @JsonKey(name: 'max')
-  final num max;
-  @JsonKey(name: 'min')
-  final num min;
 
-  static PediaDataDiveBomberAccuracy fromJson(Map<String, dynamic> json) {
-    return _$PediaDataDiveBomberAccuracyFromJson(json);
-  }
-
-  Map<String, dynamic> toJson() {
-    return _$PediaDataDiveBomberAccuracyToJson(this);
+  @override
+  factory PediaDataDiveBomberAccuracyModel.fromJson(Map<String, dynamic> json) {
+    return _$PediaDataDiveBomberAccuracyModelFromJson(json);
   }
 
   @override
-  List<Object> get props => [
-        max,
-        min,
-      ];
+  final num max;
+  @override
+  final num min;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$PediaDataDiveBomberAccuracyModelToJson(this);
 }

@@ -1,12 +1,12 @@
 import 'package:dio/dio.dart';
+import 'package:get_it/get_it.dart';
 import 'package:meta/meta.dart';
+import 'package:wassistant/core/env/env.dart';
 
 import '../../../../core/enums/pedia_category.dart';
 import '../../../../core/enums/realm.dart';
-import '../../../../core/env/env.dart';
 import '../../../../core/utils/http_helper.dart';
-import '../../domain/entities/pedia_data.dart';
-import '../../domain/requests/pedia_params.dart';
+import '../models/pedia_json_data.dart';
 import 'pedia_data_partition.dart';
 
 abstract class PediaRemoteDataSource {
@@ -17,23 +17,29 @@ abstract class PediaRemoteDataSource {
     return prefixURL + realm.value + middleURL + category.value;
   }
 
-  Future<PediaDataInterface> fetchPediaData(
+  Future<PediaJsonData> fetchPediaData(
       Realm realm, PediaCategory category, Map<String, dynamic> params);
 }
 
 class PediaRemoteDataSourceImpl implements PediaRemoteDataSource {
   const PediaRemoteDataSourceImpl({
+    @required this.locator,
     @required this.client,
   });
 
+  final GetIt locator;
   final Dio client;
 
   @override
-  Future<PediaDataInterface> fetchPediaData(
+  Future<PediaJsonData> fetchPediaData(
       Realm realm, PediaCategory category, Map<String, dynamic> params) async {
-    final responseData = await _fetchData(
+    final env = locator<Env>();
+    final query = PediaDataPartition.getParams(category, params);
+    query['application_id'] = env.applicationId;
+    query['language'] = env.language;
+    final Map<String, dynamic> responseData = await _fetchData(
       path: PediaRemoteDataSource.getURL(realm, category),
-      queryParameters: PediaDataPartition.getParams(category, params),
+      queryParameters: query,
     ) as Map<String, dynamic>;
 
     return PediaDataPartition.partition(category, responseData);
@@ -43,7 +49,8 @@ class PediaRemoteDataSourceImpl implements PediaRemoteDataSource {
     @required String path,
     @required Map<String, dynamic> queryParameters,
   }) async {
-    final response = await client.get<Map<String, dynamic>>(
+    final Response<Map<String, dynamic>> response =
+        await client.get<Map<String, dynamic>>(
       path,
       queryParameters: queryParameters,
     );

@@ -6,27 +6,27 @@ part of 'pedia_data_anti_aircraft_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PediaDataAntiAircraft _$PediaDataAntiAircraftFromJson(
+PediaDataAntiAircraftModel _$PediaDataAntiAircraftModelFromJson(
     Map<String, dynamic> json) {
-  return PediaDataAntiAircraft(
+  return PediaDataAntiAircraftModel(
     defense: json['defense'] as num,
     slots: json['slots'] == null
         ? null
-        : PediaDataAntiAircraftSlots.fromJson(
+        : PediaDataAntiAircraftSlotsModel.fromJson(
             json['slots'] as Map<String, dynamic>),
   );
 }
 
-Map<String, dynamic> _$PediaDataAntiAircraftToJson(
-        PediaDataAntiAircraft instance) =>
+Map<String, dynamic> _$PediaDataAntiAircraftModelToJson(
+        PediaDataAntiAircraftModel instance) =>
     <String, dynamic>{
       'defense': instance.defense,
       'slots': instance.slots,
     };
 
-PediaDataAntiAircraftSlots _$PediaDataAntiAircraftSlotsFromJson(
+PediaDataAntiAircraftSlotsModel _$PediaDataAntiAircraftSlotsModelFromJson(
     Map<String, dynamic> json) {
-  return PediaDataAntiAircraftSlots(
+  return PediaDataAntiAircraftSlotsModel(
     avgDamage: json['avg_damage'] as num,
     caliber: json['caliber'] as num,
     distance: json['distance'] as num,
@@ -35,8 +35,8 @@ PediaDataAntiAircraftSlots _$PediaDataAntiAircraftSlotsFromJson(
   );
 }
 
-Map<String, dynamic> _$PediaDataAntiAircraftSlotsToJson(
-        PediaDataAntiAircraftSlots instance) =>
+Map<String, dynamic> _$PediaDataAntiAircraftSlotsModelToJson(
+        PediaDataAntiAircraftSlotsModel instance) =>
     <String, dynamic>{
       'avg_damage': instance.avgDamage,
       'caliber': instance.caliber,

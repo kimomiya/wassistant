@@ -6,15 +6,16 @@ part of 'pedia_data_engine_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PediaDataEngine _$PediaDataEngineFromJson(Map<String, dynamic> json) {
-  return PediaDataEngine(
+PediaDataEngineModel _$PediaDataEngineModelFromJson(Map<String, dynamic> json) {
+  return PediaDataEngineModel(
     engineId: json['engine_id'] as num,
     engineIdStr: json['engine_id_str'] as String,
     maxSpeed: json['max_speed'] as num,
   );
 }
 
-Map<String, dynamic> _$PediaDataEngineToJson(PediaDataEngine instance) =>
+Map<String, dynamic> _$PediaDataEngineModelToJson(
+        PediaDataEngineModel instance) =>
     <String, dynamic>{
       'engine_id': instance.engineId,
       'engine_id_str': instance.engineIdStr,

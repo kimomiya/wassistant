@@ -1,16 +1,16 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
-
-import '../../domain/entities/pedia_data.dart';
+import 'package:wassistant/features/encyclopedia/data/models/pedia_json_data.dart';
+import 'package:wassistant/features/encyclopedia/domain/entities/info.dart';
 
 part 'pedia_data_info_model.g.dart';
 
-@JsonSerializable()
-class PediaInfo extends PediaDataInterface {
-  PediaInfo({
+@JsonSerializable(fieldRename: FieldRename.snake)
+class PediaInfoModel extends PediaInfo implements PediaJsonData {
+  const PediaInfoModel({
     @required this.shipsUpdatedAt,
     @required this.shipTypes,
-    @required this.language,
+    @required this.languages,
     @required this.shipModifications,
     @required this.shipModules,
     @required this.shipTypeImages,
@@ -18,28 +18,28 @@ class PediaInfo extends PediaDataInterface {
     @required this.gameVersion,
   });
 
-  @JsonKey(name: 'ships_updated_at')
+  @override
+  factory PediaInfoModel.fromJson(Map<String, dynamic> json) {
+    return _$PediaInfoModelFromJson(json);
+  }
+
+  @override
   final int shipsUpdatedAt;
-  @JsonKey(name: 'ship_types')
+  @override
   final Map<String, dynamic> shipTypes;
-  @JsonKey(name: 'language')
-  final Map<String, dynamic> language;
-  @JsonKey(name: 'ship_modifications')
+  @override
+  final Map<String, dynamic> languages;
+  @override
   final Map<String, dynamic> shipModifications;
-  @JsonKey(name: 'ship_modules')
+  @override
   final Map<String, dynamic> shipModules;
-  @JsonKey(name: 'ship_type_images')
+  @override
   final Map<String, dynamic> shipTypeImages;
-  @JsonKey(name: 'ship_nations')
+  @override
   final Map<String, dynamic> shipNations;
-  @JsonKey(name: 'game_version')
+  @override
   final String gameVersion;
 
-  static PediaInfo fromJson(Map<String, dynamic> json) {
-    return _$PediaInfoFromJson(json);
-  }
-
-  static Map<String, dynamic> toJson(PediaInfo instance) {
-    return _$PediaInfoToJson(instance);
-  }
+  @override
+  Map<String, dynamic> toJson() => _$PediaInfoModelToJson(this);
 }

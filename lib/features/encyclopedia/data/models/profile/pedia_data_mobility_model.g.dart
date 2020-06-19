@@ -6,8 +6,9 @@ part of 'pedia_data_mobility_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PediaDataMobility _$PediaDataMobilityFromJson(Map<String, dynamic> json) {
-  return PediaDataMobility(
+PediaDataMobilityModel _$PediaDataMobilityModelFromJson(
+    Map<String, dynamic> json) {
+  return PediaDataMobilityModel(
     maxSpeed: json['max_speed'] as num,
     rudderTime: json['rudder_time'] as num,
     total: json['total'] as num,
@@ -15,7 +16,8 @@ PediaDataMobility _$PediaDataMobilityFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$PediaDataMobilityToJson(PediaDataMobility instance) =>
+Map<String, dynamic> _$PediaDataMobilityModelToJson(
+        PediaDataMobilityModel instance) =>
     <String, dynamic>{
       'max_speed': instance.maxSpeed,
       'rudder_time': instance.rudderTime,

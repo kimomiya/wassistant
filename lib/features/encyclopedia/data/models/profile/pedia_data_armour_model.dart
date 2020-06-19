@@ -1,12 +1,14 @@
-import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
+import 'package:wassistant/features/encyclopedia/domain/entities/profile/pedia_data_armour.dart';
+
+import '../pedia_json_data.dart';
 
 part 'pedia_data_armour_model.g.dart';
 
-@JsonSerializable()
-class PediaDataArmour extends Equatable {
-  PediaDataArmour({
+@JsonSerializable(fieldRename: FieldRename.snake)
+class PediaDataArmourModel extends PediaDataArmour implements PediaJsonData {
+  const PediaDataArmourModel({
     @required this.floodDamage,
     @required this.floodProb,
     @required this.health,
@@ -18,181 +20,144 @@ class PediaDataArmour extends Equatable {
     @required this.range,
   });
   // Torpedo Protection. Damage Reduction (%)
-  @JsonKey(name: 'flood_damage')
+  @override
   final num floodDamage;
   // Torpedo Protection. Flooding Risk Reduction (%)
-  @JsonKey(name: 'flood_prob')
+  @override
   final num floodProb;
   // Hit points
-  @JsonKey(name: 'health')
+  @override
   final num health;
   // Armor protection (%)
-  @JsonKey(name: 'total')
+  @override
   final num total;
   // Gun Casemate
-  @JsonKey(name: 'casemate')
-  final PediaDataArmourCasemate casemate;
+  @override
+  final PediaDataArmourCasemateModel casemate;
   // Citadel
-  @JsonKey(name: 'citadel')
-  final PediaDataArmourCitadel citadel;
+  @override
+  final PediaDataArmourCitadelModel citadel;
   // Armored Deck
-  @JsonKey(name: 'deck')
-  final PediaDataArmourDeck deck;
+  @override
+  final PediaDataArmourDeckModel deck;
   // Forward and After Ends
-  @JsonKey(name: 'extremities')
-  final PediaDataArmourExtremities extremities;
+  @override
+  final PediaDataArmourExtremitiesModel extremities;
   // Armor
-  @JsonKey(name: 'range')
-  final PediaDataArmourRange range;
+  @override
+  final PediaDataArmourRangeModel range;
 
-  static PediaDataArmour fromJson(Map<String, dynamic> json) {
-    return _$PediaDataArmourFromJson(json);
-  }
-
-  static Map<String, dynamic> toJson(PediaDataArmour instance) {
-    return _$PediaDataArmourToJson(instance);
+  @override
+  factory PediaDataArmourModel.fromJson(Map<String, dynamic> json) {
+    return _$PediaDataArmourModelFromJson(json);
   }
 
   @override
-  List<Object> get props => [
-        floodDamage,
-        floodProb,
-        health,
-        total,
-        casemate,
-        citadel,
-        deck,
-        extremities,
-        range,
-      ];
+  Map<String, dynamic> toJson() => _$PediaDataArmourModelToJson(this);
 }
 
-@JsonSerializable()
-class PediaDataArmourDeck extends Equatable {
-  PediaDataArmourDeck({
+@JsonSerializable(fieldRename: FieldRename.snake)
+class PediaDataArmourDeckModel extends PediaDataArmourDeck
+    implements PediaJsonData {
+  const PediaDataArmourDeckModel({
     @required this.max,
     @required this.min,
   });
-  @JsonKey(name: 'max')
+  @override
   final num max;
-  @JsonKey(name: 'min')
+  @override
   final num min;
 
-  static PediaDataArmourDeck fromJson(Map<String, dynamic> json) {
-    return _$PediaDataArmourDeckFromJson(json);
-  }
-
-  Map<String, dynamic> toJson() {
-    return _$PediaDataArmourDeckToJson(this);
+  @override
+  factory PediaDataArmourDeckModel.fromJson(Map<String, dynamic> json) {
+    return _$PediaDataArmourDeckModelFromJson(json);
   }
 
   @override
-  List<Object> get props => [
-        max,
-        min,
-      ];
+  Map<String, dynamic> toJson() => _$PediaDataArmourDeckModelToJson(this);
 }
 
-@JsonSerializable()
-class PediaDataArmourExtremities extends Equatable {
-  PediaDataArmourExtremities({
+@JsonSerializable(fieldRename: FieldRename.snake)
+class PediaDataArmourExtremitiesModel extends PediaDataArmourExtremities
+    implements PediaJsonData {
+  const PediaDataArmourExtremitiesModel({
     @required this.max,
     @required this.min,
   });
-  @JsonKey(name: 'max')
+  @override
   final num max;
-  @JsonKey(name: 'min')
+  @override
   final num min;
 
-  static PediaDataArmourExtremities fromJson(Map<String, dynamic> json) {
-    return _$PediaDataArmourExtremitiesFromJson(json);
-  }
-
-  Map<String, dynamic> toJson() {
-    return _$PediaDataArmourExtremitiesToJson(this);
+  @override
+  factory PediaDataArmourExtremitiesModel.fromJson(Map<String, dynamic> json) {
+    return _$PediaDataArmourExtremitiesModelFromJson(json);
   }
 
   @override
-  List<Object> get props => [
-        max,
-        min,
-      ];
+  Map<String, dynamic> toJson() =>
+      _$PediaDataArmourExtremitiesModelToJson(this);
 }
 
-@JsonSerializable()
-class PediaDataArmourRange extends Equatable {
-  PediaDataArmourRange({
+@JsonSerializable(fieldRename: FieldRename.snake)
+class PediaDataArmourRangeModel extends PediaDataArmourRange
+    implements PediaJsonData {
+  const PediaDataArmourRangeModel({
     @required this.max,
     @required this.min,
   });
-  @JsonKey(name: 'max')
+  @override
   final num max;
-  @JsonKey(name: 'min')
+  @override
   final num min;
 
-  static PediaDataArmourRange fromJson(Map<String, dynamic> json) {
-    return _$PediaDataArmourRangeFromJson(json);
-  }
-
-  Map<String, dynamic> toJson() {
-    return _$PediaDataArmourRangeToJson(this);
+  @override
+  factory PediaDataArmourRangeModel.fromJson(Map<String, dynamic> json) {
+    return _$PediaDataArmourRangeModelFromJson(json);
   }
 
   @override
-  List<Object> get props => [
-        max,
-        min,
-      ];
+  Map<String, dynamic> toJson() => _$PediaDataArmourRangeModelToJson(this);
 }
 
-@JsonSerializable()
-class PediaDataArmourCitadel extends Equatable {
-  PediaDataArmourCitadel({
+@JsonSerializable(fieldRename: FieldRename.snake)
+class PediaDataArmourCitadelModel extends PediaDataArmourCitadel
+    implements PediaJsonData {
+  const PediaDataArmourCitadelModel({
     @required this.max,
     @required this.min,
   });
-  @JsonKey(name: 'max')
+  @override
   final num max;
-  @JsonKey(name: 'min')
+  @override
   final num min;
 
-  static PediaDataArmourCitadel fromJson(Map<String, dynamic> json) {
-    return _$PediaDataArmourCitadelFromJson(json);
-  }
-
-  Map<String, dynamic> toJson() {
-    return _$PediaDataArmourCitadelToJson(this);
+  @override
+  factory PediaDataArmourCitadelModel.fromJson(Map<String, dynamic> json) {
+    return _$PediaDataArmourCitadelModelFromJson(json);
   }
 
   @override
-  List<Object> get props => [
-        max,
-        min,
-      ];
+  Map<String, dynamic> toJson() => _$PediaDataArmourCitadelModelToJson(this);
 }
 
-@JsonSerializable()
-class PediaDataArmourCasemate extends Equatable {
-  PediaDataArmourCasemate({
+@JsonSerializable(fieldRename: FieldRename.snake)
+class PediaDataArmourCasemateModel extends PediaDataArmourCasemate
+    implements PediaJsonData {
+  const PediaDataArmourCasemateModel({
     @required this.max,
     @required this.min,
   });
-  @JsonKey(name: 'max')
+  @override
   final num max;
-  @JsonKey(name: 'min')
+  @override
   final num min;
 
-  static PediaDataArmourCasemate fromJson(Map<String, dynamic> json) {
-    return _$PediaDataArmourCasemateFromJson(json);
-  }
-
-  Map<String, dynamic> toJson() {
-    return _$PediaDataArmourCasemateToJson(this);
+  @override
+  factory PediaDataArmourCasemateModel.fromJson(Map<String, dynamic> json) {
+    return _$PediaDataArmourCasemateModelFromJson(json);
   }
 
   @override
-  List<Object> get props => [
-        max,
-        min,
-      ];
+  Map<String, dynamic> toJson() => _$PediaDataArmourCasemateModelToJson(this);
 }

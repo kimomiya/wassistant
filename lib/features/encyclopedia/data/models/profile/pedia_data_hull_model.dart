@@ -1,12 +1,15 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
+import 'package:wassistant/features/encyclopedia/domain/entities/profile/pedia_data_hull.dart';
+
+import '../pedia_json_data.dart';
 
 part 'pedia_data_hull_model.g.dart';
 
-@JsonSerializable()
-class PediaDataHull extends Equatable {
-  PediaDataHull({
+@JsonSerializable(fieldRename: FieldRename.snake)
+class PediaDataHullModel extends PediaDataHull implements PediaJsonData {
+  const PediaDataHullModel({
     @required this.antiAircraftBarrels,
     @required this.artilleryBarrels,
     @required this.atbaBarrels,
@@ -17,76 +20,60 @@ class PediaDataHull extends Equatable {
     @required this.torpedoesBarrels,
     @required this.range,
   });
-  // AA Mounts
-  @JsonKey(name: 'anti_aircraft_barrels')
-  final num antiAircraftBarrels;
-  // Number of main turrets
-  @JsonKey(name: 'artillery_barrels')
-  final num artilleryBarrels;
-  // Secondary gun turrets
-  @JsonKey(name: 'atba_barrels')
-  final num atbaBarrels;
-  // Hit points
-  @JsonKey(name: 'health')
-  final num health;
-  @JsonKey(name: 'hull_id')
-  final num hullId;
-  @JsonKey(name: 'hull_id_str')
-  final String hullIdStr;
-  // Hangar capacity
-  @JsonKey(name: 'planes_amount')
-  final num planesAmount;
-  // Torpedo tubes
-  @JsonKey(name: 'torpedoes_barrels')
-  final num torpedoesBarrels;
-  // Armor (mm)
-  @JsonKey(name: 'range')
-  final PediaDataHullRange range;
-
-  static PediaDataHull fromJson(Map<String, dynamic> json) {
-    return _$PediaDataHullFromJson(json);
-  }
-
-  static Map<String, dynamic> toJson(PediaDataHull instance) {
-    return _$PediaDataHullToJson(instance);
-  }
 
   @override
-  List<Object> get props => [
-        antiAircraftBarrels,
-        artilleryBarrels,
-        atbaBarrels,
-        health,
-        hullId,
-        hullIdStr,
-        planesAmount,
-        torpedoesBarrels,
-        range,
-      ];
+  factory PediaDataHullModel.fromJson(Map<String, dynamic> json) {
+    return _$PediaDataHullModelFromJson(json);
+  }
+
+  // AA Mounts
+  @override
+  final num antiAircraftBarrels;
+  // Number of main turrets
+  @override
+  final num artilleryBarrels;
+  // Secondary gun turrets
+  @override
+  final num atbaBarrels;
+  // Hit points
+  @override
+  final num health;
+  @override
+  final num hullId;
+  @override
+  final String hullIdStr;
+  // Hangar capacity
+  @override
+  final num planesAmount;
+  // Torpedo tubes
+  @override
+  final num torpedoesBarrels;
+  // Armor (mm)
+  @override
+  final PediaDataHullRangeModel range;
+
+  @override
+  Map<String, dynamic> toJson() => _$PediaDataHullModelToJson(this);
 }
 
-@JsonSerializable()
-class PediaDataHullRange extends Equatable {
-  PediaDataHullRange({
+@JsonSerializable(fieldRename: FieldRename.snake)
+class PediaDataHullRangeModel extends PediaDataHullRange
+    implements PediaJsonData {
+  const PediaDataHullRangeModel({
     @required this.max,
     @required this.min,
   });
-  @JsonKey(name: 'max')
-  final num max;
-  @JsonKey(name: 'min')
-  final num min;
 
-  static PediaDataHullRange fromJson(Map<String, dynamic> json) {
-    return _$PediaDataHullRangeFromJson(json);
-  }
-
-  Map<String, dynamic> toJson() {
-    return _$PediaDataHullRangeToJson(this);
+  @override
+  factory PediaDataHullRangeModel.fromJson(Map<String, dynamic> json) {
+    return _$PediaDataHullRangeModelFromJson(json);
   }
 
   @override
-  List<Object> get props => [
-        max,
-        min,
-      ];
+  final num max;
+  @override
+  final num min;
+
+  @override
+  Map<String, dynamic> toJson() => _$PediaDataHullRangeModelToJson(this);
 }

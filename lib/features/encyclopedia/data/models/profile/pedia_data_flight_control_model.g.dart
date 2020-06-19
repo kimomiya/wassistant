@@ -6,9 +6,9 @@ part of 'pedia_data_flight_control_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PediaDataFlightControl _$PediaDataFlightControlFromJson(
+PediaDataFlightControlModel _$PediaDataFlightControlModelFromJson(
     Map<String, dynamic> json) {
-  return PediaDataFlightControl(
+  return PediaDataFlightControlModel(
     bomberSquadrons: json['bomber_squadrons'] as num,
     fighterSquadrons: json['fighter_squadrons'] as num,
     flightControlId: json['flight_control_id'] as num,
@@ -17,8 +17,8 @@ PediaDataFlightControl _$PediaDataFlightControlFromJson(
   );
 }
 
-Map<String, dynamic> _$PediaDataFlightControlToJson(
-        PediaDataFlightControl instance) =>
+Map<String, dynamic> _$PediaDataFlightControlModelToJson(
+        PediaDataFlightControlModel instance) =>
     <String, dynamic>{
       'bomber_squadrons': instance.bomberSquadrons,
       'fighter_squadrons': instance.fighterSquadrons,

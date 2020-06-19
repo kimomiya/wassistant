@@ -1,45 +1,45 @@
-import 'package:wassistant/core/enums/pedia_category.dart';
-import 'package:wassistant/features/encyclopedia/data/models/pedia_data_achievements_model.dart';
-import 'package:wassistant/features/encyclopedia/data/models/pedia_data_commander_ranks_model.dart';
-import 'package:wassistant/features/encyclopedia/data/models/pedia_data_commander_skills_model.dart';
-import 'package:wassistant/features/encyclopedia/data/models/pedia_data_commanders_model.dart';
-import 'package:wassistant/features/encyclopedia/data/models/pedia_data_info_model.dart';
-import 'package:wassistant/features/encyclopedia/data/models/pedia_data_modules_model.dart';
-import 'package:wassistant/features/encyclopedia/data/models/pedia_data_ship_params_model.dart';
-import 'package:wassistant/features/encyclopedia/data/models/pedia_data_ships_model.dart';
-import 'package:wassistant/features/encyclopedia/domain/entities/pedia_data.dart';
-import 'package:wassistant/features/encyclopedia/domain/requests/pedia_params.dart';
-import 'package:wassistant/features/encyclopedia/domain/requests/pedia_params_achievements.dart';
-import 'package:wassistant/features/encyclopedia/domain/requests/pedia_params_commander_ranks.dart';
-import 'package:wassistant/features/encyclopedia/domain/requests/pedia_params_commander_skills.dart';
-import 'package:wassistant/features/encyclopedia/domain/requests/pedia_params_commanders.dart';
-import 'package:wassistant/features/encyclopedia/domain/requests/pedia_params_info.dart';
-import 'package:wassistant/features/encyclopedia/domain/requests/pedia_params_modules.dart';
-import 'package:wassistant/features/encyclopedia/domain/requests/pedia_params_ship_params.dart';
-import 'package:wassistant/features/encyclopedia/domain/requests/pedia_params_ships.dart';
+import '../../../../core/enums/pedia_category.dart';
+import '../models/pedia_data_achievement_model.dart';
+import '../models/pedia_data_commander_model.dart';
+import '../models/pedia_data_commander_rank_model.dart';
+import '../models/pedia_data_commander_skill_model.dart';
+import '../models/pedia_data_info_model.dart';
+import '../models/pedia_data_module_model.dart';
+import '../models/pedia_data_ship_model.dart';
+import '../models/pedia_data_ship_param_model.dart';
+import '../models/pedia_json_data.dart';
+import 'requests/pedia_params.dart';
+import 'requests/pedia_params_achievements.dart';
+import 'requests/pedia_params_commander.dart';
+import 'requests/pedia_params_commander_rank.dart';
+import 'requests/pedia_params_commander_skill.dart';
+import 'requests/pedia_params_info.dart';
+import 'requests/pedia_params_module.dart';
+import 'requests/pedia_params_ship.dart';
+import 'requests/pedia_params_ship_param.dart';
 
 class PediaDataPartition {
-  static PediaDataInterface partition(
+  static PediaJsonData partition(
       PediaCategory category, Map<String, dynamic> json) {
     switch (category) {
       case PediaCategory.info:
-        return PediaInfo.fromJson(json);
+        return PediaInfoModel.fromJson(json);
       case PediaCategory.warships:
-        return PediaShips.fromJson(json);
+        return PediaShipModel.fromJson(json);
       case PediaCategory.achievements:
-        return PediaAchievements.fromJson(json);
+        return PediaAchievementModel.fromJson(json);
       case PediaCategory.ship_params:
-        return PediaShipParams.fromJson(json);
+        return PediaShipParamModel.fromJson(json);
       case PediaCategory.modules:
-        return PediaModules.fromJson(json);
+        return PediaModuleModel.fromJson(json);
       case PediaCategory.commanders:
-        return PediaCommanders.fromJson(json);
+        return PediaCommanderModel.fromJson(json);
       case PediaCategory.commander_skills:
-        return PediaCommanderSkills.fromJson(json);
+        return PediaCommanderSkillModel.fromJson(json);
       case PediaCategory.commander_ranks:
-        return PediaCommanderRanks.fromJson(json);
+        return PediaCommanderRankModel.fromJson(json);
       default:
-        return PediaDataInterface.fromJson(json);
+        return PediaJsonData.fromJson(json);
     }
   }
 
@@ -49,19 +49,19 @@ class PediaDataPartition {
       case PediaCategory.info:
         return PediaParamsInfo.toParams(params);
       case PediaCategory.warships:
-        return PediaParamsShips.toParams(params);
+        return PediaParamsShip.toParams(params);
       case PediaCategory.achievements:
         return PediaParamsAchievements.toParams(params);
       case PediaCategory.ship_params:
-        return PediaParamsShipParams.toParams(params);
+        return PediaParamsShipParam.toParams(params);
       case PediaCategory.modules:
-        return PediaParamsModules.toParams(params);
+        return PediaParamsModule.toParams(params);
       case PediaCategory.commanders:
-        return PediaParamsCommanders.toParams(params);
+        return PediaParamsCommander.toParams(params);
       case PediaCategory.commander_skills:
-        return PediaParamsCommanderSkills.toParams(params);
+        return PediaParamsCommanderSkill.toParams(params);
       case PediaCategory.commander_ranks:
-        return PediaParamsCommanderRanks.toParams(params);
+        return PediaParamsCommanderRank.toParams(params);
       default:
         return PediaParams.toParams(params);
     }

@@ -6,9 +6,9 @@ part of 'pedia_data_torpedo_bomber_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PediaDataTorpedoBomber _$PediaDataTorpedoBomberFromJson(
+PediaDataTorpedoBomberModel _$PediaDataTorpedoBomberModelFromJson(
     Map<String, dynamic> json) {
-  return PediaDataTorpedoBomber(
+  return PediaDataTorpedoBomberModel(
     cruiseSpeed: json['cruise_speed'] as num,
     gunnerDamage: json['gunner_damage'] as num,
     maxDamage: json['max_damage'] as num,
@@ -25,13 +25,13 @@ PediaDataTorpedoBomber _$PediaDataTorpedoBomberFromJson(
     torpedoName: json['torpedo_name'] as String,
     countInSquadron: json['count_in_squadron'] == null
         ? null
-        : PediaDataTorpedoBomberCountInSquadron.fromJson(
+        : PediaDataTorpedoBomberCountInSquadronModel.fromJson(
             json['count_in_squadron'] as Map<String, dynamic>),
   );
 }
 
-Map<String, dynamic> _$PediaDataTorpedoBomberToJson(
-        PediaDataTorpedoBomber instance) =>
+Map<String, dynamic> _$PediaDataTorpedoBomberModelToJson(
+        PediaDataTorpedoBomberModel instance) =>
     <String, dynamic>{
       'cruise_speed': instance.cruiseSpeed,
       'gunner_damage': instance.gunnerDamage,
@@ -50,16 +50,17 @@ Map<String, dynamic> _$PediaDataTorpedoBomberToJson(
       'count_in_squadron': instance.countInSquadron,
     };
 
-PediaDataTorpedoBomberCountInSquadron
-    _$PediaDataTorpedoBomberCountInSquadronFromJson(Map<String, dynamic> json) {
-  return PediaDataTorpedoBomberCountInSquadron(
+PediaDataTorpedoBomberCountInSquadronModel
+    _$PediaDataTorpedoBomberCountInSquadronModelFromJson(
+        Map<String, dynamic> json) {
+  return PediaDataTorpedoBomberCountInSquadronModel(
     max: json['max'] as num,
     min: json['min'] as num,
   );
 }
 
-Map<String, dynamic> _$PediaDataTorpedoBomberCountInSquadronToJson(
-        PediaDataTorpedoBomberCountInSquadron instance) =>
+Map<String, dynamic> _$PediaDataTorpedoBomberCountInSquadronModelToJson(
+        PediaDataTorpedoBomberCountInSquadronModel instance) =>
     <String, dynamic>{
       'max': instance.max,
       'min': instance.min,

@@ -6,23 +6,26 @@ part of 'pedia_data_atbas_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PediaDataAtbas _$PediaDataAtbasFromJson(Map<String, dynamic> json) {
-  return PediaDataAtbas(
+PediaDataAtbasModel _$PediaDataAtbasModelFromJson(Map<String, dynamic> json) {
+  return PediaDataAtbasModel(
     distance: json['distance'] as num,
     slots: json['slots'] == null
         ? null
-        : PediaDataAtbasSlots.fromJson(json['slots'] as Map<String, dynamic>),
+        : PediaDataAtbasSlotsModel.fromJson(
+            json['slots'] as Map<String, dynamic>),
   );
 }
 
-Map<String, dynamic> _$PediaDataAtbasToJson(PediaDataAtbas instance) =>
+Map<String, dynamic> _$PediaDataAtbasModelToJson(
+        PediaDataAtbasModel instance) =>
     <String, dynamic>{
       'distance': instance.distance,
       'slots': instance.slots,
     };
 
-PediaDataAtbasSlots _$PediaDataAtbasSlotsFromJson(Map<String, dynamic> json) {
-  return PediaDataAtbasSlots(
+PediaDataAtbasSlotsModel _$PediaDataAtbasSlotsModelFromJson(
+    Map<String, dynamic> json) {
+  return PediaDataAtbasSlotsModel(
     bulletMass: json['bullet_mass'] as num,
     bulletSpeed: json['bullet_speed'] as num,
     burnProbability: json['burn_probability'] as num,
@@ -34,8 +37,8 @@ PediaDataAtbasSlots _$PediaDataAtbasSlotsFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$PediaDataAtbasSlotsToJson(
-        PediaDataAtbasSlots instance) =>
+Map<String, dynamic> _$PediaDataAtbasSlotsModelToJson(
+        PediaDataAtbasSlotsModel instance) =>
     <String, dynamic>{
       'bullet_mass': instance.bulletMass,
       'bullet_speed': instance.bulletSpeed,

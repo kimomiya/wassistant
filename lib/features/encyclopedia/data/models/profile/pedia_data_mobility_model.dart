@@ -1,43 +1,40 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
+import 'package:wassistant/features/encyclopedia/domain/entities/profile/pedia_data_mobility.dart';
+
+import '../pedia_json_data.dart';
 
 part 'pedia_data_mobility_model.g.dart';
 
-@JsonSerializable()
-class PediaDataMobility extends Equatable {
-  PediaDataMobility({
+@JsonSerializable(fieldRename: FieldRename.snake)
+class PediaDataMobilityModel extends PediaDataMobility
+    implements PediaJsonData {
+  const PediaDataMobilityModel({
     @required this.maxSpeed,
     @required this.rudderTime,
     @required this.total,
     @required this.turningRadius,
   });
-  // Top Speed (knots)
-  @JsonKey(name: 'max_speed')
-  final num maxSpeed;
-  // Rudder Shift Time (sec)
-  @JsonKey(name: 'rudder_time')
-  final num rudderTime;
-  // Maneuverability (%)
-  @JsonKey(name: 'total')
-  final num total;
-  // Turning Circle Radius (m)
-  @JsonKey(name: 'turning_radius')
-  final num turningRadius;
-
-  static PediaDataMobility fromJson(Map<String, dynamic> json) {
-    return _$PediaDataMobilityFromJson(json);
-  }
-
-  static Map<String, dynamic> toJson(PediaDataMobility instance) {
-    return _$PediaDataMobilityToJson(instance);
-  }
 
   @override
-  List<Object> get props => [
-        maxSpeed,
-        rudderTime,
-        total,
-        turningRadius,
-      ];
+  factory PediaDataMobilityModel.fromJson(Map<String, dynamic> json) {
+    return _$PediaDataMobilityModelFromJson(json);
+  }
+
+  // Top Speed (knots)
+  @override
+  final num maxSpeed;
+  // Rudder Shift Time (sec)
+  @override
+  final num rudderTime;
+  // Maneuverability (%)
+  @override
+  final num total;
+  // Turning Circle Radius (m)
+  @override
+  final num turningRadius;
+
+  @override
+  Map<String, dynamic> toJson() => _$PediaDataMobilityModelToJson(this);
 }

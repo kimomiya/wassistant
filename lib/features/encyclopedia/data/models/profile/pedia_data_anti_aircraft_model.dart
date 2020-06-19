@@ -1,76 +1,63 @@
-import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
+import 'package:wassistant/features/encyclopedia/domain/entities/profile/pedia_data_anti_aircraft.dart';
+
+import '../pedia_json_data.dart';
 
 part 'pedia_data_anti_aircraft_model.g.dart';
 
-@JsonSerializable()
-class PediaDataAntiAircraft extends Equatable {
-  PediaDataAntiAircraft({
+@JsonSerializable(fieldRename: FieldRename.snake)
+class PediaDataAntiAircraftModel extends PediaDataAntiAircraft
+    implements PediaJsonData {
+  const PediaDataAntiAircraftModel({
     @required this.defense,
     @required this.slots,
   });
-  // Anti-aircraft effectiveness
-  @JsonKey(name: 'defense')
-  final num defense;
-  // Gun slots
-  @JsonKey(name: 'slots')
-  final PediaDataAntiAircraftSlots slots;
-
-  static PediaDataAntiAircraft fromJson(Map<String, dynamic> json) {
-    return _$PediaDataAntiAircraftFromJson(json);
-  }
-
-  static Map<String, dynamic> toJson(PediaDataAntiAircraft instance) {
-    return _$PediaDataAntiAircraftToJson(instance);
-  }
 
   @override
-  List<Object> get props => [
-        defense,
-        slots,
-      ];
+  factory PediaDataAntiAircraftModel.fromJson(Map<String, dynamic> json) {
+    return _$PediaDataAntiAircraftModelFromJson(json);
+  }
+
+  // Anti-aircraft effectiveness
+  @override
+  final num defense;
+  // Gun slots
+  @override
+  final PediaDataAntiAircraftSlotsModel slots;
+
+  @override
+  Map<String, dynamic> toJson() => _$PediaDataAntiAircraftModelToJson(this);
 }
 
-@JsonSerializable()
-class PediaDataAntiAircraftSlots extends Equatable {
-  PediaDataAntiAircraftSlots({
+@JsonSerializable(fieldRename: FieldRename.snake)
+class PediaDataAntiAircraftSlotsModel extends PediaDataAntiAircraftSlots
+    implements PediaJsonData {
+  const PediaDataAntiAircraftSlotsModel({
     @required this.avgDamage,
     @required this.caliber,
     @required this.distance,
     @required this.guns,
     @required this.name,
   });
-  // Average damage per second
-  @JsonKey(name: 'avg_damage')
-  final num avgDamage;
-  // Caliber
-  @JsonKey(name: 'caliber')
-  final num caliber;
-  // Firing range (km)
-  @JsonKey(name: 'distance')
-  final num distance;
-  // Number of guns
-  @JsonKey(name: 'guns')
-  final num guns;
-  // Gun name
-  @JsonKey(name: 'name')
-  final String name;
-
-  static PediaDataAntiAircraftSlots fromJson(Map<String, dynamic> json) {
-    return _$PediaDataAntiAircraftSlotsFromJson(json);
-  }
-
-  Map<String, dynamic> toJson() {
-    return _$PediaDataAntiAircraftSlotsToJson(this);
-  }
 
   @override
-  List<Object> get props => [
-        avgDamage,
-        caliber,
-        distance,
-        guns,
-        name,
-      ];
+  factory PediaDataAntiAircraftSlotsModel.fromJson(Map<String, dynamic> json) {
+    return _$PediaDataAntiAircraftSlotsModelFromJson(json);
+  }
+
+  // Average damage per second
+  final num avgDamage;
+  // Caliber
+  final num caliber;
+  // Firing range (km)
+  final num distance;
+  // Number of guns
+  final num guns;
+  // Gun name
+  final String name;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$PediaDataAntiAircraftSlotsModelToJson(this);
 }

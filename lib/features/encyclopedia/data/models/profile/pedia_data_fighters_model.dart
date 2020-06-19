@@ -1,12 +1,15 @@
-import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
+import 'package:wassistant/features/encyclopedia/domain/entities/profile/pedia_data_fighters.dart';
+
+import '../pedia_json_data.dart';
 
 part 'pedia_data_fighters_model.g.dart';
 
-@JsonSerializable()
-class PediaDataFighters extends Equatable {
-  PediaDataFighters({
+@JsonSerializable(fieldRename: FieldRename.snake)
+class PediaDataFightersModel extends PediaDataFighters
+    implements PediaJsonData {
+  const PediaDataFightersModel({
     @required this.avgDamage,
     @required this.cruiseSpeed,
     @required this.fightersId,
@@ -20,89 +23,72 @@ class PediaDataFighters extends Equatable {
     @required this.squadrons,
     @required this.countInSquadron,
   });
-  // Average damage caused per second
-  @JsonKey(name: 'avg_damage')
-  final num avgDamage;
-  // Cruise Speed (knots)
-  @JsonKey(name: 'cruise_speed')
-  final num cruiseSpeed;
-  // Fighters' ID
-  @JsonKey(name: 'fighters_id')
-  final num fightersId;
-  @JsonKey(name: 'fighters_id_str')
-  final String fightersIdStr;
-  // Average damage per gunner of a fighter per second
-  @JsonKey(name: 'gunner_damage')
-  final num gunnerDamage;
-  // Ammunition
-  @JsonKey(name: 'max_ammo')
-  final num maxAmmo;
-  // Survivability
-  @JsonKey(name: 'max_health')
-  final num maxHealth;
-  // Name of squadron
-  @JsonKey(name: 'name')
-  final String name;
-  // Fighter tier
-  @JsonKey(name: 'plane_level')
-  final num planeLevel;
-  // Time of preparation for takeoff (sec)
-  @JsonKey(name: 'prepare_time')
-  final num prepareTime;
-  // Number of squadrons
-  @JsonKey(name: 'squadrons')
-  final num squadrons;
-  // Number of squadrons
-  @JsonKey(name: 'count_in_squadron')
-  final PediaDataFightersCountInSquadron countInSquadron;
-
-  static PediaDataFighters fromJson(Map<String, dynamic> json) {
-    return _$PediaDataFightersFromJson(json);
-  }
-
-  static Map<String, dynamic> toJson(PediaDataFighters instance) {
-    return _$PediaDataFightersToJson(instance);
-  }
 
   @override
-  List<Object> get props => [
-        avgDamage,
-        cruiseSpeed,
-        fightersId,
-        fightersIdStr,
-        gunnerDamage,
-        maxAmmo,
-        maxHealth,
-        name,
-        planeLevel,
-        prepareTime,
-        squadrons,
-        countInSquadron,
-      ];
+  factory PediaDataFightersModel.fromJson(Map<String, dynamic> json) {
+    return _$PediaDataFightersModelFromJson(json);
+  }
+
+  // Average damage caused per second
+  @override
+  final num avgDamage;
+  // Cruise Speed (knots)
+  @override
+  final num cruiseSpeed;
+  // Fighters' ID
+  @override
+  final num fightersId;
+  @override
+  final String fightersIdStr;
+  // Average damage per gunner of a fighter per second
+  @override
+  final num gunnerDamage;
+  // Ammunition
+  @override
+  final num maxAmmo;
+  // Survivability
+  @override
+  final num maxHealth;
+  // Name of squadron
+  @override
+  final String name;
+  // Fighter tier
+  @override
+  final num planeLevel;
+  // Time of preparation for takeoff (sec)
+  @override
+  final num prepareTime;
+  // Number of squadrons
+  @override
+  final num squadrons;
+  // Number of squadrons
+  @override
+  final PediaDataFightersCountInSquadronModel countInSquadron;
+
+  @override
+  Map<String, dynamic> toJson() => _$PediaDataFightersModelToJson(this);
 }
 
-@JsonSerializable()
-class PediaDataFightersCountInSquadron extends Equatable {
-  PediaDataFightersCountInSquadron({
+@JsonSerializable(fieldRename: FieldRename.snake)
+class PediaDataFightersCountInSquadronModel
+    extends PediaDataFightersCountInSquadron implements PediaJsonData {
+  const PediaDataFightersCountInSquadronModel({
     @required this.max,
     @required this.min,
   });
-  @JsonKey(name: 'max')
-  final num max;
-  @JsonKey(name: 'min')
-  final num min;
 
-  static PediaDataFightersCountInSquadron fromJson(Map<String, dynamic> json) {
-    return _$PediaDataFightersCountInSquadronFromJson(json);
-  }
-
-  Map<String, dynamic> toJson() {
-    return _$PediaDataFightersCountInSquadronToJson(this);
+  @override
+  factory PediaDataFightersCountInSquadronModel.fromJson(
+      Map<String, dynamic> json) {
+    return _$PediaDataFightersCountInSquadronModelFromJson(json);
   }
 
   @override
-  List<Object> get props => [
-        max,
-        min,
-      ];
+  final num max;
+  @override
+  final num min;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$PediaDataFightersCountInSquadronModelToJson(this);
 }

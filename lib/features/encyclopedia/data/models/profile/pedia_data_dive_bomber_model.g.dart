@@ -6,8 +6,9 @@ part of 'pedia_data_dive_bomber_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PediaDataDiveBomber _$PediaDataDiveBomberFromJson(Map<String, dynamic> json) {
-  return PediaDataDiveBomber(
+PediaDataDiveBomberModel _$PediaDataDiveBomberModelFromJson(
+    Map<String, dynamic> json) {
+  return PediaDataDiveBomberModel(
     bombBulletMass: json['bomb_bullet_mass'] as num,
     bombBurnProbability: json['bomb_burn_probability'] as num,
     bombDamage: json['bomb_damage'] as num,
@@ -24,17 +25,17 @@ PediaDataDiveBomber _$PediaDataDiveBomberFromJson(Map<String, dynamic> json) {
     squadrons: json['squadrons'] as num,
     accuracy: json['accuracy'] == null
         ? null
-        : PediaDataDiveBomberAccuracy.fromJson(
+        : PediaDataDiveBomberAccuracyModel.fromJson(
             json['accuracy'] as Map<String, dynamic>),
     countInSquadron: json['count_in_squadron'] == null
         ? null
-        : PediaDataDiveBomberCountInSquadron.fromJson(
+        : PediaDataDiveBomberCountInSquadronModel.fromJson(
             json['count_in_squadron'] as Map<String, dynamic>),
   );
 }
 
-Map<String, dynamic> _$PediaDataDiveBomberToJson(
-        PediaDataDiveBomber instance) =>
+Map<String, dynamic> _$PediaDataDiveBomberModelToJson(
+        PediaDataDiveBomberModel instance) =>
     <String, dynamic>{
       'bomb_bullet_mass': instance.bombBulletMass,
       'bomb_burn_probability': instance.bombBurnProbability,
@@ -54,31 +55,32 @@ Map<String, dynamic> _$PediaDataDiveBomberToJson(
       'count_in_squadron': instance.countInSquadron,
     };
 
-PediaDataDiveBomberCountInSquadron _$PediaDataDiveBomberCountInSquadronFromJson(
-    Map<String, dynamic> json) {
-  return PediaDataDiveBomberCountInSquadron(
+PediaDataDiveBomberCountInSquadronModel
+    _$PediaDataDiveBomberCountInSquadronModelFromJson(
+        Map<String, dynamic> json) {
+  return PediaDataDiveBomberCountInSquadronModel(
     max: json['max'] as num,
     min: json['min'] as num,
   );
 }
 
-Map<String, dynamic> _$PediaDataDiveBomberCountInSquadronToJson(
-        PediaDataDiveBomberCountInSquadron instance) =>
+Map<String, dynamic> _$PediaDataDiveBomberCountInSquadronModelToJson(
+        PediaDataDiveBomberCountInSquadronModel instance) =>
     <String, dynamic>{
       'max': instance.max,
       'min': instance.min,
     };
 
-PediaDataDiveBomberAccuracy _$PediaDataDiveBomberAccuracyFromJson(
+PediaDataDiveBomberAccuracyModel _$PediaDataDiveBomberAccuracyModelFromJson(
     Map<String, dynamic> json) {
-  return PediaDataDiveBomberAccuracy(
+  return PediaDataDiveBomberAccuracyModel(
     max: json['max'] as num,
     min: json['min'] as num,
   );
 }
 
-Map<String, dynamic> _$PediaDataDiveBomberAccuracyToJson(
-        PediaDataDiveBomberAccuracy instance) =>
+Map<String, dynamic> _$PediaDataDiveBomberAccuracyModelToJson(
+        PediaDataDiveBomberAccuracyModel instance) =>
     <String, dynamic>{
       'max': instance.max,
       'min': instance.min,

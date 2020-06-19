@@ -6,8 +6,9 @@ part of 'pedia_data_weaponry_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PediaDataWeaponry _$PediaDataWeaponryFromJson(Map<String, dynamic> json) {
-  return PediaDataWeaponry(
+PediaDataWeaponryModel _$PediaDataWeaponryModelFromJson(
+    Map<String, dynamic> json) {
+  return PediaDataWeaponryModel(
     aircraft: json['aircraft'] as num,
     antiAircraft: json['anti_aircraft'] as num,
     artillery: json['artillery'] as num,
@@ -15,7 +16,8 @@ PediaDataWeaponry _$PediaDataWeaponryFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$PediaDataWeaponryToJson(PediaDataWeaponry instance) =>
+Map<String, dynamic> _$PediaDataWeaponryModelToJson(
+        PediaDataWeaponryModel instance) =>
     <String, dynamic>{
       'aircraft': instance.aircraft,
       'anti_aircraft': instance.antiAircraft,
